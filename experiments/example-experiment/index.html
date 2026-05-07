@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Example jsPsych Experiment</title>
+
+  <!-- jsPsych core -->
+  <script src="https://unpkg.com/jspsych@7.3.4"></script>
+  <link href="https://unpkg.com/jspsych@7.3.4/css/jspsych.css" rel="stylesheet" type="text/css" />
+
+  <!-- jsPsych plugins -->
+  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.3"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.3"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-survey-html-form@1.0.3"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-instructions@1.1.4"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
+
+  <style>
+    body {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body></body>
+
+<script>
+  // Initialize jsPsych
+  const jsPsych = initJsPsych({
+    on_finish: function() {
+      // Save data when experiment finishes
+      saveData();
+    }
+  });
+
+  // Generate unique participant ID
+  const participantId = 'participant_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
+
+  // Timeline array to hold all trials
+  let timeline = [];
+
+  // Welcome screen
+  const welcome = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `
+      <h1>Welcome to the Experiment</h1>
+      <p>Thank you for participating in this study.</p>
+      <p>Click the button below to begin.</p>
+    `,
+    choices: ['Start Experiment']
+  };
+  timeline.push(welcome);
+
+  // Instructions
+  const instructions = {
+    type: jsPsychInstructions,
+    pages: [
+      `<h2>Instructions</h2>
+       <p>In this experiment, you will see a series of stimuli.</p>
+       <p>Your task is to respond as quickly and accurately as possible.</p>`,
+      `<h2>Response Method</h2>
+       <p>You will use the keyboard or buttons to respond.</p>
+       <p>Press the 'Next' button to continue.</p>`
+    ],
+    show_clickable_nav: true
+  };
+  timeline.push(instructions);
+
+  // Example trial with keyboard response
+  const keyboardTrial = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: '<p style="font-size: 48px;">+</p>',
+    choices: "NO_KEYS",
+    trial_duration: 1000,
+    data: {
+      task: 'fixation'
+    }
+  };
+  timeline.push(keyboardTrial);
+
+  // Example trial with button response
+  const buttonTrial = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '<p>Is this an example experiment?</p>',
+    choices: ['Yes', 'No'],
+    data: {
+      task: 'question',
+      question_type: 'verification'
+    }
+  };
+  timeline.push(buttonTrial);
+
+  // Survey form
+  const survey = {
+    type: jsPsychSurveyHtmlForm,
+    preamble: '<p>Please answer a few questions about your experience:</p>',
+    html: `
+      <p>How difficult was this experiment? (1-5)</p>
+      <input type="number" name="difficulty" min="1" max="5" required>
+      <p>Any comments?</p>
+      <textarea name="comments" rows="4" cols="50"></textarea>
+    `,
+    data: {
+      task: 'survey'
+    }
+  };
+  timeline.push(survey);
+
+  // Thank you screen
+  const thankyou = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `
+      <h2>Thank you for participating!</h2>
+      <p>Your data has been saved.</p>
+      <p>You may close this window now.</p>
+    `,
+    choices: ['Finish'],
+    on_finish: function() {
+      // Additional cleanup if needed
+    }
+  };
+  timeline.push(thankyou);
+
+  // Function to save data to server
+  function saveData() {
+    const data = jsPsych.data.get().csv();
+    const filename = participantId + '.csv';
+
+    fetch('http://localhost:3000/save-data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        filename: filename,
+        data: data,
+        experimentName: 'example-experiment'
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Data saved successfully:', data);
+    })
+    .catch((error) => {
+      console.error('Error saving data:', error);
+    });
+  }
+
+  // Run the experiment
+  jsPsych.run(timeline);
+</script>
+
+</html>
