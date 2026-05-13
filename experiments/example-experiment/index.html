@@ -15,6 +15,9 @@
   <script src="https://unpkg.com/@jspsych/plugin-instructions@1.1.4"></script>
   <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
 
+  <!-- DataPipe plugin for data collection -->
+  <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
+
   <style>
     body {
       background-color: #f0f0f0;
@@ -27,13 +30,20 @@
   // Initialize jsPsych
   const jsPsych = initJsPsych({
     on_finish: function() {
-      // Save data when experiment finishes
-      saveData();
+      // Display completion message
+      jsPsych.getDisplayElement().innerHTML = `
+        <div style="max-width: 800px; margin: 100px auto; text-align: center;">
+          <h1>Experiment Complete!</h1>
+          <p>Your data has been saved.</p>
+          <p>You may close this window now.</p>
+        </div>
+      `;
     }
   });
 
-  // Generate unique participant ID
-  const participantId = 'participant_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
+  // Generate unique participant ID using jsPsych's randomization
+  const subject_id = jsPsych.randomization.randomID(10);
+  const filename = `${subject_id}.csv`;
 
   // Timeline array to hold all trials
   let timeline = [];
@@ -120,30 +130,15 @@
   };
   timeline.push(thankyou);
 
-  // Function to save data to server
-  function saveData() {
-    const data = jsPsych.data.get().csv();
-    const filename = participantId + '.csv';
-
-    fetch('http://localhost:3000/save-data', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        filename: filename,
-        data: data,
-        experimentName: 'example-experiment'
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Data saved successfully:', data);
-    })
-    .catch((error) => {
-      console.error('Error saving data:', error);
-    });
-  }
+  // Save data to DataPipe
+  const save_data = {
+    type: jsPsychPipe,
+    action: "save",
+    experiment_id: "uNrh6jZkRoPw",
+    filename: filename,
+    data_string: () => jsPsych.data.get().csv()
+  };
+  timeline.push(save_data);
 
   // Run the experiment
   jsPsych.run(timeline);
