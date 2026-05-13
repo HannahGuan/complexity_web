@@ -6,12 +6,15 @@ A web-based experimental platform using jsPsych for creating psychology experime
 
 ```
 .
-├── experiments/             # Experiment folders
-│   ├── example-experiment/
-│   │   └── index.html      # Example experiment
-│   └── threa4-study/
-│       └── index.html      # Threa-4 research study
-└── README.md
+├── .nojekyll                # Disables Jekyll processing on GitHub Pages
+├── .gitignore              # Git ignore file
+├── index.html              # Main landing page listing all experiments
+├── README.md               # This file
+└── experiments/            # Experiment folders
+    ├── example-experiment/
+    │   └── index.html      # Example experiment
+    └── threa4-study/
+        └── index.html      # Threa-4 research study
 ```
 
 ## Features
@@ -47,12 +50,28 @@ python -m http.server 8000
 
 ### Option 2: Deploy to GitHub Pages
 
-1. Push this repository to GitHub
-2. Go to Settings → Pages
-3. Set Source to "main" branch, root folder
-4. Your experiments will be available at:
-   - `https://[username].github.io/[repo-name]/experiments/threa4-study/`
-   - `https://[username].github.io/[repo-name]/experiments/example-experiment/`
+1. **Push this repository to GitHub**:
+   ```bash
+   git add .
+   git commit -m "Deploy experiments with DataPipe"
+   git push origin main
+   ```
+
+2. **Configure GitHub Pages**:
+   - Go to your repo Settings → Pages
+   - Set Source to **"Deploy from a branch"**
+   - Select branch: **main**
+   - Select folder: **/ (root)**
+   - Click Save
+
+3. **Wait for deployment** (usually takes 1-2 minutes)
+
+4. **Access your experiments**:
+   - Main page: `https://[username].github.io/[repo-name]/`
+   - Threa-4 study: `https://[username].github.io/[repo-name]/experiments/threa4-study/`
+   - Example: `https://[username].github.io/[repo-name]/experiments/example-experiment/`
+
+**Important**: The `.nojekyll` file in this repo disables Jekyll processing, allowing GitHub Pages to serve your files as-is.
 
 All data will be automatically saved to DataPipe cloud storage!
 
