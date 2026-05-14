@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>jsPsych Experiments</title>
+  <title>Research Studies | Stanford Psychology</title>
   <style>
     * {
       margin: 0;
@@ -12,35 +12,74 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #8C1515 0%, #B83A4B 50%, #E04F39 100%);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-100px, -100px); }
     }
 
     .container {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      max-width: 800px;
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 20px;
+      box-shadow: 0 20px 80px rgba(140, 21, 21, 0.4);
+      max-width: 900px;
       width: 100%;
-      padding: 48px;
+      padding: 60px;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #8C1515;
+      margin-bottom: 16px;
+      opacity: 0.9;
     }
 
     h1 {
       color: #2d3748;
-      font-size: 2.5rem;
+      font-size: 3rem;
       margin-bottom: 12px;
       font-weight: 700;
+      text-align: center;
+      background: linear-gradient(135deg, #8C1515 0%, #E04F39 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .subtitle {
       color: #718096;
-      font-size: 1.1rem;
-      margin-bottom: 40px;
+      font-size: 1.2rem;
+      margin-bottom: 48px;
+      text-align: center;
+      font-weight: 400;
     }
 
     .experiment-list {
@@ -48,69 +87,121 @@
     }
 
     .experiment-item {
-      margin-bottom: 16px;
-      transition: transform 0.2s ease;
-    }
-
-    .experiment-item:hover {
-      transform: translateX(8px);
+      margin-bottom: 20px;
     }
 
     .experiment-link {
       display: block;
-      padding: 24px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 32px;
+      background: linear-gradient(135deg, #8C1515 0%, #B83A4B 50%, #E04F39 100%);
       color: white;
       text-decoration: none;
-      border-radius: 12px;
-      font-size: 1.25rem;
+      border-radius: 16px;
+      font-size: 1.4rem;
       font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 8px 24px rgba(140, 21, 21, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .experiment-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .experiment-link:hover::before {
+      opacity: 1;
     }
 
     .experiment-link:hover {
-      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.6);
-      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(140, 21, 21, 0.5);
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    .experiment-title {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .experiment-title::before {
+      content: '→';
+      font-size: 2rem;
+      transition: transform 0.4s ease;
+    }
+
+    .experiment-link:hover .experiment-title::before {
+      transform: translateX(8px);
     }
 
     .experiment-description {
       display: block;
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 400;
-      margin-top: 8px;
-      opacity: 0.9;
+      margin-top: 12px;
+      opacity: 0.95;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
     }
 
     .footer {
-      margin-top: 40px;
-      padding-top: 24px;
+      margin-top: 48px;
+      padding-top: 32px;
       border-top: 2px solid #e2e8f0;
       text-align: center;
       color: #718096;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
     }
 
     .footer a {
-      color: #667eea;
+      color: #8C1515;
       text-decoration: none;
       font-weight: 600;
+      transition: color 0.3s ease;
     }
 
     .footer a:hover {
+      color: #E04F39;
       text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 40px 30px;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .experiment-link {
+        padding: 24px;
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>jsPsych Experiments</h1>
-    <p class="subtitle">Select an experiment to participate</p>
+    <div class="logo">Stanford Psychology</div>
+    <h1>Research Studies</h1>
+    <p class="subtitle">Participate in cutting-edge psychological research</p>
 
     <ul class="experiment-list">
       <li class="experiment-item">
         <a href="experiments/threa4-study/index.html" class="experiment-link">
-          Threa-4 Research Study
+          <div class="experiment-title">Threa-4 Research Study</div>
           <span class="experiment-description">
             A study about perceived complexity in biological systems
           </span>
@@ -119,7 +210,7 @@
 
       <li class="experiment-item">
         <a href="experiments/example-experiment/index.html" class="experiment-link">
-          Example Experiment
+          <div class="experiment-title">Example Experiment</div>
           <span class="experiment-description">
             A demo experiment showing jsPsych features
           </span>
