@@ -246,8 +246,8 @@
   const condition = jsPsych.randomization.sampleWithoutReplacement(conditions, 1)[0];
 
   // Parse condition variables
-  const complexity = condition.includes('simple') ? 'simple' : 'complex';
-  const relevance = condition.includes('relevant') ? 'relevant' : 'irrelevant';
+  const complexity = condition.startsWith('simple') ? 'simple' : 'complex';
+  const relevance = condition.endsWith('irrelevant') ? 'irrelevant' : 'relevant';
 
   // Add condition info to all data collected
   jsPsych.data.addProperties({
