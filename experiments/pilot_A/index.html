@@ -292,6 +292,47 @@
   // Timeline array to hold all trials
   let timeline = [];
 
+  // ===== WELCOME / INSTRUCTIONS PAGE =====
+  const welcomePage = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `
+      <div class="reading-screen" style="text-align: left;">
+        <h1 style="margin-bottom: 30px; font-size: 2rem;">Welcome to Our Study</h1>
+
+        <div style="line-height: 1.8; font-size: 16px;">
+          <p>Thank you for participating in this research study!</p>
+
+          <h2 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.3rem;">What you'll do:</h2>
+          <p>In this study, you will:</p>
+          <ul style="margin-left: 20px; margin-bottom: 20px; line-height: 2;">
+            <li>Read a short scenario about a scientific research project</li>
+            <li>Answer some questions about what you read</li>
+            <li>Provide your thoughts and opinions</li>
+          </ul>
+
+          <h2 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.3rem;">Time commitment:</h2>
+          <p>This study will take approximately <strong>5-10 minutes</strong> to complete.</p>
+
+          <h2 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.3rem;">Important notes:</h2>
+          <ul style="margin-left: 20px; margin-bottom: 20px; line-height: 2;">
+            <li>Please read all materials carefully</li>
+            <li>There are no right or wrong answers - we're interested in your honest opinions</li>
+            <li>Your participation is voluntary and your responses will be kept confidential</li>
+            <li>You may withdraw at any time without penalty</li>
+          </ul>
+
+          <p style="margin-top: 30px; font-weight: 500;">When you're ready to begin, please click Continue below.</p>
+        </div>
+      </div>
+    `,
+    choices: ['Continue'],
+    data: {
+      task: 'welcome',
+      phase: 'intro'
+    }
+  };
+  timeline.push(welcomePage);
+
   // ===== SCREEN 1: READING PAGE (PRE) =====
   const screen1Reading = {
     type: jsPsychHtmlButtonResponse,
