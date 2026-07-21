@@ -1,6 +1,0 @@
-"rt","response","task","trial_type","trial_index","time_elapsed","internal_node_id","question_order"
-"8834","{""perceived_complexity"":""6"",""complexity_justification"":"""",""team_competence"":""5"",""competence_justification"":"""",""team_honesty"":""3"",""honesty_justification"":""""}","main_questionnaire","survey-html-form","0","8844","0.0-0.0",""
-"3857","{""expert_revision_expectation"":""x"",""detailed_info_reasoning"":""x""}","open_ended_questions","survey-text","1","12706","0.0-1.0",""
-"4606","{""revision_likelihood"":""80""}","revision_likelihood","survey-html-form","2","17315","0.0-2.0",""
-"5690","{""revision_reason_more_factors"":4,""revision_reason_dynamic_relationships"":3,""revision_reason_original_wrong"":4}","revision_reasons","survey-likert","3","23011","0.0-3.0","[0,1,2]"
-"11524","{""perceived_complexity_followup"":""6"",""complexity_justification_followup"":"""",""team_competence_followup"":""5"",""competence_justification_followup"":"""",""team_honesty_followup"":""3"",""honesty_justification_followup"":""""}","followup_questionnaire","survey-html-form","4","34540","0.0-4.0",""
