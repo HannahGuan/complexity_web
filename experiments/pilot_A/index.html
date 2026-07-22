@@ -246,8 +246,8 @@
   const condition = jsPsych.randomization.sampleWithoutReplacement(conditions, 1)[0];
 
   // Parse condition variables
-  const complexity = condition.startsWith('simple') ? 'simple' : 'complex';
-  const relevance = condition.endsWith('irrelevant') ? 'irrelevant' : 'relevant';
+  const complexity = condition.includes('simple') ? 'simple' : 'complex';
+  const relevance = condition.includes('relevant') ? 'relevant' : 'irrelevant';
 
   // Add condition info to all data collected
   jsPsych.data.addProperties({
@@ -296,25 +296,25 @@
   const welcomePage = {
     type: jsPsychHtmlButtonResponse,
     stimulus: `
-      <div class="reading-screen" style="text-align: left;">
-        <h1 style="margin-bottom: 30px; font-size: 2rem;">Welcome to Our Study</h1>
+      <div class="reading-screen">
+        <h1 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">Welcome to Our Study</h1>
 
         <div style="line-height: 1.8; font-size: 16px;">
           <p>Thank you for participating in this research study!</p>
 
           <h2 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.3rem;">What you'll do:</h2>
           <p>In this study, you will:</p>
-          <ul style="margin-left: 20px; margin-bottom: 20px; line-height: 2;">
+          <ul style="margin-left: 30px; margin-bottom: 20px; line-height: 2;">
             <li>Read a short scenario about a scientific research project</li>
             <li>Answer some questions about what you read</li>
             <li>Provide your thoughts and opinions</li>
           </ul>
 
           <h2 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.3rem;">Time commitment:</h2>
-          <p>This study will take approximately <strong>5-10 minutes</strong> to complete.</p>
+          <p>This study will take approximately <strong>8-10 minutes</strong> to complete.</p>
 
           <h2 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.3rem;">Important notes:</h2>
-          <ul style="margin-left: 20px; margin-bottom: 20px; line-height: 2;">
+          <ul style="margin-left: 30px; margin-bottom: 20px; line-height: 2;">
             <li>Please read all materials carefully</li>
             <li>There are no right or wrong answers - we're interested in your honest opinions</li>
             <li>Your participation is voluntary and your responses will be kept confidential</li>
@@ -338,7 +338,7 @@
     type: jsPsychHtmlButtonResponse,
     stimulus: `
       <div class="reading-screen">
-        <h2>About this study</h2>
+        <h2>About the scientific report</h2>
         <p>Threa-4, a moon being developed as a hub for future space exploration, is planning its first permanent residence. The team needs a reliable way to heat it.</p>
 
         <div class="task-line" id="task-context">
