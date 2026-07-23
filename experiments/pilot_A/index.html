@@ -235,26 +235,35 @@
   const subject_id = jsPsych.randomization.randomID(10);
   const filename = `${subject_id}.csv`;
 
-  // ===== RANDOM CONDITION ASSIGNMENT (2x2 Design) =====
-  // Four conditions: simple_relevant, complex_relevant, simple_irrelevant, complex_irrelevant
-  const conditions = [
-    'simple_relevant',
-    'complex_relevant',
-    'simple_irrelevant',
-    'complex_irrelevant'
+  // ===== PILOT CONDITION ASSIGNMENT (N=8 Cycle) =====
+  // Fixed sequence ensuring 2 participants per condition in each cycle of 8
+  // This guarantees balanced conditions for pilot data collection
+  const conditionSequence = [
+    'simple_relevant',      // Position 0
+    'simple_relevant',      // Position 1
+    'complex_relevant',     // Position 2
+    'complex_relevant',     // Position 3
+    'simple_irrelevant',    // Position 4
+    'simple_irrelevant',    // Position 5
+    'complex_irrelevant',   // Position 6
+    'complex_irrelevant'    // Position 7
   ];
-  const condition = jsPsych.randomization.sampleWithoutReplacement(conditions, 1)[0];
+
+  // Randomly assign participant to one of the 8 positions
+  const randomPosition = Math.floor(Math.random() * 8);
+  const condition = conditionSequence[randomPosition];
 
   // Parse condition variables
-  const complexity = condition.includes('simple') ? 'simple' : 'complex';
-  const relevance = condition.includes('relevant') ? 'relevant' : 'irrelevant';
+  const complexity = condition.startsWith('simple') ? 'simple' : 'complex';
+  const relevance = condition.endsWith('irrelevant') ? 'irrelevant' : 'relevant';
 
   // Add condition info to all data collected
   jsPsych.data.addProperties({
     subject_id: subject_id,
     condition: condition,
     complexity: complexity,
-    relevance: relevance
+    relevance: relevance,
+    sequence_position: randomPosition  // For pilot analysis: which position in the 8-cycle
   });
 
   // ===== CONDITION-SPECIFIC TEXT CONTENT =====
@@ -299,12 +308,12 @@
       <div class="reading-screen">
         <h1 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">Welcome to Our Study</h1>
 
-        <div style="line-height: 1.8; font-size: 16px;">
+        <div style="line-height: 1.8; font-size: 16px; text-align: left;">
           <p>Thank you for participating in this research study!</p>
 
           <h2 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.3rem;">What you'll do:</h2>
           <p>In this study, you will:</p>
-          <ul style="margin-left: 30px; margin-bottom: 20px; line-height: 2;">
+          <ul style="margin-left: 20px; margin-bottom: 20px; line-height: 2;">
             <li>Read a short scenario about a scientific research project</li>
             <li>Answer some questions about what you read</li>
             <li>Provide your thoughts and opinions</li>
@@ -314,7 +323,7 @@
           <p>This study will take approximately <strong>8-10 minutes</strong> to complete.</p>
 
           <h2 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.3rem;">Important notes:</h2>
-          <ul style="margin-left: 30px; margin-bottom: 20px; line-height: 2;">
+          <ul style="margin-left: 20px; margin-bottom: 20px; line-height: 2;">
             <li>Please read all materials carefully</li>
             <li>There are no right or wrong answers - we're interested in your honest opinions</li>
             <li>Your participation is voluntary and your responses will be kept confidential</li>
@@ -357,6 +366,10 @@
           <p>In the proposal submitted by Dr. Aren's team, they explained that:</p>
 
           <p><em>"Zorblax is a tiny special organism about the same size as a bacteria on earth. They generate heat by absorbing a specific airborne compound we call threane through their respiratory surfaces. Threane is naturally present in Threa-4's atmosphere, and it's temperature-sensitive: it's abundant in cold air and dissipates rapidly as temperatures rise. So when ambient temperature drops, there's more threane available, Zorblax absorb more of it, and their heat output rises proportionally. Colder environment, more threane uptake, more heat output."</em></p>
+
+          <div style="margin-top: 30px; text-align: center;">
+            <img src="assit_visual.png" alt="Visual diagram" style="max-width: 100%; height: auto; border-radius: 4px;">
+          </div>
         </div>
       </div>
     `,
