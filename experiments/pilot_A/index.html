@@ -236,21 +236,32 @@
   const filename = `${subject_id}.csv`;
 
   // ===== PILOT CONDITION ASSIGNMENT (N=8 Cycle) =====
-  // Fixed sequence ensuring 2 participants per condition in each cycle of 8
-  // This guarantees balanced conditions for pilot data collection
+  // TEMPORARY: All positions set to complex_relevant to collect missing data
+  // TODO: Restore balanced assignment after collecting 2 complex_relevant participants
   const conditionSequence = [
-    'simple_relevant',      // Position 0
-    'simple_relevant',      // Position 1
-    'complex_relevant',     // Position 2
-    'complex_relevant',     // Position 3
-    'simple_irrelevant',    // Position 4
-    'simple_irrelevant',    // Position 5
-    'complex_irrelevant',   // Position 6
-    'complex_irrelevant'    // Position 7
+    'complex_relevant',     // Position 0 - TEMP
+    'complex_relevant',     // Position 1 - TEMP
+    'complex_relevant',     // Position 2 - TEMP
+    'complex_relevant',     // Position 3 - TEMP
+    'complex_relevant',     // Position 4 - TEMP
+    'complex_relevant',     // Position 5 - TEMP
+    'complex_relevant',     // Position 6 - TEMP
+    'complex_relevant'      // Position 7 - TEMP
   ];
 
-  // Randomly assign participant to one of the 8 positions
-  const randomPosition = Math.floor(Math.random() * 8);
+  // Hash-based assignment using participant ID for better distribution
+  // This ensures more uniform distribution across conditions
+  function hashStringToInt(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash; // Convert to 32-bit integer
+    }
+    return Math.abs(hash);
+  }
+
+  const randomPosition = hashStringToInt(subject_id) % 8;
   const condition = conditionSequence[randomPosition];
 
   // Parse condition variables
