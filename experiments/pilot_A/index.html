@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Threa-4 Research Study</title>
+  <title>Research Study</title>
 
   <!-- jsPsych core -->
   <script src="https://unpkg.com/jspsych@7.3.4"></script>
@@ -16,6 +16,9 @@
 
   <!-- DataPipe plugin for data collection -->
   <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
+
+  <!-- Vignette definitions, generated from vignettes/*.csv by build_vignettes.py -->
+  <script src="vignettes.js"></script>
 
   <style>
     body {
@@ -220,6 +223,22 @@
   // Initialize jsPsych
   const jsPsych = initJsPsych({
     on_finish: function() {
+      if (new URLSearchParams(window.location.search).get('test') === '1') {
+        // Test mode: show the data that WOULD have been saved, for inspection.
+        document.body.innerHTML = `
+          <div style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
+            <h1 style="color:#856404;">Test run complete - nothing was saved</h1>
+            <p>Below is the data this run would have submitted.</p>
+            <p><button class="jspsych-btn" onclick="navigator.clipboard.writeText(
+                 document.getElementById('test-csv').textContent)">Copy CSV</button></p>
+            <pre id="test-csv" style="text-align:left;font-size:11px;overflow:auto;
+                 max-height:60vh;background:#f8f9fa;border:1px solid #dee2e6;
+                 padding:12px;border-radius:4px;"></pre>
+          </div>
+        `;
+        document.getElementById('test-csv').textContent = jsPsych.data.get().csv();
+        return;
+      }
       // Display completion message
       document.body.innerHTML = `
         <div style="max-width: 800px; margin: 100px auto; text-align: center;">
@@ -235,38 +254,55 @@
   const subject_id = jsPsych.randomization.randomID(10);
   const filename = `${subject_id}.csv`;
 
-  // ===== PILOT CONDITION ASSIGNMENT (N=8 Cycle) =====
-  // TEMPORARY: All positions set to complex_relevant to collect missing data
-  // TODO: Restore balanced assignment after collecting 2 complex_relevant participants
-  const conditionSequence = [
-    'complex_relevant',     // Position 0 - TEMP
-    'complex_relevant',     // Position 1 - TEMP
-    'complex_relevant',     // Position 2 - TEMP
-    'complex_relevant',     // Position 3 - TEMP
-    'complex_relevant',     // Position 4 - TEMP
-    'complex_relevant',     // Position 5 - TEMP
-    'complex_relevant',     // Position 6 - TEMP
-    'complex_relevant'      // Position 7 - TEMP
-  ];
-
-  // Hash-based assignment using participant ID for better distribution
-  // This ensures more uniform distribution across conditions
-  function hashStringToInt(str) {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-      const char = str.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash; // Convert to 32-bit integer
-    }
-    return Math.abs(hash);
+  // ===== RANDOM ASSIGNMENT =====
+  // Design: 18 vignettes (6 scenarios x 3 relevance types, from
+  // vignettes/text.csv) fully crossed with complexity (simple / complex) and
+  // relevance (relevant / irrelevant) = 72 cells. Vignette, complexity and
+  // relevance are drawn independently and uniformly at random per participant.
+  if (!window.VIGNETTES || !window.VIGNETTES.length) {
+    document.body.innerHTML = `
+      <div style="max-width: 640px; margin: 100px auto; text-align: center;">
+        <h2>Setup error</h2>
+        <p>The vignette definitions could not be loaded.</p>
+        <p style="color:#666; font-size:14px;">vignettes.js is missing or empty.
+        Run <code>python3 build_vignettes.py</code> to regenerate it.</p>
+      </div>`;
+    throw new Error('vignettes.js did not define window.VIGNETTES');
   }
 
-  const randomPosition = hashStringToInt(subject_id) % 8;
-  const condition = conditionSequence[randomPosition];
+  function pickOne(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
 
-  // Parse condition variables
-  const complexity = condition.startsWith('simple') ? 'simple' : 'complex';
-  const relevance = condition.endsWith('irrelevant') ? 'irrelevant' : 'relevant';
+  // ===== TEST MODE (local piloting only) =====
+  // ?test=1             run without saving to DataPipe; dump the data on screen
+  // ?vignette=12        force a specific vignette index (0-17)
+  // ?complexity=simple  force the complexity arm
+  // ?relevance=relevant force the relevance arm
+  // With no query string this behaves exactly as the live study does.
+  const params = new URLSearchParams(window.location.search);
+  const TEST_MODE = params.get('test') === '1';
+
+  function forced(name, allowed) {
+    const v = params.get(name);
+    if (v === null) return null;
+    if (allowed.indexOf(v) === -1) {
+      throw new Error('Invalid ?' + name + '=' + v + ' (expected one of: ' + allowed.join(', ') + ')');
+    }
+    return v;
+  }
+
+  const forcedVignette = params.get('vignette');
+  const vignette = forcedVignette !== null
+    ? window.VIGNETTES.find(function(v) { return String(v.index) === forcedVignette; })
+    : pickOne(window.VIGNETTES);
+  if (!vignette) {
+    throw new Error('Invalid ?vignette=' + forcedVignette + ' (expected 0-' +
+                    (window.VIGNETTES.length - 1) + ')');
+  }
+  const complexity = forced('complexity', ['simple', 'complex']) || pickOne(['simple', 'complex']);
+  const relevance = forced('relevance', ['relevant', 'irrelevant']) || pickOne(['relevant', 'irrelevant']);
+  const condition = complexity + '_' + relevance;
 
   // Add condition info to all data collected
   jsPsych.data.addProperties({
@@ -274,32 +310,40 @@
     condition: condition,
     complexity: complexity,
     relevance: relevance,
-    sequence_position: randomPosition  // For pilot analysis: which position in the 8-cycle
+    vignette_index: vignette.index,
+    vignette_category: vignette.category,
+    relev_typ: vignette.relev_typ,
+    rev_typ: vignette.rev_typ,
+    test_mode: TEST_MODE
   });
 
-  // ===== CONDITION-SPECIFIC TEXT CONTENT =====
+  // ===== TEXT RENDERING =====
+  // Paragraphs come from the CSVs as plain text. Quoted speech is italicised
+  // and lead-in lines ("... replied:") are bolded, matching the original
+  // single-vignette layout.
+  function renderParagraphs(paras) {
+    return paras.map(function(p) {
+      if (/^["“]/.test(p)) return '<p><em>' + p + '</em></p>';
+      if (p.endsWith(':')) return '<p><strong>' + p + '</strong></p>';
+      return '<p>' + p + '</p>';
+    }).join('\n');
+  }
 
-  // Define decision context variations based on relevance condition
-  const decisionContext = {
-    relevant: `
-      <p><strong>The plan:</strong> Give each field outpost its own compact heating unit. Whether an outpost stays warm depends on its unit's heat output on each cold day, so heat has to arrive in time on the coldest days.</p>
-    `,
-    irrelevant: `
-      <p><strong>The plan:</strong> One central reservoir with a large thermal buffer. It absorbs heat as it's generated and releases it steadily into the residence, so what matters is total output over weeks, not output on any given day.</p>
-    `
-  };
+  // Condition-specific passages for this participant's vignette
+  const decisionContextHtml = renderParagraphs(vignette.decision[relevance]);
+  const complexityBriefingHtml =
+    `<h2>${vignette.briefing_heading}</h2>\n` +
+    renderParagraphs(vignette.complexity[complexity]);
+  const proposalHtml = renderParagraphs(vignette.proposal);
+  const anomalyHtml = renderParagraphs(vignette.anomaly);
+  const justificationHtml = renderParagraphs(vignette.justification);
 
-  // Define text variations based on complexity condition
-  const complexityText = {
-    simple: `
-      <h2>Threa-4 biology — current understanding:</h2>
-      <p>Threa-4 is a barren moon of only a few elements, and the life that evolved there is physiologically simple. Its physiology depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical responses.</p>
-    `,
-    complex: `
-      <h2>Threa-4 biology — current understanding:</h2>
-      <p>Threa-4 is rich in elements rare on Earth, and the life that evolved there is biologically intricate. Its physiology depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different responses.</p>
-    `
-  };
+  // Visual aid for this scenario (tracked on Category in build_vignettes.py)
+  const visualAidHtml = vignette.visual_aid ? `
+          <div style="margin-top: 30px; text-align: center;">
+            <img src="${vignette.visual_aid}" alt="Diagram of the proposed mechanism"
+                 style="max-width: 100%; height: auto; border-radius: 4px;">
+          </div>` : '';
 
   // ===== COMPREHENSION CHECK TRACKING =====
   const comprehensionAttempts = {
@@ -309,8 +353,38 @@
     q4_observation: { attempts: 0, firstCorrect: null, retriggered: false }
   };
 
+  // Turn a CSV question into the {value, text} option list the comprehension
+  // gate expects. Radio values are positional so option text never has to be
+  // escaped into an HTML attribute; the chosen text is recorded separately.
+  function buildOptions(question) {
+    return question.options.map(function(text, idx) {
+      return { value: 'opt' + idx, text: text };
+    });
+  }
+
+  function correctValue(question, answerText) {
+    const idx = question.options.indexOf(answerText);
+    if (idx === -1) {
+      throw new Error('Vignette ' + vignette.index + ': answer "' + answerText +
+                      '" is not among the options');
+    }
+    return 'opt' + idx;
+  }
+
   // Timeline array to hold all trials
   let timeline = [];
+
+  if (TEST_MODE) {
+    const banner = document.createElement('div');
+    banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;' +
+      'background:#856404;color:#fff;padding:6px 12px;font:13px/1.4 Arial,sans-serif;' +
+      'text-align:center;';
+    banner.textContent = 'TEST MODE - data will NOT be saved | vignette ' +
+      vignette.index + ' (' + vignette.category + ') | ' + complexity + ' / ' + relevance +
+      ' | ' + vignette.relev_typ;
+    document.body.appendChild(banner);
+    document.body.style.paddingTop = '32px';
+  }
 
   // ===== WELCOME / INSTRUCTIONS PAGE =====
   const welcomePage = {
@@ -353,34 +427,27 @@
   };
   timeline.push(welcomePage);
 
-  // ===== SCREEN 1: READING PAGE (PRE) =====
+  // ===== SCREEN 1: STUDY DESIGN + RELEVANCE + COMPLEXITY + PRE-STATEMENT =====
   const screen1Reading = {
     type: jsPsychHtmlButtonResponse,
     stimulus: `
       <div class="reading-screen">
-        <h2>About the scientific report</h2>
-        <p>Threa-4, a moon being developed as a hub for future space exploration, is planning its first permanent residence. The team needs a reliable way to heat it.</p>
+        <h2>About this study</h2>
+        ${renderParagraphs(vignette.study_intro)}
 
         <div class="task-line" id="task-context">
-          ${decisionContext[relevance].replace('<p><strong>The plan:</strong>', '<p><strong>The plan:</strong>').replace('</p>', '</p>')}
+          ${decisionContextHtml}
         </div>
 
-        <p>Threa-4 is also one of the few places where xenobiological (non-Earth) life has been found; xenobiologists have studied it for a decade.</p>
+        ${renderParagraphs(vignette.background)}
 
         <div class="briefing-card" id="briefing-section">
-          ${complexityText[complexity]}
+          ${complexityBriefingHtml}
         </div>
 
         <div id="proposal-section">
-          <p>As part of the planning process, a team led by Dr. Aren, a xenobiologist who studies a bacteria-like species called Zorblax, proposed that managed Zorblax colonies could be used as low-maintenance heat sources.</p>
-
-          <p>In the proposal submitted by Dr. Aren's team, they explained that:</p>
-
-          <p><em>"Zorblax is a tiny special organism about the same size as a bacteria on earth. They generate heat by absorbing a specific airborne compound we call threane through their respiratory surfaces. Threane is naturally present in Threa-4's atmosphere, and it's temperature-sensitive: it's abundant in cold air and dissipates rapidly as temperatures rise. So when ambient temperature drops, there's more threane available, Zorblax absorb more of it, and their heat output rises proportionally. Colder environment, more threane uptake, more heat output."</em></p>
-
-          <div style="margin-top: 30px; text-align: center;">
-            <img src="assit_visual.png" alt="Visual diagram" style="max-width: 100%; height: auto; border-radius: 4px;">
-          </div>
+          ${proposalHtml}
+          ${visualAidHtml}
         </div>
       </div>
     `,
@@ -392,8 +459,9 @@
   };
   timeline.push(screen1Reading);
 
-  // ===== COMPREHENSION CHECK Q1: PROPOSAL =====
-  // Helper function to create comprehension check with re-reading
+  // ===== COMPREHENSION GATE =====
+  // Incorrect answer -> hide the options, highlight the source passage, hold the
+  // Continue button disabled for 5 seconds, then re-ask. Loops until correct.
   function createComprehensionCheck(sectionId, sectionContent, questionText, options, correctAnswer, trackingKey) {
     // Store selected answer in closure
     let selectedAnswer = null;
@@ -506,9 +574,15 @@
             comprehensionAttempts[trackingKey].firstCorrect = isCorrect;
           }
 
+          const chosen = options.find(function(o) { return o.value === selectedAnswer; });
+          const correctOpt = options.find(function(o) { return o.value === correctAnswer; });
+
           data.question = trackingKey;
+          data.question_text = questionText;
           data.answer = selectedAnswer;
+          data.answer_text = chosen ? chosen.text : null;
           data.correct_answer = correctAnswer;
+          data.correct_answer_text = correctOpt ? correctOpt.text : null;
           data.correct = isCorrect;
           data.attempt_number = comprehensionAttempts[trackingKey].attempts;
           data.first_attempt_correct = comprehensionAttempts[trackingKey].firstCorrect;
@@ -523,230 +597,124 @@
     return trial;
   }
 
-  // Q1: Proposal comprehension check with loop
-  const q1_proposal_loop = {
-    timeline: [
-      createComprehensionCheck(
-        'proposal-section',
-        `
-          <p>As part of the planning process, a team led by Dr. Aren, a xenobiologist who studies a bacteria-like species called Zorblax, proposed that managed Zorblax colonies could be used as low-maintenance heat sources.</p>
-
-          <p>In the proposal submitted by Dr. Aren's team, they explained that:</p>
-
-          <p><em>"Zorblax is a tiny special organism about the same size as a bacteria on earth. They generate heat by absorbing a specific airborne compound we call threane through their respiratory surfaces. Threane is naturally present in Threa-4's atmosphere, and it's temperature-sensitive: it's abundant in cold air and dissipates rapidly as temperatures rise. So when ambient temperature drops, there's more threane available, Zorblax absorb more of it, and their heat output rises proportionally. Colder environment, more threane uptake, more heat output."</em></p>
-        `,
-        'In the original proposal, as it gets colder, Zorblax heat output is expected to…',
-        [
-          { value: 'rise', text: 'Rise' },
-          { value: 'fall', text: 'Fall' },
-          { value: 'stay_same', text: 'Stay the same' },
-          { value: 'unpredictable', text: 'Be unpredictable' }
-        ],
-        'rise',
-        'q1_proposal'
-      )
-    ],
-    loop_function: function(data) {
-      const lastTrial = data.values()[data.values().length - 1];
-
-      // If we just finished re-reading, show question again
-      if (lastTrial.stage === 'reread_complete') {
-        return true;
+  // Wrap a comprehension check in the retry-until-correct loop.
+  function comprehensionLoop(sectionId, sectionContent, question, answerText, trackingKey) {
+    return {
+      timeline: [
+        createComprehensionCheck(
+          sectionId,
+          sectionContent,
+          question.prompt,
+          buildOptions(question),
+          correctValue(question, answerText),
+          trackingKey
+        )
+      ],
+      loop_function: function(data) {
+        const lastTrial = data.values()[data.values().length - 1];
+        if (lastTrial.stage === 'reread_complete') return true;
+        if (lastTrial.stage === 'answer_submitted' && !lastTrial.correct) {
+          // Allow the re-reading screen to fire again before the next attempt
+          comprehensionAttempts[trackingKey].retriggered = false;
+          return true;
+        }
+        return false;
       }
+    };
+  }
 
-      // If answered incorrectly, show re-read screen (loop until correct)
-      if (lastTrial.stage === 'answer_submitted' && !lastTrial.correct) {
-        // Reset retriggered flag to allow re-reading again
-        comprehensionAttempts['q1_proposal'].retriggered = false;
-        return true;
-      }
+  const comp = vignette.comprehension;
 
-      // Only move on when answer is correct
-      return false;
+  // Q1: the proposed mechanism (same correct answer in every condition)
+  timeline.push(comprehensionLoop(
+    'proposal-section',
+    proposalHtml,
+    comp.q1,
+    comp.q1.answer,
+    'q1_proposal'
+  ));
+
+  // Q2: the complexity briefing (correct answer depends on the complexity condition)
+  timeline.push(comprehensionLoop(
+    'briefing-section',
+    complexityBriefingHtml,
+    comp.q2,
+    complexity === 'simple' ? comp.q2.answer_simple : comp.q2.answer_complex,
+    'q2_briefing'
+  ));
+
+  // Q3: the decision context (correct answer depends on the relevance condition)
+  timeline.push(comprehensionLoop(
+    'task-context',
+    decisionContextHtml,
+    comp.q3,
+    relevance === 'relevant' ? comp.q3.answer_relevant : comp.q3.answer_irrelevant,
+    'q3_task'
+  ));
+
+  // ===== RATINGS BLOCK BUILDER =====
+  // Perceived complexity + team competence + team honesty, each with an
+  // optional open-ended justification. Administered at three measurement
+  // points: pre (proposal), anomaly (unexpected field observation), and
+  // post (the research team's justification of the anomaly).
+  function likertRow(name, anchor) {
+    let options = '';
+    for (let v = 1; v <= 7; v++) {
+      const label = v === 1 ? `1<br>Not at all<br>${anchor}`
+                  : v === 4 ? `4<br>Moderately<br>${anchor}`
+                  : v === 7 ? `7<br>Extremely<br>${anchor}`
+                  : String(v);
+      options += `
+              <div class="likert-option">
+                <input type="radio" name="${name}" value="${v}" required>
+                <span class="likert-label">${label}</span>
+              </div>`;
     }
-  };
-  timeline.push(q1_proposal_loop);
+    return `<div class="likert-scale">${options}
+            </div>`;
+  }
 
-  // ===== COMPREHENSION CHECK Q2: BRIEFING (condition-dependent) =====
-  const q2_correct_answer = complexity === 'simple' ? 'nearly_identical' : 'substantially_different';
-
-  const q2_briefing_loop = {
-    timeline: [
-      createComprehensionCheck(
-        'briefing-section',
-        complexityText[complexity],
-        'According to the briefing, identical conditions on Threa-4 produce…',
-        [
-          { value: 'nearly_identical', text: 'Nearly identical physiological responses' },
-          { value: 'substantially_different', text: 'Substantially different physiological responses' },
-          { value: 'no_response', text: 'No physiological response' },
-          { value: 'unpredictable', text: 'Completely unpredictable responses' }
-        ],
-        q2_correct_answer,
-        'q2_briefing'
-      )
-    ],
-    loop_function: function(data) {
-      const lastTrial = data.values()[data.values().length - 1];
-      if (lastTrial.stage === 'reread_complete') return true;
-      if (lastTrial.stage === 'answer_submitted' && !lastTrial.correct) {
-        comprehensionAttempts['q2_briefing'].retriggered = false;
-        return true;
-      }
-      return false;
-    }
-  };
-  timeline.push(q2_briefing_loop);
-
-  // ===== COMPREHENSION CHECK Q3: TASK (condition-dependent) =====
-  const q3_correct_answer = relevance === 'relevant' ? 'each_day' : 'total_weeks';
-
-  const q3_task_loop = {
-    timeline: [
-      createComprehensionCheck(
-        'task-context',
-        decisionContext[relevance],
-        'For this heating plan, what matters most?',
-        [
-          { value: 'each_day', text: 'Heat output on each cold day' },
-          { value: 'total_weeks', text: 'Total heat output over weeks' },
-          { value: 'peak_output', text: 'Peak heat output capacity' },
-          { value: 'efficiency', text: 'Energy efficiency' }
-        ],
-        q3_correct_answer,
-        'q3_task'
-      )
-    ],
-    loop_function: function(data) {
-      const lastTrial = data.values()[data.values().length - 1];
-      if (lastTrial.stage === 'reread_complete') return true;
-      if (lastTrial.stage === 'answer_submitted' && !lastTrial.correct) {
-        comprehensionAttempts['q3_task'].retriggered = false;
-        return true;
-      }
-      return false;
-    }
-  };
-  timeline.push(q3_task_loop);
-
-  // ===== SCREEN 1 QUESTIONNAIRES (PRE) =====
-  const screen1_pre_ratings = {
-    type: jsPsychSurveyHtmlForm,
-    preamble: '<div class="study-info"><h2>Your Perceptions</h2><p>Please answer the following questions based on what you\'ve read so far.</p></div>',
-    html: `
-      <div class="question-section">
-        <div class="question-item">
-          <label>How complex do you perceive the Threa-4 biological system to be?</label>
-          <div class="likert-scale">
-            <div class="likert-option">
-              <input type="radio" name="perceived_complexity_pre" value="1" required>
-              <span class="likert-label">1<br>Not at all<br>complex</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="perceived_complexity_pre" value="2" required>
-              <span class="likert-label">2</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="perceived_complexity_pre" value="3" required>
-              <span class="likert-label">3</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="perceived_complexity_pre" value="4" required>
-              <span class="likert-label">4<br>Moderately<br>complex</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="perceived_complexity_pre" value="5" required>
-              <span class="likert-label">5</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="perceived_complexity_pre" value="6" required>
-              <span class="likert-label">6</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="perceived_complexity_pre" value="7" required>
-              <span class="likert-label">7<br>Extremely<br>complex</span>
-            </div>
+  function createRatingsBlock(suffix, preamble, buttonLabel, phase, taskName) {
+    return {
+      type: jsPsychSurveyHtmlForm,
+      preamble: preamble,
+      html: `
+        <div class="question-section">
+          <div class="question-item">
+            <label>How complex do you perceive the system described in this study to be?</label>
+            ${likertRow('perceived_complexity_' + suffix, 'complex')}
+            <textarea name="complexity_justification_${suffix}" rows="3" placeholder="Please explain your reasoning (optional)"></textarea>
           </div>
-          <textarea name="complexity_justification_pre" rows="3" placeholder="Please explain your reasoning (optional)"></textarea>
-        </div>
 
-        <div class="question-item">
-          <label>How competent do you think the xenobiology research team is?</label>
-          <div class="likert-scale">
-            <div class="likert-option">
-              <input type="radio" name="team_competence_pre" value="1" required>
-              <span class="likert-label">1<br>Not at all<br>competent</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_competence_pre" value="2" required>
-              <span class="likert-label">2</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_competence_pre" value="3" required>
-              <span class="likert-label">3</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_competence_pre" value="4" required>
-              <span class="likert-label">4<br>Moderately<br>competent</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_competence_pre" value="5" required>
-              <span class="likert-label">5</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_competence_pre" value="6" required>
-              <span class="likert-label">6</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_competence_pre" value="7" required>
-              <span class="likert-label">7<br>Extremely<br>competent</span>
-            </div>
+          <div class="question-item">
+            <label>How competent do you think the research team is?</label>
+            ${likertRow('team_competence_' + suffix, 'competent')}
+            <textarea name="competence_justification_${suffix}" rows="3" placeholder="Please explain your reasoning (optional)"></textarea>
           </div>
-          <textarea name="competence_justification_pre" rows="3" placeholder="Please explain your reasoning (optional)"></textarea>
-        </div>
 
-        <div class="question-item">
-          <label>How honest do you think the xenobiology research team is?</label>
-          <div class="likert-scale">
-            <div class="likert-option">
-              <input type="radio" name="team_honesty_pre" value="1" required>
-              <span class="likert-label">1<br>Not at all<br>honest</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_honesty_pre" value="2" required>
-              <span class="likert-label">2</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_honesty_pre" value="3" required>
-              <span class="likert-label">3</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_honesty_pre" value="4" required>
-              <span class="likert-label">4<br>Moderately<br>honest</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_honesty_pre" value="5" required>
-              <span class="likert-label">5</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_honesty_pre" value="6" required>
-              <span class="likert-label">6</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_honesty_pre" value="7" required>
-              <span class="likert-label">7<br>Extremely<br>honest</span>
-            </div>
+          <div class="question-item">
+            <label>How honest do you think the research team is?</label>
+            ${likertRow('team_honesty_' + suffix, 'honest')}
+            <textarea name="honesty_justification_${suffix}" rows="3" placeholder="Please explain your reasoning (optional)"></textarea>
           </div>
-          <textarea name="honesty_justification_pre" rows="3" placeholder="Please explain your reasoning (optional)"></textarea>
         </div>
-      </div>
-    `,
-    button_label: 'Continue',
-    data: {
-      task: 'pre_ratings',
-      phase: 'pre'
-    }
-  };
+      `,
+      button_label: buttonLabel,
+      data: {
+        task: taskName,
+        phase: phase
+      }
+    };
+  }
+
+  // ===== PHASE 1 QUESTIONNAIRES (PRE: after the original proposal) =====
+  const screen1_pre_ratings = createRatingsBlock(
+    'pre',
+    '<div class="study-info"><h2>Your Perceptions</h2><p>Please answer the following questions based on what you\'ve read so far.</p></div>',
+    'Continue',
+    'pre',
+    'pre_ratings'
+  );
   timeline.push(screen1_pre_ratings);
 
   // Prediction questions
@@ -860,7 +828,9 @@
   };
   timeline.push(manipulation_reasons);
 
-  // ===== SCREEN 2: READING PAGE (POST) =====
+  // ===== SCREEN 2: ANOMALY EVIDENCE =====
+  // The anomalous observation only. The expert's justification is deliberately
+  // held back to Screen 3 so ratings can be taken on the bare anomaly.
   const screen2Reading = {
     type: jsPsychHtmlButtonResponse,
     stimulus: `
@@ -868,182 +838,80 @@
         <h2>New Information</h2>
 
         <div id="observation-section">
-          <p>Following the proposal, a pilot Zorblax heating colony was designed by the engineer team and heat output is being monitored. During the first cold-weather trial, engineers found that Zorblax heat output was not consistently higher on colder days. On several of the coldest days, the colony produced less heat than it had on nearby cooler days.</p>
+          ${anomalyHtml}
         </div>
-
-        <p><strong>Regarding this, Dr. Aren replied:</strong></p>
-
-        <p><em>"Even though colder periods increase threane availability and heat output on average, an additional mechanism becomes significant on the coldest days: Zorblax regulate heat output in cycles and synchronize these cycles with each other when colony density is high. After a sustained period of high heat production, many individuals enter a coordinated recovery phase simultaneously, temporarily suppressing colony-wide output. On the very coldest days, the threane-driven increase triggers an unusually intense period of heat production — which in turn induces a synchronized recovery phase strong enough to offset the initial gain. This is why output was unexpectedly low on those days."</em></p>
       </div>
     `,
     choices: ['Continue'],
     data: {
       task: 'screen2_reading',
-      phase: 'post'
+      phase: 'anomaly'
     }
   };
   timeline.push(screen2Reading);
 
   // ===== COMPREHENSION CHECK Q4: OBSERVATION =====
-  const q4_observation_loop = {
-    timeline: [
-      createComprehensionCheck(
-        'observation-section',
-        `
-          <p>Following the proposal, a pilot Zorblax heating colony was designed by the engineer team and heat output is being monitored. During the first cold-weather trial, engineers found that Zorblax heat output was not consistently higher on colder days. On several of the coldest days, the colony produced less heat than it had on nearby cooler days.</p>
-        `,
-        'What did the engineers observe on the coldest days?',
-        [
-          { value: 'less_heat', text: 'Less heat than on nearby milder days' },
-          { value: 'more_heat', text: 'More heat than on milder days' },
-          { value: 'same_heat', text: 'The same amount of heat' },
-          { value: 'no_heat', text: 'No heat at all' }
-        ],
-        'less_heat',
-        'q4_observation'
-      )
-    ],
-    loop_function: function(data) {
-      const lastTrial = data.values()[data.values().length - 1];
-      if (lastTrial.stage === 'reread_complete') return true;
-      if (lastTrial.stage === 'answer_submitted' && !lastTrial.correct) {
-        comprehensionAttempts['q4_observation'].retriggered = false;
-        return true;
-      }
-      return false;
-    }
-  };
-  timeline.push(q4_observation_loop);
+  timeline.push(comprehensionLoop(
+    'observation-section',
+    anomalyHtml,
+    comp.q4,
+    comp.q4.answer,
+    'q4_observation'
+  ));
 
-  // ===== SCREEN 2 QUESTIONNAIRES (POST) =====
-  const screen2_post_ratings = {
-    type: jsPsychSurveyHtmlForm,
-    preamble: '<div class="study-info"><h2>Your Updated Perceptions</h2><p>Based on all the information you have read, please answer the following questions again.</p></div>',
-    html: `
-      <div class="question-section">
-        <div class="question-item">
-          <label>How complex do you perceive the Threa-4 biological system to be?</label>
-          <div class="likert-scale">
-            <div class="likert-option">
-              <input type="radio" name="perceived_complexity_post" value="1" required>
-              <span class="likert-label">1<br>Not at all<br>complex</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="perceived_complexity_post" value="2" required>
-              <span class="likert-label">2</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="perceived_complexity_post" value="3" required>
-              <span class="likert-label">3</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="perceived_complexity_post" value="4" required>
-              <span class="likert-label">4<br>Moderately<br>complex</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="perceived_complexity_post" value="5" required>
-              <span class="likert-label">5</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="perceived_complexity_post" value="6" required>
-              <span class="likert-label">6</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="perceived_complexity_post" value="7" required>
-              <span class="likert-label">7<br>Extremely<br>complex</span>
-            </div>
-          </div>
-          <textarea name="complexity_justification_post" rows="3" placeholder="Please explain your reasoning (optional)"></textarea>
-        </div>
+  // ===== PHASE 2 QUESTIONNAIRES (ANOMALY: after the unexplained observation) =====
+  const screen2_anomaly_ratings = createRatingsBlock(
+    'anomaly',
+    '<div class="study-info"><h2>Your Updated Perceptions</h2><p>Based on all the information you have read so far, please answer the following questions again.</p></div>',
+    'Continue',
+    'anomaly',
+    'anomaly_ratings'
+  );
+  timeline.push(screen2_anomaly_ratings);
 
-        <div class="question-item">
-          <label>How competent do you think the xenobiology research team is?</label>
-          <div class="likert-scale">
-            <div class="likert-option">
-              <input type="radio" name="team_competence_post" value="1" required>
-              <span class="likert-label">1<br>Not at all<br>competent</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_competence_post" value="2" required>
-              <span class="likert-label">2</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_competence_post" value="3" required>
-              <span class="likert-label">3</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_competence_post" value="4" required>
-              <span class="likert-label">4<br>Moderately<br>competent</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_competence_post" value="5" required>
-              <span class="likert-label">5</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_competence_post" value="6" required>
-              <span class="likert-label">6</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_competence_post" value="7" required>
-              <span class="likert-label">7<br>Extremely<br>competent</span>
-            </div>
-          </div>
-          <textarea name="competence_justification_post" rows="3" placeholder="Please explain your reasoning (optional)"></textarea>
-        </div>
+  // ===== SCREEN 3: POST-STATEMENT JUSTIFICATION =====
+  const screen3Reading = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `
+      <div class="reading-screen" id="screen3-content">
+        <h2>Response from the Research Team</h2>
 
-        <div class="question-item">
-          <label>How honest do you think the xenobiology research team is?</label>
-          <div class="likert-scale">
-            <div class="likert-option">
-              <input type="radio" name="team_honesty_post" value="1" required>
-              <span class="likert-label">1<br>Not at all<br>honest</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_honesty_post" value="2" required>
-              <span class="likert-label">2</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_honesty_post" value="3" required>
-              <span class="likert-label">3</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_honesty_post" value="4" required>
-              <span class="likert-label">4<br>Moderately<br>honest</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_honesty_post" value="5" required>
-              <span class="likert-label">5</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_honesty_post" value="6" required>
-              <span class="likert-label">6</span>
-            </div>
-            <div class="likert-option">
-              <input type="radio" name="team_honesty_post" value="7" required>
-              <span class="likert-label">7<br>Extremely<br>honest</span>
-            </div>
-          </div>
-          <textarea name="honesty_justification_post" rows="3" placeholder="Please explain your reasoning (optional)"></textarea>
+        <div id="justification-section">
+          ${justificationHtml}
         </div>
       </div>
     `,
-    button_label: 'Submit',
+    choices: ['Continue'],
     data: {
-      task: 'post_ratings',
+      task: 'screen3_reading',
       phase: 'post'
     }
   };
-  timeline.push(screen2_post_ratings);
+  timeline.push(screen3Reading);
 
-  // Save data to DataPipe
-  const save_data = {
-    type: jsPsychPipe,
-    action: "save",
-    experiment_id: "uNrh6jZkRoPw",
-    filename: filename,
-    data_string: () => jsPsych.data.get().csv()
-  };
-  timeline.push(save_data);
+  // ===== PHASE 3 QUESTIONNAIRES (POST: after the expert's justification) =====
+  const screen3_post_ratings = createRatingsBlock(
+    'post',
+    '<div class="study-info"><h2>Your Updated Perceptions</h2><p>Based on all the information you have read, including the research team\'s response, please answer the following questions again.</p></div>',
+    'Submit',
+    'post',
+    'post_ratings'
+  );
+  timeline.push(screen3_post_ratings);
+
+
+  // Save data to DataPipe -- skipped in test mode so local click-throughs do
+  // not write junk rows into the live dataset.
+  if (!TEST_MODE) {
+    const save_data = {
+      type: jsPsychPipe,
+      action: "save",
+      experiment_id: "uNrh6jZkRoPw",
+      filename: filename,
+      data_string: () => jsPsych.data.get().csv()
+    };
+    timeline.push(save_data);
+  }
 
   // Run the experiment
   jsPsych.run(timeline);
