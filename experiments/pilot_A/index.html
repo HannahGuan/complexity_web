@@ -13,7 +13,6 @@
   <script src="https://unpkg.com/@jspsych/plugin-survey-likert@1.1.3"></script>
   <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.3"></script>
   <script src="https://unpkg.com/@jspsych/plugin-survey-html-form@1.0.3"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-fullscreen@1.2.0"></script>
 
   <!-- DataPipe plugin for data collection -->
   <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
@@ -22,6 +21,15 @@
   <script src="vignettes.js"></script>
 
   <style>
+    /* One place to retune how much of the window the study uses. Prose keeps a
+       measure that is still comfortable to read; the rating grids, which only
+       get easier to use as they widen, are allowed to run wider. */
+    :root {
+      --read-width: min(1080px, 92vw);
+      --wide-width: min(1280px, 95vw);
+      --base-font: 19px;
+    }
+
     html, body {
       height: 100%;
       margin: 0;
@@ -29,48 +37,57 @@
 
     body {
       background-color: #ffffff;
-      font-size: 17px;
+      font-size: var(--base-font);
     }
 
-    /* Full-screen layout: jsPsych's wrapper caps content at 95% of a centred
-       column, so let it use the whole window and let each content container
-       below set its own reading width. */
+    /* jsPsych centres its content in a 95%-of-800px column by default, which
+       leaves most of a modern display empty. Let the wrapper use the whole
+       window and let each container below set its own width. */
     .jspsych-display-element {
       width: 100%;
       min-height: 100vh;
-      font-size: 17px;
+      font-size: var(--base-font);
     }
 
     .jspsych-content-wrapper {
       width: 100%;
+      align-items: flex-start;
     }
 
     .jspsych-content {
       max-width: 100%;
       width: 100%;
-      padding: 32px 24px;
+      padding: 40px 24px 64px;
       box-sizing: border-box;
+      /* jsPsych uses margin:auto here to stand short trials in the middle of
+         the page. With long reading screens that makes the text jump between
+         trials, so pin everything to the top instead. */
+      margin: 0 auto;
     }
 
-    /* Main content container - 760px reading width, centered */
+    /* Main content container */
     .study-info {
-      max-width: 760px;
+      max-width: var(--read-width);
       margin: 0 auto;
       text-align: left;
-      line-height: 1.6;
-      font-size: 17px;
+      line-height: 1.7;
+      font-size: var(--base-font);
     }
 
     .study-info h2 {
       color: #2c3e50;
-      margin-top: 30px;
-      margin-bottom: 15px;
-      font-size: 20px;
+      margin-top: 34px;
+      margin-bottom: 16px;
+      font-size: 25px;
       font-weight: 600;
     }
 
     .study-info p {
       margin-bottom: 15px;
+    }
+
+    .study-info.wide {
+      max-width: var(--wide-width);
     }
 
     /* Task line - standalone, set off by rules rather than by a different
@@ -87,48 +104,50 @@
       background-color: #f8f9fa;
       border: 1px solid #dee2e6;
       border-radius: 8px;
-      padding: 20px;
-      margin: 24px 0;
+      padding: 24px 28px;
+      margin: 28px 0;
     }
 
     .briefing-card h2 {
       margin-top: 0;
       color: #2c3e50;
-      font-size: 18px;
+      font-size: 22px;
     }
 
     /* Highlight for re-reading sections */
     .highlight-reread {
       background-color: #fff3cd;
       border-left: 4px solid #ffc107;
-      padding: 15px;
+      padding: 20px 24px;
       margin: 20px 0;
       border-radius: 4px;
     }
 
     /* Question sections */
     .question-section {
-      max-width: 760px;
+      max-width: var(--wide-width);
       margin: 40px auto 0;
+      text-align: left;
       padding-top: 30px;
       border-top: 2px solid #e0e0e0;
     }
 
     .question-item {
-      margin-bottom: 44px;
+      margin-bottom: 52px;
     }
 
     .question-item label {
       display: block;
       font-weight: bold;
-      margin-bottom: 16px;
-      font-size: 18px;
+      margin-bottom: 18px;
+      font-size: 21px;
     }
 
     /* Comprehension check questions */
     .comprehension-question {
-      margin-bottom: 25px;
-      padding: 15px;
+      max-width: var(--read-width);
+      margin: 0 auto 25px;
+      padding: 24px 28px;
       background-color: #f8f9fa;
       border-radius: 6px;
     }
@@ -140,9 +159,9 @@
     }
 
     .comprehension-question input[type="radio"] {
-      width: 24px;
-      height: 24px;
-      margin-right: 12px;
+      width: 26px;
+      height: 26px;
+      margin-right: 14px;
       accent-color: #3498db;
       cursor: pointer;
       flex: none;
@@ -151,7 +170,7 @@
     .comprehension-option {
       margin: 10px 0;
       padding: 2px;
-      font-size: 17px;
+      font-size: 19px;
     }
 
     .comprehension-option label:hover {
@@ -196,46 +215,47 @@
     }
 
     .likert-option input[type="radio"] {
-      width: 28px;
-      height: 28px;
-      margin: 0 0 10px;
+      width: 32px;
+      height: 32px;
+      margin: 0 0 12px;
       accent-color: #3498db;
       cursor: pointer;
     }
 
     .likert-label {
-      font-size: 15px;
-      line-height: 1.35;
+      font-size: 17px;
+      line-height: 1.4;
       text-align: center;
     }
 
     /* jsPsych survey-likert plugin (the revision-reasons block) - matched to
        the custom Likert rows above */
     .jspsych-survey-likert-statement {
-      max-width: 760px;
-      margin: 0 auto 10px;
-      font-size: 18px;
+      max-width: var(--wide-width);
+      margin: 0 auto 12px;
+      text-align: left;
+      font-size: 21px;
       font-weight: 600;
     }
 
     .jspsych-survey-likert-opts {
-      max-width: 760px;
+      max-width: var(--wide-width);
       margin: 0 auto;
-      font-size: 15px;
+      font-size: 17px;
     }
 
     .jspsych-survey-likert-opts li input[type="radio"] {
-      width: 28px;
-      height: 28px;
-      margin-left: -14px;
-      margin-bottom: 10px;
+      width: 32px;
+      height: 32px;
+      margin-left: -16px;
+      margin-bottom: 12px;
       accent-color: #3498db;
       cursor: pointer;
     }
 
     .jspsych-survey-likert-opt-label {
-      font-size: 15px;
-      line-height: 1.35;
+      font-size: 17px;
+      line-height: 1.4;
       color: #333;
     }
 
@@ -252,8 +272,8 @@
     }
 
     .visual-aid figcaption {
-      margin-top: 10px;
-      font-size: 15px;
+      margin-top: 12px;
+      font-size: 17px;
       color: #666;
     }
 
@@ -261,7 +281,7 @@
     .context-note {
       background-color: #f8f9fa;
       border-left: 4px solid #3498db;
-      padding: 14px 18px;
+      padding: 18px 24px;
       margin: 20px 0 26px;
       border-radius: 4px;
     }
@@ -273,10 +293,10 @@
     /* Text areas */
     textarea {
       width: 100%;
-      padding: 10px;
-      margin-top: 10px;
+      padding: 12px;
+      margin-top: 12px;
       font-family: Arial, sans-serif;
-      font-size: 16px;
+      font-size: 18px;
       border: 1px solid #ccc;
       border-radius: 4px;
       line-height: 1.5;
@@ -291,8 +311,8 @@
     .submit-btn, .jspsych-btn {
       background-color: #3498db;
       color: white;
-      padding: 12px 30px;
-      font-size: 16px;
+      padding: 14px 40px;
+      font-size: 19px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
@@ -304,10 +324,23 @@
 
     /* Reading screen specific */
     .reading-screen {
-      max-width: 760px;
+      max-width: var(--read-width);
       margin: 0 auto;
-      padding: 20px;
-      line-height: 1.7;
+      text-align: left;
+      padding: 8px 0 20px;
+      line-height: 1.75;
+      font-size: var(--base-font);
+    }
+
+    .reading-screen h1 {
+      font-size: 34px;
+      text-align: center;
+    }
+
+    .reading-screen h2 {
+      color: #2c3e50;
+      font-size: 25px;
+      margin-bottom: 16px;
     }
 
     .continue-button-container {
@@ -317,19 +350,23 @@
 
     /* jsPsych survey text plugin styling */
     .jspsych-survey-text {
-      max-width: 760px;
+      max-width: var(--read-width);
       margin: 0 auto;
-      line-height: 1.6;
-      font-size: 17px;
+      line-height: 1.7;
+      font-size: var(--base-font);
     }
 
     .jspsych-survey-text-question {
-      margin-bottom: 30px;
+      margin-bottom: 40px;
+    }
+
+    .jspsych-survey-text-question p {
+      font-size: var(--base-font);
     }
 
     .jspsych-survey-text textarea {
       width: 100%;
-      max-width: 760px;
+      max-width: 100%;
     }
   </style>
 </head>
@@ -516,39 +553,17 @@
     document.body.style.paddingTop = '32px';
   }
 
-  // ===== FULL SCREEN =====
-  // The study runs full screen from here to the end. Browsers only grant full
-  // screen from a user gesture, so this needs its own button.
-  const enterFullscreen = {
-    type: jsPsychFullscreen,
-    fullscreen_mode: true,
-    message: `
-      <div class="reading-screen">
-        <h1 style="text-align: center; margin-bottom: 24px; font-size: 2rem;">Before we start</h1>
-        <p>This study runs in full screen, so that nothing else on your display
-        competes with the materials for your attention.</p>
-        <p>Please stay in full screen until the study is finished.</p>
-      </div>
-    `,
-    button_label: 'Enter full screen and begin',
-    data: {
-      task: 'enter_fullscreen',
-      phase: 'intro'
-    }
-  };
-  timeline.push(enterFullscreen);
-
   // ===== WELCOME / INSTRUCTIONS PAGE =====
   const welcomePage = {
     type: jsPsychHtmlButtonResponse,
     stimulus: `
       <div class="reading-screen">
-        <h1 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">Welcome to Our Study</h1>
+        <h1 style="text-align: center; margin-bottom: 36px;">Welcome to Our Study</h1>
 
-        <div style="line-height: 1.8; font-size: 16px; text-align: left;">
+        <div style="line-height: 1.8; text-align: left;">
           <p>Thank you for participating in this research study!</p>
 
-          <h2 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.3rem;">What you'll do:</h2>
+          <h2 style="margin-top: 34px; margin-bottom: 16px;">What you'll do:</h2>
           <p>In this study, you will:</p>
           <ul style="margin-left: 20px; margin-bottom: 20px; line-height: 2;">
             <li>Read a short scenario about a scientific research project</li>
@@ -556,10 +571,10 @@
             <li>Provide your thoughts and opinions</li>
           </ul>
 
-          <h2 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.3rem;">Time commitment:</h2>
+          <h2 style="margin-top: 34px; margin-bottom: 16px;">Time commitment:</h2>
           <p>This study will take approximately <strong>10-15 minutes</strong> to complete.</p>
 
-          <h2 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.3rem;">Important notes:</h2>
+          <h2 style="margin-top: 34px; margin-bottom: 16px;">Important notes:</h2>
           <ul style="margin-left: 20px; margin-bottom: 20px; line-height: 2;">
             <li>Please read all materials carefully</li>
             <li>There are no right or wrong answers - we're interested in your honest opinions</li>
@@ -627,13 +642,13 @@
           // Show re-reading screen with highlighted section
           return `
             <div class="reading-screen">
-              <h3 style="color: #856404; margin-bottom: 20px;">Please re-read the highlighted section carefully</h3>
+              <h3 style="color: #856404; margin-bottom: 20px; font-size: 23px;">Please re-read the highlighted section carefully</h3>
 
               <div class="highlight-reread" id="${sectionId}">
                 ${sectionContent}
               </div>
 
-              <p style="margin-top: 20px; font-size: 14px; color: #666;">
+              <p style="margin-top: 20px; font-size: 17px; color: #666;">
                 The Continue button will be enabled in <span id="countdown">5</span> seconds...
               </p>
             </div>
@@ -643,7 +658,7 @@
           return `
             <div class="question-section">
               <div class="comprehension-question">
-                <label style="font-size: 18px; font-weight: 600; margin-bottom: 18px; display: block;">${questionText}</label>
+                <label style="font-size: 21px; font-weight: 600; margin-bottom: 20px; display: block;">${questionText}</label>
                 <div id="comp-options">
                   ${options.map((opt, idx) => `
                     <div class="comprehension-option">
@@ -861,7 +876,7 @@
   // ===== PHASE 1 QUESTIONNAIRES (PRE: after the original proposal) =====
   const screen1_pre_ratings = createRatingsBlock(
     'pre',
-    '<div class="study-info"><h2>Your Perceptions</h2><p>Please answer the following questions based on what you\'ve read so far.</p></div>',
+    '<div class="study-info wide"><h2>Your Perceptions</h2><p>Please answer the following questions based on what you\'ve read so far.</p></div>',
     'Continue',
     'pre',
     'pre_ratings'
@@ -871,7 +886,7 @@
   // Prediction questions
   const prediction_questions = {
     type: jsPsychSurveyText,
-    preamble: '<div class="study-info"><p style="font-size: 18px; margin-bottom: 30px;"><strong>Please answer the following questions:</strong></p></div>',
+    preamble: '<div class="study-info"><p style="font-size: 21px; margin-bottom: 30px;"><strong>Please answer the following questions:</strong></p></div>',
     questions: [
       {
         prompt: 'Would you expect the expert in this domain to revise their understanding over the next year? If so, what kind of revisions would you expect them to make?',
@@ -899,16 +914,16 @@
   // Manipulation check: Likelihood
   const manipulation_likelihood = {
     type: jsPsychSurveyHtmlForm,
-    preamble: '<div class="study-info"><p style="font-size: 18px; margin-bottom: 20px;"><strong>Manipulation Check Questions</strong></p></div>',
+    preamble: '<div class="study-info wide"><p style="font-size: 21px; margin-bottom: 20px;"><strong>Manipulation Check Questions</strong></p></div>',
     html: `
-      <div class="question-section" style="max-width: 760px; margin: 0 auto;">
-        <label style="display: block; font-weight: bold; margin-bottom: 10px; font-size: 16px;">
+      <div class="question-section" style="margin: 0 auto;">
+        <label style="display: block; font-weight: bold; margin-bottom: 14px; font-size: 21px;">
           What is the likelihood (in percentage) that the research team will revise their understanding over the next year?
         </label>
         <input type="number" name="revision_likelihood" min="0" max="100" step="1" required
-               style="width: 150px; padding: 8px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px;">
-        <span style="margin-left: 10px; font-size: 16px;">%</span>
-        <p style="font-size: 14px; color: #666; margin-top: 5px;">Please enter a number between 0 and 100</p>
+               style="width: 170px; padding: 12px; font-size: 19px; border: 1px solid #ccc; border-radius: 4px;">
+        <span style="margin-left: 12px; font-size: 19px;">%</span>
+        <p style="font-size: 17px; color: #666; margin-top: 8px;">Please enter a number between 0 and 100</p>
       </div>
     `,
     button_label: 'Continue',
@@ -923,8 +938,8 @@
   const manipulation_reasons = {
     type: jsPsychSurveyLikert,
     preamble: `
-      <div class="study-info">
-        <p style="font-size: 18px; margin-bottom: 20px;"><strong>If the research team makes revisions afterwards, how likely is each of the following reasons?</strong></p>
+      <div class="study-info wide">
+        <p style="font-size: 21px; margin-bottom: 20px;"><strong>If the research team makes revisions afterwards, how likely is each of the following reasons?</strong></p>
       </div>
     `,
     questions: [
@@ -1013,7 +1028,7 @@
   // ===== PHASE 2 QUESTIONNAIRES (ANOMALY: after the unexplained observation) =====
   const screen2_anomaly_ratings = createRatingsBlock(
     'anomaly',
-    '<div class="study-info"><h2>Your Updated Perceptions</h2><p>Based on all the information you have read so far, please answer the following questions again.</p></div>',
+    '<div class="study-info wide"><h2>Your Updated Perceptions</h2><p>Based on all the information you have read so far, please answer the following questions again.</p></div>',
     'Continue',
     'anomaly',
     'anomaly_ratings'
@@ -1050,24 +1065,13 @@
   // ===== PHASE 3 QUESTIONNAIRES (POST: after the expert's justification) =====
   const screen3_post_ratings = createRatingsBlock(
     'post',
-    '<div class="study-info"><h2>Your Updated Perceptions</h2><p>Based on all the information you have read, including the explanation the research team added after the unexpected result, please answer the following questions again.</p></div>',
+    '<div class="study-info wide"><h2>Your Updated Perceptions</h2><p>Based on all the information you have read, including the explanation the research team added after the unexpected result, please answer the following questions again.</p></div>',
     'Submit',
     'post',
     'post_ratings'
   );
   timeline.push(screen3_post_ratings);
 
-
-  // Release full screen before the closing screen so participants are not left
-  // in it after the study ends.
-  timeline.push({
-    type: jsPsychFullscreen,
-    fullscreen_mode: false,
-    data: {
-      task: 'exit_fullscreen',
-      phase: 'outro'
-    }
-  });
 
   // Save data to DataPipe -- skipped in test mode so local click-throughs do
   // not write junk rows into the live dataset.
