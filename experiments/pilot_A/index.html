@@ -13,6 +13,7 @@
   <script src="https://unpkg.com/@jspsych/plugin-survey-likert@1.1.3"></script>
   <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.3"></script>
   <script src="https://unpkg.com/@jspsych/plugin-survey-html-form@1.0.3"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-fullscreen@1.2.0"></script>
 
   <!-- DataPipe plugin for data collection -->
   <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
@@ -21,17 +22,43 @@
   <script src="vignettes.js"></script>
 
   <style>
-    body {
-      background-color: #ffffff;
+    html, body {
+      height: 100%;
+      margin: 0;
     }
 
-    /* Main content container - 640px max width, centered */
+    body {
+      background-color: #ffffff;
+      font-size: 17px;
+    }
+
+    /* Full-screen layout: jsPsych's wrapper caps content at 95% of a centred
+       column, so let it use the whole window and let each content container
+       below set its own reading width. */
+    .jspsych-display-element {
+      width: 100%;
+      min-height: 100vh;
+      font-size: 17px;
+    }
+
+    .jspsych-content-wrapper {
+      width: 100%;
+    }
+
+    .jspsych-content {
+      max-width: 100%;
+      width: 100%;
+      padding: 32px 24px;
+      box-sizing: border-box;
+    }
+
+    /* Main content container - 760px reading width, centered */
     .study-info {
-      max-width: 640px;
+      max-width: 760px;
       margin: 0 auto;
       text-align: left;
       line-height: 1.6;
-      font-size: 16px;
+      font-size: 17px;
     }
 
     .study-info h2 {
@@ -46,11 +73,11 @@
       margin-bottom: 15px;
     }
 
-    /* Task line - bold, standalone, with spacing */
+    /* Task line - standalone, set off by rules rather than by a different
+       font weight (participants skim past text that does not look like body text) */
     .task-line {
-      font-weight: bold;
       margin: 24px 0;
-      padding: 12px 0;
+      padding: 16px 0;
       border-top: 1px solid #e0e0e0;
       border-bottom: 1px solid #e0e0e0;
     }
@@ -81,21 +108,21 @@
 
     /* Question sections */
     .question-section {
-      max-width: 640px;
+      max-width: 760px;
       margin: 40px auto 0;
       padding-top: 30px;
       border-top: 2px solid #e0e0e0;
     }
 
     .question-item {
-      margin-bottom: 30px;
+      margin-bottom: 44px;
     }
 
     .question-item label {
       display: block;
       font-weight: bold;
-      margin-bottom: 10px;
-      font-size: 16px;
+      margin-bottom: 16px;
+      font-size: 18px;
     }
 
     /* Comprehension check questions */
@@ -113,12 +140,22 @@
     }
 
     .comprehension-question input[type="radio"] {
-      margin-right: 8px;
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+      accent-color: #3498db;
+      cursor: pointer;
+      flex: none;
     }
 
     .comprehension-option {
-      margin: 8px 0;
-      padding: 8px;
+      margin: 10px 0;
+      padding: 2px;
+      font-size: 17px;
+    }
+
+    .comprehension-option label:hover {
+      background-color: #eef4fa;
     }
 
     .comprehension-feedback {
@@ -137,23 +174,100 @@
     .likert-scale {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 10px;
+      align-items: flex-start;
+      gap: 6px;
+      margin: 18px 0 14px;
     }
 
+    /* The whole column is a <label>, so the number and the anchor text are
+       part of the click target, not just the circle. */
     .likert-option {
       display: flex;
       flex-direction: column;
       align-items: center;
       flex: 1;
+      padding: 10px 4px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .likert-option:hover {
+      background-color: #eef4fa;
     }
 
     .likert-option input[type="radio"] {
-      margin-bottom: 5px;
+      width: 28px;
+      height: 28px;
+      margin: 0 0 10px;
+      accent-color: #3498db;
+      cursor: pointer;
     }
 
     .likert-label {
-      font-size: 12px;
+      font-size: 15px;
+      line-height: 1.35;
       text-align: center;
+    }
+
+    /* jsPsych survey-likert plugin (the revision-reasons block) - matched to
+       the custom Likert rows above */
+    .jspsych-survey-likert-statement {
+      max-width: 760px;
+      margin: 0 auto 10px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .jspsych-survey-likert-opts {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: 15px;
+    }
+
+    .jspsych-survey-likert-opts li input[type="radio"] {
+      width: 28px;
+      height: 28px;
+      margin-left: -14px;
+      margin-bottom: 10px;
+      accent-color: #3498db;
+      cursor: pointer;
+    }
+
+    .jspsych-survey-likert-opt-label {
+      font-size: 15px;
+      line-height: 1.35;
+      color: #333;
+    }
+
+    /* Visual aid - sits directly above the passage it illustrates */
+    .visual-aid {
+      margin: 22px 0 26px;
+      text-align: center;
+    }
+
+    .visual-aid img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    .visual-aid figcaption {
+      margin-top: 10px;
+      font-size: 15px;
+      color: #666;
+    }
+
+    /* Framing note - set off by a rule and a tint, not by a different font */
+    .context-note {
+      background-color: #f8f9fa;
+      border-left: 4px solid #3498db;
+      padding: 14px 18px;
+      margin: 20px 0 26px;
+      border-radius: 4px;
+    }
+
+    .context-note p {
+      margin: 0;
     }
 
     /* Text areas */
@@ -162,7 +276,7 @@
       padding: 10px;
       margin-top: 10px;
       font-family: Arial, sans-serif;
-      font-size: 14px;
+      font-size: 16px;
       border: 1px solid #ccc;
       border-radius: 4px;
       line-height: 1.5;
@@ -190,9 +304,10 @@
 
     /* Reading screen specific */
     .reading-screen {
-      max-width: 640px;
+      max-width: 760px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 20px;
+      line-height: 1.7;
     }
 
     .continue-button-container {
@@ -202,9 +317,10 @@
 
     /* jsPsych survey text plugin styling */
     .jspsych-survey-text {
-      max-width: 640px;
+      max-width: 760px;
       margin: 0 auto;
       line-height: 1.6;
+      font-size: 17px;
     }
 
     .jspsych-survey-text-question {
@@ -213,7 +329,7 @@
 
     .jspsych-survey-text textarea {
       width: 100%;
-      max-width: 640px;
+      max-width: 760px;
     }
   </style>
 </head>
@@ -318,13 +434,13 @@
   });
 
   // ===== TEXT RENDERING =====
-  // Paragraphs come from the CSVs as plain text. Quoted speech is italicised
-  // and lead-in lines ("... replied:") are bolded, matching the original
-  // single-vignette layout.
+  // Paragraphs come from the CSVs as plain text and are all rendered in the
+  // same face and weight. Quoted speech used to be italicised and lead-ins
+  // bolded; pilot readers skipped the italics, which is exactly where the
+  // mechanism they are later questioned about lives. Quotation marks alone
+  // now mark who is speaking.
   function renderParagraphs(paras) {
     return paras.map(function(p) {
-      if (/^["“]/.test(p)) return '<p><em>' + p + '</em></p>';
-      if (p.endsWith(':')) return '<p><strong>' + p + '</strong></p>';
       return '<p>' + p + '</p>';
     }).join('\n');
   }
@@ -334,16 +450,30 @@
   const complexityBriefingHtml =
     `<h2>${vignette.briefing_heading}</h2>\n` +
     renderParagraphs(vignette.complexity[complexity]);
-  const proposalHtml = renderParagraphs(vignette.proposal);
   const anomalyHtml = renderParagraphs(vignette.anomaly);
   const justificationHtml = renderParagraphs(vignette.justification);
 
   // Visual aid for this scenario (tracked on Category in build_vignettes.py)
   const visualAidHtml = vignette.visual_aid ? `
-          <div style="margin-top: 30px; text-align: center;">
-            <img src="${vignette.visual_aid}" alt="Diagram of the proposed mechanism"
-                 style="max-width: 100%; height: auto; border-radius: 4px;">
-          </div>` : '';
+          <figure class="visual-aid">
+            <img src="${vignette.visual_aid}" alt="Diagram of the mechanism described in the proposal">
+            <figcaption>How the research team's proposed mechanism is meant to work, step by step.</figcaption>
+          </figure>` : '';
+
+  // The proposal reads [set-up, lead-in ending in ':', quoted mechanism]. The
+  // diagram used to sit under the whole block; it now goes directly above the
+  // quoted mechanism it illustrates, so it is already on screen while that
+  // mechanism is being read. The lead-in stays attached to the quote it
+  // introduces, so the figure goes above the lead-in rather than after it.
+  // The same block is reused by the Q1 re-reading screen.
+  function proposalWithVisualAid(paras) {
+    const quoteStart = paras.findIndex(function(p) { return /^["“]/.test(p); });
+    if (quoteStart === -1) return renderParagraphs(paras) + visualAidHtml;
+    const cut = (quoteStart > 0 && paras[quoteStart - 1].endsWith(':')) ? quoteStart - 1 : quoteStart;
+    return renderParagraphs(paras.slice(0, cut)) + visualAidHtml +
+           renderParagraphs(paras.slice(cut));
+  }
+  const proposalHtml = proposalWithVisualAid(vignette.proposal);
 
   // ===== COMPREHENSION CHECK TRACKING =====
   const comprehensionAttempts = {
@@ -385,6 +515,28 @@
     document.body.appendChild(banner);
     document.body.style.paddingTop = '32px';
   }
+
+  // ===== FULL SCREEN =====
+  // The study runs full screen from here to the end. Browsers only grant full
+  // screen from a user gesture, so this needs its own button.
+  const enterFullscreen = {
+    type: jsPsychFullscreen,
+    fullscreen_mode: true,
+    message: `
+      <div class="reading-screen">
+        <h1 style="text-align: center; margin-bottom: 24px; font-size: 2rem;">Before we start</h1>
+        <p>This study runs in full screen, so that nothing else on your display
+        competes with the materials for your attention.</p>
+        <p>Please stay in full screen until the study is finished.</p>
+      </div>
+    `,
+    button_label: 'Enter full screen and begin',
+    data: {
+      task: 'enter_fullscreen',
+      phase: 'intro'
+    }
+  };
+  timeline.push(enterFullscreen);
 
   // ===== WELCOME / INSTRUCTIONS PAGE =====
   const welcomePage = {
@@ -447,7 +599,6 @@
 
         <div id="proposal-section">
           ${proposalHtml}
-          ${visualAidHtml}
         </div>
       </div>
     `,
@@ -492,13 +643,13 @@
           return `
             <div class="question-section">
               <div class="comprehension-question">
-                <label style="font-size: 16px; font-weight: 600; margin-bottom: 15px; display: block;">${questionText}</label>
+                <label style="font-size: 18px; font-weight: 600; margin-bottom: 18px; display: block;">${questionText}</label>
                 <div id="comp-options">
                   ${options.map((opt, idx) => `
                     <div class="comprehension-option">
-                      <label style="cursor: pointer; display: block; padding: 10px; border-radius: 4px; transition: background 0.2s;">
-                        <input type="radio" name="comp_answer_${trackingKey}" value="${opt.value}" id="opt_${trackingKey}_${idx}" style="margin-right: 10px;">
-                        ${opt.text}
+                      <label style="cursor: pointer; display: flex; align-items: center; padding: 12px; border-radius: 4px; font-weight: 400; transition: background 0.2s;">
+                        <input type="radio" name="comp_answer_${trackingKey}" value="${opt.value}" id="opt_${trackingKey}_${idx}">
+                        <span>${opt.text}</span>
                       </label>
                     </div>
                   `).join('')}
@@ -665,10 +816,10 @@
                   : v === 7 ? `7<br>Extremely<br>${anchor}`
                   : String(v);
       options += `
-              <div class="likert-option">
+              <label class="likert-option">
                 <input type="radio" name="${name}" value="${v}" required>
                 <span class="likert-label">${label}</span>
-              </div>`;
+              </label>`;
     }
     return `<div class="likert-scale">${options}
             </div>`;
@@ -750,7 +901,7 @@
     type: jsPsychSurveyHtmlForm,
     preamble: '<div class="study-info"><p style="font-size: 18px; margin-bottom: 20px;"><strong>Manipulation Check Questions</strong></p></div>',
     html: `
-      <div class="question-section" style="max-width: 640px; margin: 0 auto;">
+      <div class="question-section" style="max-width: 760px; margin: 0 auto;">
         <label style="display: block; font-weight: bold; margin-bottom: 10px; font-size: 16px;">
           What is the likelihood (in percentage) that the research team will revise their understanding over the next year?
         </label>
@@ -876,6 +1027,13 @@
       <div class="reading-screen" id="screen3-content">
         <h2>Response from the Research Team</h2>
 
+        <div class="context-note">
+          <p>The unexpected result was sent back to the same research team that wrote
+          the original proposal. Their original account did not predict this result,
+          so the team has now added a further explanation on top of it. That added
+          explanation is below.</p>
+        </div>
+
         <div id="justification-section">
           ${justificationHtml}
         </div>
@@ -892,13 +1050,24 @@
   // ===== PHASE 3 QUESTIONNAIRES (POST: after the expert's justification) =====
   const screen3_post_ratings = createRatingsBlock(
     'post',
-    '<div class="study-info"><h2>Your Updated Perceptions</h2><p>Based on all the information you have read, including the research team\'s response, please answer the following questions again.</p></div>',
+    '<div class="study-info"><h2>Your Updated Perceptions</h2><p>Based on all the information you have read, including the explanation the research team added after the unexpected result, please answer the following questions again.</p></div>',
     'Submit',
     'post',
     'post_ratings'
   );
   timeline.push(screen3_post_ratings);
 
+
+  // Release full screen before the closing screen so participants are not left
+  // in it after the study ends.
+  timeline.push({
+    type: jsPsychFullscreen,
+    fullscreen_mode: false,
+    data: {
+      task: 'exit_fullscreen',
+      phase: 'outro'
+    }
+  });
 
   // Save data to DataPipe -- skipped in test mode so local click-throughs do
   // not write junk rows into the live dataset.
