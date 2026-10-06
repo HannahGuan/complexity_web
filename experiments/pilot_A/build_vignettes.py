@@ -180,6 +180,7 @@ def main():
         q2_opts = options(c["Q2_options"], idx, "Q2")
         q3_opts = options(c["Q3_options"], idx, "Q3")
         q4_opts = options(c["Q4_options"], idx, "Q4")
+        q5_opts = options(c["Q5_options"], idx, "Q5")
 
         vignettes.append({
             "index": int(idx),
@@ -224,6 +225,14 @@ def main():
                     "options": q4_opts,
                     "answer": answer(c["Q4_answer"], q4_opts, idx, "Q4"),
                 },
+                # Asked on Screen 3, after the research team's justification.
+                # The correct answer is baked into the row because Rev_typ is
+                # now between-subject, so it needs no condition branch.
+                "q5": {
+                    "prompt": c["Q5_screen3"].strip(),
+                    "options": q5_opts,
+                    "answer": answer(c["Q5_answer"], q5_opts, idx, "Q5"),
+                },
             },
         })
 
@@ -232,9 +241,31 @@ def main():
                       "background", "briefing_heading"):
             if not v[label]:
                 fail("row %s: %s is empty" % (v["index"], label))
-        for q in ("q1", "q2", "q3", "q4"):
+        for q in ("q1", "q2", "q3", "q4", "q5"):
             if not v["comprehension"][q]["prompt"]:
                 fail("row %s: %s prompt is empty" % (v["index"], q))
+
+    # Category x Relev_typ x Rev_typ is meant to be fully crossed, with
+    # Rev_typ manipulated between subjects by which row is drawn. A missing or
+    # duplicated cell would silently bias the assignment, so check it here.
+    cells = {}
+    for v in vignettes:
+        cells.setdefault((v["category"], v["relev_typ"], v["rev_typ"]), []).append(v["index"])
+    categories = sorted({v["category"] for v in vignettes})
+    relev_typs = sorted({v["relev_typ"] for v in vignettes})
+    rev_typs = sorted({v["rev_typ"] for v in vignettes})
+    for cat in categories:
+        for rl in relev_typs:
+            for rv in rev_typs:
+                got = cells.get((cat, rl, rv), [])
+                if len(got) != 1:
+                    fail("cell (%s, %s, %s) appears %d times (expected 1): rows %s"
+                         % (cat, rl, rv, len(got), got))
+    expected = len(categories) * len(relev_typs) * len(rev_typs)
+    if len(vignettes) != expected:
+        fail("%d vignettes but %d categories x %d relevance types x %d revision "
+             "types = %d" % (len(vignettes), len(categories), len(relev_typs),
+                             len(rev_typs), expected))
 
     if errors:
         print("Refusing to write %s -- %d problem(s) found:" % (OUT_JS, len(errors)),
@@ -251,10 +282,10 @@ def main():
         fh.write("window.VIGNETTES = %s;\n" % body)
 
     print("Wrote %s" % OUT_JS)
-    print("  %d vignettes: %d categories x %d relevance types"
-          % (len(vignettes),
-             len({v["category"] for v in vignettes}),
-             len({v["relev_typ"] for v in vignettes})))
+    print("  %d vignettes: %d categories x %d relevance types (%s) "
+          "x %d revision types (%s)"
+          % (len(vignettes), len(categories), len(relev_typs),
+             "/".join(relev_typs), len(rev_typs), "/".join(rev_typs)))
     print("  x complexity (simple/complex) x relevance (relevant/irrelevant) "
           "= %d cells" % (len(vignettes) * 4))
     return 0
