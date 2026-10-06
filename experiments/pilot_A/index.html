@@ -128,17 +128,6 @@
       max-width: var(--wide-width);
     }
 
-    /* The decision context still has to not look like body text - participants
-       skim past anything that does - but the full-width rules it used to sit
-       between read as a divider cutting the page in half. A quiet tinted panel
-       sets it off without the bar. */
-    .task-line {
-      margin: 26px 0;
-      padding: 20px 24px;
-      background-color: #f8f9fa;
-      border-radius: 8px;
-    }
-
     /* Briefing card - callout box style */
     .briefing-card {
       background-color: #f8f9fa;
@@ -718,7 +707,7 @@
         ${sceneAidHtml}
         ${renderParagraphs(vignette.study_intro)}
 
-        <div class="task-line" id="task-context">
+        <div id="task-context">
           ${decisionContextHtml}
         </div>
 
