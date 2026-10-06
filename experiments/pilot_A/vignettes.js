@@ -7,7 +7,9 @@ window.VIGNETTES = [
     "category": "Xenobiology in Threa-4",
     "relev_typ": "Totality",
     "rev_typ": "Topology",
-    "visual_aid": "vis_aids/threa.png",
+    "visual_aid": "vis_aids/threa.jpg",
+    "scene_aid": "vis_aids/threa_0.jpg",
+    "evidence_aid": "vis_aids/threa_1.jpg",
     "study_intro": [
       "Threa-4, a moon being developed as a hub for future space exploration, is planning its first permanent residence. The team needs a reliable way to heat it."
     ],
@@ -96,7 +98,9 @@ window.VIGNETTES = [
     "category": "Xenobiology in Threa-4",
     "relev_typ": "Totality",
     "rev_typ": "Variable_adding",
-    "visual_aid": "vis_aids/threa.png",
+    "visual_aid": "vis_aids/threa.jpg",
+    "scene_aid": "vis_aids/threa_0.jpg",
+    "evidence_aid": "vis_aids/threa_1.jpg",
     "study_intro": [
       "Threa-4, a moon being developed as a hub for future space exploration, is planning its first permanent residence. The team needs a reliable way to heat it."
     ],
@@ -185,7 +189,9 @@ window.VIGNETTES = [
     "category": "Xenobiology in Threa-4",
     "relev_typ": "Reversibility",
     "rev_typ": "Topology",
-    "visual_aid": "vis_aids/threa.png",
+    "visual_aid": "vis_aids/threa.jpg",
+    "scene_aid": "vis_aids/threa_0.jpg",
+    "evidence_aid": "vis_aids/threa_1.jpg",
     "study_intro": [
       "Threa-4, a moon being developed as a hub for future space exploration, is planning its first permanent residence. The team needs a reliable way to heat it."
     ],
@@ -274,7 +280,9 @@ window.VIGNETTES = [
     "category": "Xenobiology in Threa-4",
     "relev_typ": "Reversibility",
     "rev_typ": "Variable_adding",
-    "visual_aid": "vis_aids/threa.png",
+    "visual_aid": "vis_aids/threa.jpg",
+    "scene_aid": "vis_aids/threa_0.jpg",
+    "evidence_aid": "vis_aids/threa_1.jpg",
     "study_intro": [
       "Threa-4, a moon being developed as a hub for future space exploration, is planning its first permanent residence. The team needs a reliable way to heat it."
     ],
@@ -363,7 +371,9 @@ window.VIGNETTES = [
     "category": "Pharmacology: Mivacin",
     "relev_typ": "Totality",
     "rev_typ": "Topology",
-    "visual_aid": "vis_aids/mivacin.png",
+    "visual_aid": "vis_aids/mivacin.jpg",
+    "scene_aid": "vis_aids/mivacin_0.jpg",
+    "evidence_aid": "vis_aids/mivacin_1.jpg",
     "study_intro": [
       "Velun-9, a deep-space research station that supports long crew missions, is setting up its permanent medical program. The team needs a reliable way to treat the fatigue that long missions cause."
     ],
@@ -452,7 +462,9 @@ window.VIGNETTES = [
     "category": "Pharmacology: Mivacin",
     "relev_typ": "Totality",
     "rev_typ": "Variable_adding",
-    "visual_aid": "vis_aids/mivacin.png",
+    "visual_aid": "vis_aids/mivacin.jpg",
+    "scene_aid": "vis_aids/mivacin_0.jpg",
+    "evidence_aid": "vis_aids/mivacin_1.jpg",
     "study_intro": [
       "Velun-9, a deep-space research station that supports long crew missions, is setting up its permanent medical program. The team needs a reliable way to treat the fatigue that long missions cause."
     ],
@@ -541,7 +553,9 @@ window.VIGNETTES = [
     "category": "Pharmacology: Mivacin",
     "relev_typ": "Reversibility",
     "rev_typ": "Topology",
-    "visual_aid": "vis_aids/mivacin.png",
+    "visual_aid": "vis_aids/mivacin.jpg",
+    "scene_aid": "vis_aids/mivacin_0.jpg",
+    "evidence_aid": "vis_aids/mivacin_1.jpg",
     "study_intro": [
       "Velun-9, a deep-space research station that supports long crew missions, is setting up its permanent medical program. The team needs a reliable way to treat the fatigue that long missions cause."
     ],
@@ -630,7 +644,9 @@ window.VIGNETTES = [
     "category": "Pharmacology: Mivacin",
     "relev_typ": "Reversibility",
     "rev_typ": "Variable_adding",
-    "visual_aid": "vis_aids/mivacin.png",
+    "visual_aid": "vis_aids/mivacin.jpg",
+    "scene_aid": "vis_aids/mivacin_0.jpg",
+    "evidence_aid": "vis_aids/mivacin_1.jpg",
     "study_intro": [
       "Velun-9, a deep-space research station that supports long crew missions, is setting up its permanent medical program. The team needs a reliable way to treat the fatigue that long missions cause."
     ],
@@ -719,7 +735,9 @@ window.VIGNETTES = [
     "category": "Crop Yield: Vorath",
     "relev_typ": "Totality",
     "rev_typ": "Topology",
-    "visual_aid": "vis_aids/vorath.png",
+    "visual_aid": "vis_aids/vorath.jpg",
+    "scene_aid": "vis_aids/vorath_0.jpg",
+    "evidence_aid": "vis_aids/vorath_1.jpg",
     "study_intro": [
       "Soren-3, a planet where a new colony has recently settled, is planning its first long-term food supply. The team needs a reliable way to feed the colony."
     ],
@@ -808,7 +826,9 @@ window.VIGNETTES = [
     "category": "Crop Yield: Vorath",
     "relev_typ": "Totality",
     "rev_typ": "Variable_adding",
-    "visual_aid": "vis_aids/vorath.png",
+    "visual_aid": "vis_aids/vorath.jpg",
+    "scene_aid": "vis_aids/vorath_0.jpg",
+    "evidence_aid": "vis_aids/vorath_1.jpg",
     "study_intro": [
       "Soren-3, a planet where a new colony has recently settled, is planning its first long-term food supply. The team needs a reliable way to feed the colony."
     ],
@@ -897,7 +917,9 @@ window.VIGNETTES = [
     "category": "Crop Yield: Vorath",
     "relev_typ": "Reversibility",
     "rev_typ": "Topology",
-    "visual_aid": "vis_aids/vorath.png",
+    "visual_aid": "vis_aids/vorath.jpg",
+    "scene_aid": "vis_aids/vorath_0.jpg",
+    "evidence_aid": "vis_aids/vorath_1.jpg",
     "study_intro": [
       "Soren-3, a planet where a new colony has recently settled, is planning its first long-term food supply. The team needs a reliable way to feed the colony."
     ],
@@ -986,7 +1008,9 @@ window.VIGNETTES = [
     "category": "Crop Yield: Vorath",
     "relev_typ": "Reversibility",
     "rev_typ": "Variable_adding",
-    "visual_aid": "vis_aids/vorath.png",
+    "visual_aid": "vis_aids/vorath.jpg",
+    "scene_aid": "vis_aids/vorath_0.jpg",
+    "evidence_aid": "vis_aids/vorath_1.jpg",
     "study_intro": [
       "Soren-3, a planet where a new colony has recently settled, is planning its first long-term food supply. The team needs a reliable way to feed the colony."
     ],
@@ -1075,7 +1099,9 @@ window.VIGNETTES = [
     "category": "Construction Material: Crelite",
     "relev_typ": "Totality",
     "rev_typ": "Topology",
-    "visual_aid": "vis_aids/crelite.png",
+    "visual_aid": "vis_aids/crelite.jpg",
+    "scene_aid": "vis_aids/crelite_0.jpg",
+    "evidence_aid": "vis_aids/crelite_1.jpg",
     "study_intro": [
       "Moran-2, a planet where a new settlement is growing quickly, is planning its first permanent bridges and buildings. The team needs a reliable way to build them."
     ],
@@ -1164,7 +1190,9 @@ window.VIGNETTES = [
     "category": "Construction Material: Crelite",
     "relev_typ": "Totality",
     "rev_typ": "Variable_adding",
-    "visual_aid": "vis_aids/crelite.png",
+    "visual_aid": "vis_aids/crelite.jpg",
+    "scene_aid": "vis_aids/crelite_0.jpg",
+    "evidence_aid": "vis_aids/crelite_1.jpg",
     "study_intro": [
       "Moran-2, a planet where a new settlement is growing quickly, is planning its first permanent bridges and buildings. The team needs a reliable way to build them."
     ],
@@ -1253,7 +1281,9 @@ window.VIGNETTES = [
     "category": "Construction Material: Crelite",
     "relev_typ": "Reversibility",
     "rev_typ": "Topology",
-    "visual_aid": "vis_aids/crelite.png",
+    "visual_aid": "vis_aids/crelite.jpg",
+    "scene_aid": "vis_aids/crelite_0.jpg",
+    "evidence_aid": "vis_aids/crelite_1.jpg",
     "study_intro": [
       "Moran-2, a planet where a new settlement is growing quickly, is planning its first permanent bridges and buildings. The team needs a reliable way to build them."
     ],
@@ -1342,7 +1372,9 @@ window.VIGNETTES = [
     "category": "Construction Material: Crelite",
     "relev_typ": "Reversibility",
     "rev_typ": "Variable_adding",
-    "visual_aid": "vis_aids/crelite.png",
+    "visual_aid": "vis_aids/crelite.jpg",
+    "scene_aid": "vis_aids/crelite_0.jpg",
+    "evidence_aid": "vis_aids/crelite_1.jpg",
     "study_intro": [
       "Moran-2, a planet where a new settlement is growing quickly, is planning its first permanent bridges and buildings. The team needs a reliable way to build them."
     ],
@@ -1431,7 +1463,9 @@ window.VIGNETTES = [
     "category": "Water Supply: Velan",
     "relev_typ": "Totality",
     "rev_typ": "Topology",
-    "visual_aid": "vis_aids/velan.png",
+    "visual_aid": "vis_aids/velan.jpg",
+    "scene_aid": "vis_aids/velan_0.jpg",
+    "evidence_aid": "vis_aids/velan_1.jpg",
     "study_intro": [
       "Keth-7, a planet where a new colony has recently settled, is planning its first long-term water supply. The team needs a reliable way to provide drinking water."
     ],
@@ -1520,7 +1554,9 @@ window.VIGNETTES = [
     "category": "Water Supply: Velan",
     "relev_typ": "Totality",
     "rev_typ": "Variable_adding",
-    "visual_aid": "vis_aids/velan.png",
+    "visual_aid": "vis_aids/velan.jpg",
+    "scene_aid": "vis_aids/velan_0.jpg",
+    "evidence_aid": "vis_aids/velan_1.jpg",
     "study_intro": [
       "Keth-7, a planet where a new colony has recently settled, is planning its first long-term water supply. The team needs a reliable way to provide drinking water."
     ],
@@ -1609,7 +1645,9 @@ window.VIGNETTES = [
     "category": "Water Supply: Velan",
     "relev_typ": "Reversibility",
     "rev_typ": "Topology",
-    "visual_aid": "vis_aids/velan.png",
+    "visual_aid": "vis_aids/velan.jpg",
+    "scene_aid": "vis_aids/velan_0.jpg",
+    "evidence_aid": "vis_aids/velan_1.jpg",
     "study_intro": [
       "Keth-7, a planet where a new colony has recently settled, is planning its first long-term water supply. The team needs a reliable way to provide drinking water."
     ],
@@ -1698,7 +1736,9 @@ window.VIGNETTES = [
     "category": "Water Supply: Velan",
     "relev_typ": "Reversibility",
     "rev_typ": "Variable_adding",
-    "visual_aid": "vis_aids/velan.png",
+    "visual_aid": "vis_aids/velan.jpg",
+    "scene_aid": "vis_aids/velan_0.jpg",
+    "evidence_aid": "vis_aids/velan_1.jpg",
     "study_intro": [
       "Keth-7, a planet where a new colony has recently settled, is planning its first long-term water supply. The team needs a reliable way to provide drinking water."
     ],
@@ -1787,7 +1827,9 @@ window.VIGNETTES = [
     "category": "Collective Resource Allocation: Velori",
     "relev_typ": "Totality",
     "rev_typ": "Topology",
-    "visual_aid": "vis_aids/velori.png",
+    "visual_aid": "vis_aids/velori.jpg",
+    "scene_aid": "vis_aids/velori_0.jpg",
+    "evidence_aid": "vis_aids/velori_1.jpg",
     "study_intro": [
       "A diplomatic mission to a water-covered world, home to an intelligent ocean-dwelling species called the Velori, is planning its first long-term exchange of resources with them. The team needs a reliable way to arrange the exchange."
     ],
@@ -1876,7 +1918,9 @@ window.VIGNETTES = [
     "category": "Collective Resource Allocation: Velori",
     "relev_typ": "Totality",
     "rev_typ": "Variable_adding",
-    "visual_aid": "vis_aids/velori.png",
+    "visual_aid": "vis_aids/velori.jpg",
+    "scene_aid": "vis_aids/velori_0.jpg",
+    "evidence_aid": "vis_aids/velori_1.jpg",
     "study_intro": [
       "A diplomatic mission to a water-covered world, home to an intelligent ocean-dwelling species called the Velori, is planning its first long-term exchange of resources with them. The team needs a reliable way to arrange the exchange."
     ],
@@ -1965,7 +2009,9 @@ window.VIGNETTES = [
     "category": "Collective Resource Allocation: Velori",
     "relev_typ": "Reversibility",
     "rev_typ": "Topology",
-    "visual_aid": "vis_aids/velori.png",
+    "visual_aid": "vis_aids/velori.jpg",
+    "scene_aid": "vis_aids/velori_0.jpg",
+    "evidence_aid": "vis_aids/velori_1.jpg",
     "study_intro": [
       "A diplomatic mission to a water-covered world, home to an intelligent ocean-dwelling species called the Velori, is planning its first long-term exchange of resources with them. The team needs a reliable way to arrange the exchange."
     ],
@@ -2054,7 +2100,9 @@ window.VIGNETTES = [
     "category": "Collective Resource Allocation: Velori",
     "relev_typ": "Reversibility",
     "rev_typ": "Variable_adding",
-    "visual_aid": "vis_aids/velori.png",
+    "visual_aid": "vis_aids/velori.jpg",
+    "scene_aid": "vis_aids/velori_0.jpg",
+    "evidence_aid": "vis_aids/velori_1.jpg",
     "study_intro": [
       "A diplomatic mission to a water-covered world, home to an intelligent ocean-dwelling species called the Velori, is planning its first long-term exchange of resources with them. The team needs a reliable way to arrange the exchange."
     ],

@@ -23,13 +23,30 @@ OUT_JS = os.path.join(HERE, "vignettes.js")
 
 # Visual aid per scenario. Kept explicit so a new Category fails loudly here
 # rather than silently rendering a broken image in the experiment.
+#
+# Each scenario has three images:
+#   <name>.jpg    the mechanism diagram, shown with the proposal on Screen 1b
+#   <name>_0.jpg  a decorative scene-setting illustration for Screen 1a
+#   <name>_1.jpg  a decorative illustration for the new evidence on Screen 2
+# The decorative two are derived from the mapped diagram path by the suffixes
+# below, and every file is checked for existence, so a missing or misnamed
+# image still fails the build.
+#
+# These are the display-sized JPEGs written by optimize_images.py from the
+# full-resolution PNGs in vis_aids/originals/. Re-run that script after adding
+# or replacing a source image.
+DECORATIVE_AIDS = {
+    "scene_aid": "_0",
+    "evidence_aid": "_1",
+}
+
 VISUAL_AIDS = {
-    "Xenobiology in Threa-4": "vis_aids/threa.png",
-    "Pharmacology: Mivacin": "vis_aids/mivacin.png",
-    "Crop Yield: Vorath": "vis_aids/vorath.png",
-    "Construction Material: Crelite": "vis_aids/crelite.png",
-    "Water Supply: Velan": "vis_aids/velan.png",
-    "Collective Resource Allocation: Velori": "vis_aids/velori.png",
+    "Xenobiology in Threa-4": "vis_aids/threa.jpg",
+    "Pharmacology: Mivacin": "vis_aids/mivacin.jpg",
+    "Crop Yield: Vorath": "vis_aids/vorath.jpg",
+    "Construction Material: Crelite": "vis_aids/crelite.jpg",
+    "Water Supply: Velan": "vis_aids/velan.jpg",
+    "Collective Resource Allocation: Velori": "vis_aids/velori.jpg",
 }
 
 errors = []
@@ -150,10 +167,18 @@ def main():
         if category not in VISUAL_AIDS:
             fail("row %s: category %r has no entry in VISUAL_AIDS" % (idx, category))
             visual_aid = ""
+            decorative = {key: "" for key in DECORATIVE_AIDS}
         else:
             visual_aid = VISUAL_AIDS[category]
             if not os.path.exists(os.path.join(HERE, visual_aid)):
                 fail("row %s: visual aid %s does not exist" % (idx, visual_aid))
+            stem, ext = os.path.splitext(visual_aid)
+            decorative = {}
+            for key, suffix in DECORATIVE_AIDS.items():
+                path = stem + suffix + ext
+                decorative[key] = path
+                if not os.path.exists(os.path.join(HERE, path)):
+                    fail("row %s: %s %s does not exist" % (idx, key, path))
 
         # --- relevance framing: intro prose + the two decision-context variants
         rel_intro, rel_chunks = split_on_tags(
@@ -188,6 +213,8 @@ def main():
             "relev_typ": t["Relev_typ"],
             "rev_typ": t["Rev_typ"],
             "visual_aid": visual_aid,
+            "scene_aid": decorative["scene_aid"],
+            "evidence_aid": decorative["evidence_aid"],
             "study_intro": rel_intro,
             "decision": {
                 "relevant": rel_chunks.get("Decision-RELEVANT", []),

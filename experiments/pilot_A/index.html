@@ -128,13 +128,15 @@
       max-width: var(--wide-width);
     }
 
-    /* Task line - standalone, set off by rules rather than by a different
-       font weight (participants skim past text that does not look like body text) */
+    /* The decision context still has to not look like body text - participants
+       skim past anything that does - but the full-width rules it used to sit
+       between read as a divider cutting the page in half. A quiet tinted panel
+       sets it off without the bar. */
     .task-line {
-      margin: 24px 0;
-      padding: 16px 0;
-      border-top: 1px solid #e0e0e0;
-      border-bottom: 1px solid #e0e0e0;
+      margin: 26px 0;
+      padding: 20px 24px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
     }
 
     /* Briefing card - callout box style */
@@ -264,6 +266,22 @@
       font-size: 17px;
       line-height: 1.4;
       text-align: center;
+    }
+
+    /* Decorative illustrations at the top of Screen 1a and Screen 2. Purely
+       scene-setting, so they carry no caption. The source images are square
+       (1254x1254); left at the column's full width they would fill the viewport
+       and push the text below the fold, hence the height cap. */
+    .scene-aid {
+      margin: 8px 0 30px;
+      text-align: center;
+    }
+
+    .scene-aid img {
+      max-width: 100%;
+      max-height: 280px;
+      width: auto;
+      height: auto;
     }
 
     /* Visual aid - sits directly above the passage it illustrates */
@@ -503,6 +521,19 @@
   const anomalyHtml = renderParagraphs(vignette.anomaly);
   const justificationHtml = renderParagraphs(vignette.justification);
 
+  // Decorative illustrations: the scene-setter on Screen 1a and the field /
+  // lab scene that accompanies the new evidence on Screen 2. Both only set the
+  // scene - neither depicts anything participants are questioned about - so alt
+  // is empty and there is no caption, and screen readers skip them.
+  function decorativeAidHtml(path) {
+    return path ? `
+        <div class="scene-aid">
+          <img src="${path}" alt="">
+        </div>` : '';
+  }
+  const sceneAidHtml = decorativeAidHtml(vignette.scene_aid);
+  const evidenceAidHtml = decorativeAidHtml(vignette.evidence_aid);
+
   // Visual aid for this scenario (tracked on Category in build_vignettes.py)
   const visualAidHtml = vignette.visual_aid ? `
           <figure class="visual-aid">
@@ -675,12 +706,16 @@
     });
   }
 
-  // ===== SCREEN 1: STUDY DESIGN + RELEVANCE + COMPLEXITY + PRE-STATEMENT =====
-  const screen1Reading = {
+  // ===== SCREEN 1a: STUDY DESIGN + RELEVANCE + COMPLEXITY =====
+  // The two framing manipulations, ending with the complexity briefing. The
+  // proposal they are meant to be read against is held back to Screen 1b so
+  // this view is not a wall of text.
+  const screen1FramingReading = {
     type: jsPsychHtmlButtonResponse,
     stimulus: `
       <div class="reading-screen">
         <h2>About this study</h2>
+        ${sceneAidHtml}
         ${renderParagraphs(vignette.study_intro)}
 
         <div class="task-line" id="task-context">
@@ -692,23 +727,22 @@
         <div class="briefing-card" id="briefing-section">
           ${complexityBriefingHtml}
         </div>
-
-        <div id="proposal-section">
-          ${proposalHtml}
-        </div>
       </div>
     `,
     choices: ['Continue'],
     data: {
-      task: 'screen1_reading',
+      task: 'screen1_framing_reading',
       phase: 'pre'
     }
   };
-  timeline.push(screen1Reading);
+  timeline.push(screen1FramingReading);
 
   // ===== COMPREHENSION GATE =====
   // Incorrect answer -> hide the options, highlight the source passage, hold the
   // Continue button disabled for 5 seconds, then re-ask. Loops until correct.
+  // Each check is asked directly after the reading view it is drawn from: Q2
+  // and Q3 after Screen 1a, Q1 after Screen 1b, Q4 after Screen 2, Q5 after
+  // Screen 3.
   function createComprehensionCheck(sectionId, sectionContent, questionText, options, correctAnswer, trackingKey) {
     // Store selected answer in closure
     let selectedAnswer = null;
@@ -872,15 +906,6 @@
 
   const comp = vignette.comprehension;
 
-  // Q1: the proposed mechanism (same correct answer in every condition)
-  timeline.push(comprehensionLoop(
-    'proposal-section',
-    proposalHtml,
-    comp.q1,
-    comp.q1.answer,
-    'q1_proposal'
-  ));
-
   // Q2: the complexity briefing (correct answer depends on the complexity condition)
   timeline.push(comprehensionLoop(
     'briefing-section',
@@ -897,6 +922,37 @@
     comp.q3,
     relevance === 'relevant' ? comp.q3.answer_relevant : comp.q3.answer_irrelevant,
     'q3_task'
+  ));
+
+  // ===== SCREEN 1b: PRE-STATEMENT (the research team's original proposal) =====
+  // Seated after the Screen 1a checks so that every comprehension question
+  // sits immediately after the reading view it is drawn from.
+  const screen1ProposalReading = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: `
+      <div class="reading-screen">
+        <h2>The Research Team's Proposal</h2>
+
+        <div id="proposal-section">
+          ${proposalHtml}
+        </div>
+      </div>
+    `,
+    choices: ['Continue'],
+    data: {
+      task: 'screen1_proposal_reading',
+      phase: 'pre'
+    }
+  };
+  timeline.push(screen1ProposalReading);
+
+  // Q1: the proposed mechanism (same correct answer in every condition)
+  timeline.push(comprehensionLoop(
+    'proposal-section',
+    proposalHtml,
+    comp.q1,
+    comp.q1.answer,
+    'q1_proposal'
   ));
 
   // ===== RATINGS BLOCK BUILDER =====
@@ -1019,6 +1075,7 @@
     stimulus: `
       <div class="reading-screen" id="screen2-content">
         <h2>New Information</h2>
+        ${evidenceAidHtml}
 
         <div id="observation-section">
           ${anomalyHtml}

@@ -19,3 +19,7 @@ data/
 .vscode/
 .idea/
 *.sublime-*
+
+# Full-resolution source illustrations (~35 MB). optimize_images.py turns these
+# into the display-sized JPEGs that are actually served; only those are tracked.
+experiments/*/vis_aids/originals/
