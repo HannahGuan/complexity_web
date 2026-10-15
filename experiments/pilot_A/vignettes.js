@@ -27,10 +27,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Threa-4 biology",
     "complexity": {
       "simple": [
-        "Threa-4 is a barren moon of only a few elements, and the life that evolved there is physiologically simple. Its physiology depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical responses."
+        "Threa-4 is a barren moon of only a few elements, and the life that evolved there is physiologically simple. Its physiology depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Threa-4 is rich in elements rare on Earth, and the life that evolved there is biologically intricate. Its physiology depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different responses."
+        "Threa-4 is rich in elements rare on Earth, and the life that evolved there is biologically intricate. Its physiology depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -39,11 +39,11 @@ window.VIGNETTES = [
       "\"Zorblax are tiny organisms, each about the size of a bacterium on Earth. They generate heat by absorbing a specific airborne compound we call threane through their respiratory surfaces. Threane is naturally present in Threa-4's atmosphere, and it's temperature-sensitive: it's abundant in cold air and dissipates rapidly as temperatures rise. So when ambient temperature drops, there's more threane available, Zorblax absorb more of it, and their heat output rises proportionally. Colder environment, more threane uptake, more heat output.\""
     ],
     "anomaly": [
-      "Following the proposal, a pilot Zorblax heating colony was set up by the engineering team and its heat output is being monitored. During the first cold-weather trial, engineers found that Zorblax heat output was not consistently higher on colder days. On several of the coldest days, the colony produced less heat than it had on nearby cooler days."
+      "Following the proposal, a pilot Zorblax heating colony was set up by the engineering team and its heat output is being monitored. During the first cold-weather trial, engineers found that Zorblax heat output was not consistently higher on colder days. On several days, the colony produced less heat than it had on other days with similar temperatures, and these low days tended to come in runs."
     ],
     "justification": [
       "Regarding this, Dr. Aren replied:",
-      "\"Even though colder periods increase threane availability and heat output on average, an additional mechanism becomes significant on the coldest days: Zorblax regulate heat output in cycles and synchronize these cycles with each other when colony density is high. After a sustained period of high heat production, many individuals enter a coordinated recovery phase simultaneously, temporarily suppressing colony-wide output. On the very coldest days, the threane-driven increase triggers an unusually intense period of heat production — which in turn induces a synchronized recovery phase strong enough to offset the initial gain. This is why output was unexpectedly low on those days.\""
+      "\"Even though colder periods increase threane availability and heat output on average, an additional mechanism becomes significant after long cold spells: Zorblax regulate heat output in cycles and synchronize these cycles when colony density is high. After a sustained period of high heat production, many individuals enter a coordinated recovery phase, suppressing colony-wide output for several days. A long run of cold days drives exactly this kind of sustained high production — so the cold itself sets off the recovery, and output stays low for a while even at temperatures that would normally produce plenty of heat. This is why output was unexpectedly low on those days.\""
     ],
     "comprehension": {
       "q1": {
@@ -56,13 +56,13 @@ window.VIGNETTES = [
         "answer": "Rise"
       },
       "q2": {
-        "prompt": "According to the briefing, on Threa-4, identical conditions…",
+        "prompt": "According to the briefing, the physiology of Threa-4's life depends on…",
         "options": [
-          "Reliably produce nearly identical responses",
-          "Can produce substantially different responses"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical responses",
-        "answer_complex": "Can produce substantially different responses"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "For this heating plan, what matters most?",
@@ -77,19 +77,19 @@ window.VIGNETTES = [
         "prompt": "What did the engineers observe during the first cold-weather trial?",
         "options": [
           "Heat output rose steadily as it got colder",
-          "On several of the coldest days, the colony produced less heat than on nearby cooler days",
+          "On several days, the colony produced less heat than on other days with similar temperatures",
           "Heat output stayed the same regardless of temperature"
         ],
-        "answer": "On several of the coldest days, the colony produced less heat than on nearby cooler days"
+        "answer": "On several days, the colony produced less heat than on other days with similar temperatures"
       },
       "q5": {
         "prompt": "According to Dr. Aren's reply, why was heat output unexpectedly low on those days?",
         "options": [
-          "The extreme cold triggered a synchronized recovery phase that cut the colony's output",
+          "A long cold spell drove sustained heat production that set off a synchronized recovery phase",
           "Something unrelated to temperature happened to lower output on those days",
           "Colder air actually holds less threane, so the Zorblax absorb less"
         ],
-        "answer": "The extreme cold triggered a synchronized recovery phase that cut the colony's output"
+        "answer": "A long cold spell drove sustained heat production that set off a synchronized recovery phase"
       }
     }
   },
@@ -118,10 +118,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Threa-4 biology",
     "complexity": {
       "simple": [
-        "Threa-4 is a barren moon of only a few elements, and the life that evolved there is physiologically simple. Its physiology depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical responses."
+        "Threa-4 is a barren moon of only a few elements, and the life that evolved there is physiologically simple. Its physiology depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Threa-4 is rich in elements rare on Earth, and the life that evolved there is biologically intricate. Its physiology depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different responses."
+        "Threa-4 is rich in elements rare on Earth, and the life that evolved there is biologically intricate. Its physiology depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -130,11 +130,11 @@ window.VIGNETTES = [
       "\"Zorblax are tiny organisms, each about the size of a bacterium on Earth. They generate heat by absorbing a specific airborne compound we call threane through their respiratory surfaces. Threane is naturally present in Threa-4's atmosphere, and it's temperature-sensitive: it's abundant in cold air and dissipates rapidly as temperatures rise. So when ambient temperature drops, there's more threane available, Zorblax absorb more of it, and their heat output rises proportionally. Colder environment, more threane uptake, more heat output.\""
     ],
     "anomaly": [
-      "Following the proposal, a pilot Zorblax heating colony was set up by the engineering team and its heat output is being monitored. During the first cold-weather trial, engineers found that Zorblax heat output was not consistently higher on colder days. On several days, the colony produced less heat than it had on other days with similar temperatures."
+      "Following the proposal, a pilot Zorblax heating colony was set up by the engineering team and its heat output is being monitored. During the first cold-weather trial, engineers found that Zorblax heat output was not consistently higher on colder days. On several days, the colony produced less heat than it had on other days with similar temperatures, and these low days tended to come in runs."
     ],
     "justification": [
       "Regarding this, Dr. Aren replied:",
-      "\"Even though colder periods increase threane availability and heat output on average, an additional factor becomes significant from time to time: mineral dust from Threa-4's geysers. Every so often the geysers erupt, and fine dust drifts across the surface and settles on the colony. The dust coats the respiratory surfaces of the Zorblax and temporarily blocks how much threane they can absorb, suppressing colony-wide output until it clears. These eruptions follow their own schedule, independent of temperature, so these dust periods can strike on days when the cold alone would predict high output. This is why output was unexpectedly low on those days.\""
+      "\"Even though colder periods increase threane availability and heat output on average, an additional factor becomes significant from time to time: mineral dust from Threa-4's geysers. Every so often the geysers erupt, and fine dust drifts across the surface and settles on the colony. The dust coats the respiratory surfaces of the Zorblax and blocks how much threane they can absorb, suppressing colony-wide output for several days until it clears. These eruptions follow their own schedule, independent of temperature, so these dust periods can strike on days when the cold alone would predict high output. This is why output was unexpectedly low on those days.\""
     ],
     "comprehension": {
       "q1": {
@@ -147,13 +147,13 @@ window.VIGNETTES = [
         "answer": "Rise"
       },
       "q2": {
-        "prompt": "According to the briefing, on Threa-4, identical conditions…",
+        "prompt": "According to the briefing, the physiology of Threa-4's life depends on…",
         "options": [
-          "Reliably produce nearly identical responses",
-          "Can produce substantially different responses"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical responses",
-        "answer_complex": "Can produce substantially different responses"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "For this heating plan, what matters most?",
@@ -209,10 +209,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Threa-4 biology",
     "complexity": {
       "simple": [
-        "Threa-4 is a barren moon of only a few elements, and the life that evolved there is physiologically simple. Its physiology depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical responses."
+        "Threa-4 is a barren moon of only a few elements, and the life that evolved there is physiologically simple. Its physiology depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Threa-4 is rich in elements rare on Earth, and the life that evolved there is biologically intricate. Its physiology depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different responses."
+        "Threa-4 is rich in elements rare on Earth, and the life that evolved there is biologically intricate. Its physiology depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -221,11 +221,11 @@ window.VIGNETTES = [
       "\"Zorblax are tiny organisms, each about the size of a bacterium on Earth. They generate heat by absorbing a specific airborne compound we call threane through their respiratory surfaces. Threane is naturally present in Threa-4's atmosphere, and it's temperature-sensitive: it's abundant in cold air and dissipates rapidly as temperatures rise. So when ambient temperature drops, there's more threane available, Zorblax absorb more of it, and their heat output rises proportionally. Colder environment, more threane uptake, more heat output.\""
     ],
     "anomaly": [
-      "Following the proposal, a pilot Zorblax heating colony was set up by the engineering team and its heat output is being monitored. During the first cold-weather trial, engineers found that Zorblax heat output was not consistently higher on colder days. On several of the coldest days, the colony produced less heat than it had on nearby cooler days."
+      "Following the proposal, a pilot Zorblax heating colony was set up by the engineering team and its heat output is being monitored. During the first cold-weather trial, engineers found that Zorblax heat output was not consistently higher on colder days. On several days, the colony produced less heat than it had on other days with similar temperatures, and these low days tended to come in runs."
     ],
     "justification": [
       "Regarding this, Dr. Aren replied:",
-      "\"Even though colder periods increase threane availability and heat output on average, an additional mechanism becomes significant on the coldest days: Zorblax regulate heat output in cycles and synchronize these cycles with each other when colony density is high. After a sustained period of high heat production, many individuals enter a coordinated recovery phase simultaneously, temporarily suppressing colony-wide output. On the very coldest days, the threane-driven increase triggers an unusually intense period of heat production — which in turn induces a synchronized recovery phase strong enough to offset the initial gain. This is why output was unexpectedly low on those days.\""
+      "\"Even though colder periods increase threane availability and heat output on average, an additional mechanism becomes significant after long cold spells: Zorblax regulate heat output in cycles and synchronize these cycles when colony density is high. After a sustained period of high heat production, many individuals enter a coordinated recovery phase, suppressing colony-wide output for several days. A long run of cold days drives exactly this kind of sustained high production — so the cold itself sets off the recovery, and output stays low for a while even at temperatures that would normally produce plenty of heat. This is why output was unexpectedly low on those days.\""
     ],
     "comprehension": {
       "q1": {
@@ -238,13 +238,13 @@ window.VIGNETTES = [
         "answer": "Rise"
       },
       "q2": {
-        "prompt": "According to the briefing, on Threa-4, identical conditions…",
+        "prompt": "According to the briefing, the physiology of Threa-4's life depends on…",
         "options": [
-          "Reliably produce nearly identical responses",
-          "Can produce substantially different responses"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical responses",
-        "answer_complex": "Can produce substantially different responses"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "If the heating system chosen turns out to underperform, what happens?",
@@ -259,19 +259,19 @@ window.VIGNETTES = [
         "prompt": "What did the engineers observe during the first cold-weather trial?",
         "options": [
           "Heat output rose steadily as it got colder",
-          "On several of the coldest days, the colony produced less heat than on nearby cooler days",
+          "On several days, the colony produced less heat than on other days with similar temperatures",
           "Heat output stayed the same regardless of temperature"
         ],
-        "answer": "On several of the coldest days, the colony produced less heat than on nearby cooler days"
+        "answer": "On several days, the colony produced less heat than on other days with similar temperatures"
       },
       "q5": {
         "prompt": "According to Dr. Aren's reply, why was heat output unexpectedly low on those days?",
         "options": [
-          "The extreme cold triggered a synchronized recovery phase that cut the colony's output",
+          "A long cold spell drove sustained heat production that set off a synchronized recovery phase",
           "Something unrelated to temperature happened to lower output on those days",
           "Colder air actually holds less threane, so the Zorblax absorb less"
         ],
-        "answer": "The extreme cold triggered a synchronized recovery phase that cut the colony's output"
+        "answer": "A long cold spell drove sustained heat production that set off a synchronized recovery phase"
       }
     }
   },
@@ -300,10 +300,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Threa-4 biology",
     "complexity": {
       "simple": [
-        "Threa-4 is a barren moon of only a few elements, and the life that evolved there is physiologically simple. Its physiology depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical responses."
+        "Threa-4 is a barren moon of only a few elements, and the life that evolved there is physiologically simple. Its physiology depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Threa-4 is rich in elements rare on Earth, and the life that evolved there is biologically intricate. Its physiology depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different responses."
+        "Threa-4 is rich in elements rare on Earth, and the life that evolved there is biologically intricate. Its physiology depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -312,11 +312,11 @@ window.VIGNETTES = [
       "\"Zorblax are tiny organisms, each about the size of a bacterium on Earth. They generate heat by absorbing a specific airborne compound we call threane through their respiratory surfaces. Threane is naturally present in Threa-4's atmosphere, and it's temperature-sensitive: it's abundant in cold air and dissipates rapidly as temperatures rise. So when ambient temperature drops, there's more threane available, Zorblax absorb more of it, and their heat output rises proportionally. Colder environment, more threane uptake, more heat output.\""
     ],
     "anomaly": [
-      "Following the proposal, a pilot Zorblax heating colony was set up by the engineering team and its heat output is being monitored. During the first cold-weather trial, engineers found that Zorblax heat output was not consistently higher on colder days. On several days, the colony produced less heat than it had on other days with similar temperatures."
+      "Following the proposal, a pilot Zorblax heating colony was set up by the engineering team and its heat output is being monitored. During the first cold-weather trial, engineers found that Zorblax heat output was not consistently higher on colder days. On several days, the colony produced less heat than it had on other days with similar temperatures, and these low days tended to come in runs."
     ],
     "justification": [
       "Regarding this, Dr. Aren replied:",
-      "\"Even though colder periods increase threane availability and heat output on average, an additional factor becomes significant from time to time: mineral dust from Threa-4's geysers. Every so often the geysers erupt, and fine dust drifts across the surface and settles on the colony. The dust coats the respiratory surfaces of the Zorblax and temporarily blocks how much threane they can absorb, suppressing colony-wide output until it clears. These eruptions follow their own schedule, independent of temperature, so these dust periods can strike on days when the cold alone would predict high output. This is why output was unexpectedly low on those days.\""
+      "\"Even though colder periods increase threane availability and heat output on average, an additional factor becomes significant from time to time: mineral dust from Threa-4's geysers. Every so often the geysers erupt, and fine dust drifts across the surface and settles on the colony. The dust coats the respiratory surfaces of the Zorblax and blocks how much threane they can absorb, suppressing colony-wide output for several days until it clears. These eruptions follow their own schedule, independent of temperature, so these dust periods can strike on days when the cold alone would predict high output. This is why output was unexpectedly low on those days.\""
     ],
     "comprehension": {
       "q1": {
@@ -329,13 +329,13 @@ window.VIGNETTES = [
         "answer": "Rise"
       },
       "q2": {
-        "prompt": "According to the briefing, on Threa-4, identical conditions…",
+        "prompt": "According to the briefing, the physiology of Threa-4's life depends on…",
         "options": [
-          "Reliably produce nearly identical responses",
-          "Can produce substantially different responses"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical responses",
-        "answer_complex": "Can produce substantially different responses"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "If the heating system chosen turns out to underperform, what happens?",
@@ -391,10 +391,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Velun-9 pharmacology",
     "complexity": {
       "simple": [
-        "The fatigue seen on Velun-9 has a single, uniform cause, and the fungal compounds used to treat it act in physiologically simple ways. Their effects depend on a small number of bodily factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical responses."
+        "The fatigue seen on Velun-9 has a single, uniform cause, and the fungal compounds used to treat it act in physiologically simple ways. Their effects depend on a small number of bodily factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "The fatigue seen on Velun-9 has many contributing causes, and the fungal compounds used to treat it act in biologically intricate ways. Their effects depend on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different responses."
+        "The fatigue seen on Velun-9 has many contributing causes, and the fungal compounds used to treat it act in biologically intricate ways. Their effects depend on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -403,11 +403,11 @@ window.VIGNETTES = [
       "\"Mivacin is a compound produced by a fungus that grows in the asteroid belt along the station's resupply route. It works by raising the brain's fatigue threshold, so that fatigue signals have to be stronger before they are felt. The effect is dose-dependent: when the dose goes up, the threshold rises further, fewer fatigue signals get through, and relief increases proportionally. Higher dose, higher threshold, more relief.\""
     ],
     "anomaly": [
-      "Following the proposal, a pilot treatment program was designed by the medical team and crew fatigue is being monitored. During the first month of the trial, doctors found that relief was not consistently greater at higher doses. For several of the crew members on the highest doses, relief was weaker than it was for those on moderate doses."
+      "Following the proposal, a pilot treatment program was designed by the medical team and crew fatigue is being monitored. During the first month of the trial, doctors found that relief did not consistently follow the dose. On several days, crew members reported weaker relief than they had on other days at the same dose, and these weak days tended to come in runs."
     ],
     "justification": [
       "Regarding this, Dr. Osei replied:",
-      "\"Even though higher doses raise the fatigue threshold and increase relief on average, an additional mechanism becomes significant at the highest doses: the brain adjusts the sensitivity of the receptors Mivacin acts on, and this adjustment is strongest when the drug is taken every day. After the threshold has been pushed up for a sustained period, the brain lowers receptor sensitivity, temporarily weakening the drug's effect. At the highest doses, the unusually large rise in the threshold triggers an unusually strong drop in receptor sensitivity — strong enough to offset the extra benefit of the higher dose. This is why relief was unexpectedly weak at those doses.\""
+      "\"Even though higher doses raise the fatigue threshold and increase relief on average, an additional mechanism becomes significant after several days of steady dosing: the brain adjusts the sensitivity of the receptors Mivacin acts on, and this adjustment is strongest in crew members who take it daily. When the threshold stays high for a sustained period, the brain lowers receptor sensitivity for several days, weakening the drug's effect. Steady dosing produces exactly this kind of sustained rise — so the drug itself sets off the adjustment, and relief stays weak for a while even at doses that would normally work well. This is why relief was unexpectedly weak on those days.\""
     ],
     "comprehension": {
       "q1": {
@@ -420,13 +420,13 @@ window.VIGNETTES = [
         "answer": "Increase"
       },
       "q2": {
-        "prompt": "According to the briefing, for the fungal compounds used on Velun-9, identical conditions…",
+        "prompt": "According to the briefing, the effects of the fungal compounds used on Velun-9 depend on…",
         "options": [
-          "Reliably produce nearly identical responses",
-          "Can produce substantially different responses"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical responses",
-        "answer_complex": "Can produce substantially different responses"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "For this treatment plan, what matters most?",
@@ -441,19 +441,19 @@ window.VIGNETTES = [
         "prompt": "What did the doctors observe during the first month of the trial?",
         "options": [
           "Relief rose steadily with the dose",
-          "For several crew members on the highest doses, relief was weaker than for those on moderate doses",
+          "On several days, crew members reported weaker relief than on other days at the same dose",
           "Relief was the same at every dose"
         ],
-        "answer": "For several crew members on the highest doses, relief was weaker than for those on moderate doses"
+        "answer": "On several days, crew members reported weaker relief than on other days at the same dose"
       },
       "q5": {
         "prompt": "According to Dr. Osei's reply, why was relief unexpectedly weak?",
         "options": [
-          "The highest doses triggered a strong drop in receptor sensitivity that offset the extra benefit",
+          "Several days of steady dosing triggered a drop in receptor sensitivity that weakened the drug",
           "Something unrelated to the dose happened to weaken relief at those times",
           "Higher doses actually lower the brain's fatigue threshold"
         ],
-        "answer": "The highest doses triggered a strong drop in receptor sensitivity that offset the extra benefit"
+        "answer": "Several days of steady dosing triggered a drop in receptor sensitivity that weakened the drug"
       }
     }
   },
@@ -482,10 +482,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Velun-9 pharmacology",
     "complexity": {
       "simple": [
-        "The fatigue seen on Velun-9 has a single, uniform cause, and the fungal compounds used to treat it act in physiologically simple ways. Their effects depend on a small number of bodily factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical responses."
+        "The fatigue seen on Velun-9 has a single, uniform cause, and the fungal compounds used to treat it act in physiologically simple ways. Their effects depend on a small number of bodily factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "The fatigue seen on Velun-9 has many contributing causes, and the fungal compounds used to treat it act in biologically intricate ways. Their effects depend on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different responses."
+        "The fatigue seen on Velun-9 has many contributing causes, and the fungal compounds used to treat it act in biologically intricate ways. Their effects depend on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -494,11 +494,11 @@ window.VIGNETTES = [
       "\"Mivacin is a compound produced by a fungus that grows in the asteroid belt along the station's resupply route. It works by raising the brain's fatigue threshold, so that fatigue signals have to be stronger before they are felt. The effect is dose-dependent: when the dose goes up, the threshold rises further, fewer fatigue signals get through, and relief increases proportionally. Higher dose, higher threshold, more relief.\""
     ],
     "anomaly": [
-      "Following the proposal, a pilot treatment program was designed by the medical team and crew fatigue is being monitored. During the first month of the trial, doctors found that relief was not consistently greater at higher doses. On several days, crew members reported weaker relief than they had on other days at the same dose."
+      "Following the proposal, a pilot treatment program was designed by the medical team and crew fatigue is being monitored. During the first month of the trial, doctors found that relief did not consistently follow the dose. On several days, crew members reported weaker relief than they had on other days at the same dose, and these weak days tended to come in runs."
     ],
     "justification": [
       "Regarding this, Dr. Osei replied:",
-      "\"Even though higher doses raise the fatigue threshold and increase relief on average, an additional factor becomes significant from time to time: the station's algae-based meals. Some batches of the algae contain a compound that binds to Mivacin in the gut, so less of the drug reaches the brain and its effect is temporarily weakened. The kitchen grows and rotates these batches on its own schedule, independent of anyone's dose, so they can weaken relief even at doses that would otherwise work well. This is why relief was unexpectedly weak on those days.\""
+      "\"Even though higher doses raise the fatigue threshold and increase relief on average, an additional factor becomes significant from time to time: the station's algae-based meals. Some batches of the algae contain a compound that binds to Mivacin in the gut, so less of the drug reaches the brain and its effect is weakened. Each batch is served for several days, and the kitchen rotates the batches on its own schedule, independent of anyone's dose, so they can weaken relief even at doses that would otherwise work well. This is why relief was unexpectedly weak on those days.\""
     ],
     "comprehension": {
       "q1": {
@@ -511,13 +511,13 @@ window.VIGNETTES = [
         "answer": "Increase"
       },
       "q2": {
-        "prompt": "According to the briefing, for the fungal compounds used on Velun-9, identical conditions…",
+        "prompt": "According to the briefing, the effects of the fungal compounds used on Velun-9 depend on…",
         "options": [
-          "Reliably produce nearly identical responses",
-          "Can produce substantially different responses"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical responses",
-        "answer_complex": "Can produce substantially different responses"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "For this treatment plan, what matters most?",
@@ -573,10 +573,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Velun-9 pharmacology",
     "complexity": {
       "simple": [
-        "The fatigue seen on Velun-9 has a single, uniform cause, and the fungal compounds used to treat it act in physiologically simple ways. Their effects depend on a small number of bodily factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical responses."
+        "The fatigue seen on Velun-9 has a single, uniform cause, and the fungal compounds used to treat it act in physiologically simple ways. Their effects depend on a small number of bodily factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "The fatigue seen on Velun-9 has many contributing causes, and the fungal compounds used to treat it act in biologically intricate ways. Their effects depend on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different responses."
+        "The fatigue seen on Velun-9 has many contributing causes, and the fungal compounds used to treat it act in biologically intricate ways. Their effects depend on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -585,11 +585,11 @@ window.VIGNETTES = [
       "\"Mivacin is a compound produced by a fungus that grows in the asteroid belt along the station's resupply route. It works by raising the brain's fatigue threshold, so that fatigue signals have to be stronger before they are felt. The effect is dose-dependent: when the dose goes up, the threshold rises further, fewer fatigue signals get through, and relief increases proportionally. Higher dose, higher threshold, more relief.\""
     ],
     "anomaly": [
-      "Following the proposal, a pilot treatment program was designed by the medical team and crew fatigue is being monitored. During the first month of the trial, doctors found that relief was not consistently greater at higher doses. For several of the crew members on the highest doses, relief was weaker than it was for those on moderate doses."
+      "Following the proposal, a pilot treatment program was designed by the medical team and crew fatigue is being monitored. During the first month of the trial, doctors found that relief did not consistently follow the dose. On several days, crew members reported weaker relief than they had on other days at the same dose, and these weak days tended to come in runs."
     ],
     "justification": [
       "Regarding this, Dr. Osei replied:",
-      "\"Even though higher doses raise the fatigue threshold and increase relief on average, an additional mechanism becomes significant at the highest doses: the brain adjusts the sensitivity of the receptors Mivacin acts on, and this adjustment is strongest when the drug is taken every day. After the threshold has been pushed up for a sustained period, the brain lowers receptor sensitivity, temporarily weakening the drug's effect. At the highest doses, the unusually large rise in the threshold triggers an unusually strong drop in receptor sensitivity — strong enough to offset the extra benefit of the higher dose. This is why relief was unexpectedly weak at those doses.\""
+      "\"Even though higher doses raise the fatigue threshold and increase relief on average, an additional mechanism becomes significant after several days of steady dosing: the brain adjusts the sensitivity of the receptors Mivacin acts on, and this adjustment is strongest in crew members who take it daily. When the threshold stays high for a sustained period, the brain lowers receptor sensitivity for several days, weakening the drug's effect. Steady dosing produces exactly this kind of sustained rise — so the drug itself sets off the adjustment, and relief stays weak for a while even at doses that would normally work well. This is why relief was unexpectedly weak on those days.\""
     ],
     "comprehension": {
       "q1": {
@@ -602,13 +602,13 @@ window.VIGNETTES = [
         "answer": "Increase"
       },
       "q2": {
-        "prompt": "According to the briefing, for the fungal compounds used on Velun-9, identical conditions…",
+        "prompt": "According to the briefing, the effects of the fungal compounds used on Velun-9 depend on…",
         "options": [
-          "Reliably produce nearly identical responses",
-          "Can produce substantially different responses"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical responses",
-        "answer_complex": "Can produce substantially different responses"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "If the treatment chosen turns out to underperform, what happens?",
@@ -623,19 +623,19 @@ window.VIGNETTES = [
         "prompt": "What did the doctors observe during the first month of the trial?",
         "options": [
           "Relief rose steadily with the dose",
-          "For several crew members on the highest doses, relief was weaker than for those on moderate doses",
+          "On several days, crew members reported weaker relief than on other days at the same dose",
           "Relief was the same at every dose"
         ],
-        "answer": "For several crew members on the highest doses, relief was weaker than for those on moderate doses"
+        "answer": "On several days, crew members reported weaker relief than on other days at the same dose"
       },
       "q5": {
         "prompt": "According to Dr. Osei's reply, why was relief unexpectedly weak?",
         "options": [
-          "The highest doses triggered a strong drop in receptor sensitivity that offset the extra benefit",
+          "Several days of steady dosing triggered a drop in receptor sensitivity that weakened the drug",
           "Something unrelated to the dose happened to weaken relief at those times",
           "Higher doses actually lower the brain's fatigue threshold"
         ],
-        "answer": "The highest doses triggered a strong drop in receptor sensitivity that offset the extra benefit"
+        "answer": "Several days of steady dosing triggered a drop in receptor sensitivity that weakened the drug"
       }
     }
   },
@@ -664,10 +664,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Velun-9 pharmacology",
     "complexity": {
       "simple": [
-        "The fatigue seen on Velun-9 has a single, uniform cause, and the fungal compounds used to treat it act in physiologically simple ways. Their effects depend on a small number of bodily factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical responses."
+        "The fatigue seen on Velun-9 has a single, uniform cause, and the fungal compounds used to treat it act in physiologically simple ways. Their effects depend on a small number of bodily factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "The fatigue seen on Velun-9 has many contributing causes, and the fungal compounds used to treat it act in biologically intricate ways. Their effects depend on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different responses."
+        "The fatigue seen on Velun-9 has many contributing causes, and the fungal compounds used to treat it act in biologically intricate ways. Their effects depend on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -676,11 +676,11 @@ window.VIGNETTES = [
       "\"Mivacin is a compound produced by a fungus that grows in the asteroid belt along the station's resupply route. It works by raising the brain's fatigue threshold, so that fatigue signals have to be stronger before they are felt. The effect is dose-dependent: when the dose goes up, the threshold rises further, fewer fatigue signals get through, and relief increases proportionally. Higher dose, higher threshold, more relief.\""
     ],
     "anomaly": [
-      "Following the proposal, a pilot treatment program was designed by the medical team and crew fatigue is being monitored. During the first month of the trial, doctors found that relief was not consistently greater at higher doses. On several days, crew members reported weaker relief than they had on other days at the same dose."
+      "Following the proposal, a pilot treatment program was designed by the medical team and crew fatigue is being monitored. During the first month of the trial, doctors found that relief did not consistently follow the dose. On several days, crew members reported weaker relief than they had on other days at the same dose, and these weak days tended to come in runs."
     ],
     "justification": [
       "Regarding this, Dr. Osei replied:",
-      "\"Even though higher doses raise the fatigue threshold and increase relief on average, an additional factor becomes significant from time to time: the station's algae-based meals. Some batches of the algae contain a compound that binds to Mivacin in the gut, so less of the drug reaches the brain and its effect is temporarily weakened. The kitchen grows and rotates these batches on its own schedule, independent of anyone's dose, so they can weaken relief even at doses that would otherwise work well. This is why relief was unexpectedly weak on those days.\""
+      "\"Even though higher doses raise the fatigue threshold and increase relief on average, an additional factor becomes significant from time to time: the station's algae-based meals. Some batches of the algae contain a compound that binds to Mivacin in the gut, so less of the drug reaches the brain and its effect is weakened. Each batch is served for several days, and the kitchen rotates the batches on its own schedule, independent of anyone's dose, so they can weaken relief even at doses that would otherwise work well. This is why relief was unexpectedly weak on those days.\""
     ],
     "comprehension": {
       "q1": {
@@ -693,13 +693,13 @@ window.VIGNETTES = [
         "answer": "Increase"
       },
       "q2": {
-        "prompt": "According to the briefing, for the fungal compounds used on Velun-9, identical conditions…",
+        "prompt": "According to the briefing, the effects of the fungal compounds used on Velun-9 depend on…",
         "options": [
-          "Reliably produce nearly identical responses",
-          "Can produce substantially different responses"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical responses",
-        "answer_complex": "Can produce substantially different responses"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "If the treatment chosen turns out to underperform, what happens?",
@@ -755,10 +755,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Soren-3 plant biology",
     "complexity": {
       "simple": [
-        "Soren-3's soil has a very uniform composition, and the plants that grow in it are physiologically simple. Their growth depends on a small number of soil factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical yields."
+        "Soren-3's soil has a very uniform composition, and the plants that grow in it are physiologically simple. Their growth depends on a small number of soil factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Soren-3's soil has a highly varied composition, and the plants that grow in it are biologically intricate. Their growth depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different yields."
+        "Soren-3's soil has a highly varied composition, and the plants that grow in it are biologically intricate. Their growth depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -767,11 +767,11 @@ window.VIGNETTES = [
       "\"Vorath is a hardy, edible plant that grows naturally across Soren-3. It grows by drawing a mineral compound we call sorite from the soil through its roots. Sorite is spread evenly through Soren-3's soil, so every plant finds plenty of it. So when more Vorath are planted in a field, more roots draw on the sorite, and the field's yield rises proportionally. More plants, more sorite uptake, more yield.\""
     ],
     "anomaly": [
-      "Following the proposal, pilot Vorath fields were planted by the farming team and yields are being monitored. During the first growing season, farmers found that yield was not consistently higher in more densely planted fields. On several of the most densely planted fields, the harvest was smaller than on nearby fields planted at moderate density."
+      "Following the proposal, pilot Vorath fields were planted at a range of densities by the farming team and yields are being monitored. Over the first few growing seasons, farmers found that yield was not consistently higher in more densely planted fields. On several fields, the harvest was smaller than on other fields planted at the same density, and the same fields tended to come up short from one season to the next."
     ],
     "justification": [
       "Regarding this, Dr. Lena replied:",
-      "\"Even though denser planting increases sorite uptake and yield on average, an additional mechanism becomes significant in the densest fields: as Vorath roots absorb sorite, they release acidic byproducts, and acidic soil breaks sorite down faster, especially when the soil is warm. In most fields this effect is small. In the most densely planted fields, the heavy combined uptake triggers an unusually strong build-up of acidity — which in turn breaks down sorite fast enough to offset the gain from the extra plants. This is why yield was unexpectedly low on those fields.\""
+      "\"Even though denser planting increases sorite uptake and yield on average, an additional mechanism becomes significant in fields that have been planted densely before: as Vorath roots absorb sorite, they release acidic byproducts, and acidic soil breaks sorite down faster. After a light planting, the acidity fades before the next season. After a dense planting, the heavy uptake leaves so much acidity that it carries over and keeps breaking down sorite in later seasons — so dense planting itself sets off the decline, and yield stays low even at densities that would normally give a good harvest. This is why yield was unexpectedly low on those fields.\""
     ],
     "comprehension": {
       "q1": {
@@ -784,13 +784,13 @@ window.VIGNETTES = [
         "answer": "Rise"
       },
       "q2": {
-        "prompt": "According to the briefing, for Soren-3's plants, identical conditions…",
+        "prompt": "According to the briefing, the growth of Soren-3's plants depends on…",
         "options": [
-          "Reliably produce nearly identical yields",
-          "Can produce substantially different yields"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical yields",
-        "answer_complex": "Can produce substantially different yields"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "For this farming plan, what matters most?",
@@ -802,22 +802,22 @@ window.VIGNETTES = [
         "answer_irrelevant": "The total harvest over the years"
       },
       "q4": {
-        "prompt": "What did the farmers observe during the first growing season?",
+        "prompt": "What did the farmers observe over the first few growing seasons?",
         "options": [
           "Yield rose steadily with planting density",
-          "On several of the most densely planted fields, the harvest was smaller than on nearby fields planted at moderate density",
+          "On several fields, the harvest was smaller than on other fields planted at the same density",
           "Yield was the same in every field"
         ],
-        "answer": "On several of the most densely planted fields, the harvest was smaller than on nearby fields planted at moderate density"
+        "answer": "On several fields, the harvest was smaller than on other fields planted at the same density"
       },
       "q5": {
         "prompt": "According to Dr. Lena's reply, why was yield unexpectedly low on those fields?",
         "options": [
-          "The densest planting caused a strong build-up of acidity that broke down the sorite",
+          "Dense planting in earlier seasons left acidity in the soil that kept breaking down the sorite",
           "Something unrelated to planting density happened to lower yield in those fields",
           "Vorath actually grows without drawing sorite from the soil"
         ],
-        "answer": "The densest planting caused a strong build-up of acidity that broke down the sorite"
+        "answer": "Dense planting in earlier seasons left acidity in the soil that kept breaking down the sorite"
       }
     }
   },
@@ -846,10 +846,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Soren-3 plant biology",
     "complexity": {
       "simple": [
-        "Soren-3's soil has a very uniform composition, and the plants that grow in it are physiologically simple. Their growth depends on a small number of soil factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical yields."
+        "Soren-3's soil has a very uniform composition, and the plants that grow in it are physiologically simple. Their growth depends on a small number of soil factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Soren-3's soil has a highly varied composition, and the plants that grow in it are biologically intricate. Their growth depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different yields."
+        "Soren-3's soil has a highly varied composition, and the plants that grow in it are biologically intricate. Their growth depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -858,11 +858,11 @@ window.VIGNETTES = [
       "\"Vorath is a hardy, edible plant that grows naturally across Soren-3. It grows by drawing a mineral compound we call sorite from the soil through its roots. Sorite is spread evenly through Soren-3's soil, so every plant finds plenty of it. So when more Vorath are planted in a field, more roots draw on the sorite, and the field's yield rises proportionally. More plants, more sorite uptake, more yield.\""
     ],
     "anomaly": [
-      "Following the proposal, pilot Vorath fields were planted by the farming team and yields are being monitored. During the first growing season, farmers found that yield was not consistently higher in more densely planted fields. On several fields, the harvest was smaller than on nearby fields planted at the same density."
+      "Following the proposal, pilot Vorath fields were planted at a range of densities by the farming team and yields are being monitored. Over the first few growing seasons, farmers found that yield was not consistently higher in more densely planted fields. On several fields, the harvest was smaller than on other fields planted at the same density, and the same fields tended to come up short from one season to the next."
     ],
     "justification": [
       "Regarding this, Dr. Lena replied:",
-      "\"Even though denser planting increases sorite uptake and yield on average, an additional factor becomes significant in some fields: buried salt layers left behind by ancient seas. Where a salt layer lies close to the surface, salt slowly seeps up into the topsoil and blocks Vorath roots from absorbing sorite. These salt layers are scattered across Soren-3 independent of how densely a field is planted, so they can cut yield even in fields where planting density alone would predict a good harvest. This is why yield was unexpectedly low on those fields.\""
+      "\"Even though denser planting increases sorite uptake and yield on average, an additional factor becomes significant in some fields: buried salt layers left behind by ancient seas. Where a salt layer lies close to the surface, salt keeps seeping up into the topsoil and blocks Vorath roots from absorbing sorite, season after season. These salt layers are scattered across Soren-3 independent of how densely a field is planted, so they can cut yield even in fields where planting density alone would predict a good harvest. This is why yield was unexpectedly low on those fields.\""
     ],
     "comprehension": {
       "q1": {
@@ -875,13 +875,13 @@ window.VIGNETTES = [
         "answer": "Rise"
       },
       "q2": {
-        "prompt": "According to the briefing, for Soren-3's plants, identical conditions…",
+        "prompt": "According to the briefing, the growth of Soren-3's plants depends on…",
         "options": [
-          "Reliably produce nearly identical yields",
-          "Can produce substantially different yields"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical yields",
-        "answer_complex": "Can produce substantially different yields"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "For this farming plan, what matters most?",
@@ -893,13 +893,13 @@ window.VIGNETTES = [
         "answer_irrelevant": "The total harvest over the years"
       },
       "q4": {
-        "prompt": "What did the farmers observe during the first growing season?",
+        "prompt": "What did the farmers observe over the first few growing seasons?",
         "options": [
           "Yield rose steadily with planting density",
-          "On several fields, the harvest was smaller than on nearby fields planted at the same density",
+          "On several fields, the harvest was smaller than on other fields planted at the same density",
           "Yield was the same in every field"
         ],
-        "answer": "On several fields, the harvest was smaller than on nearby fields planted at the same density"
+        "answer": "On several fields, the harvest was smaller than on other fields planted at the same density"
       },
       "q5": {
         "prompt": "According to Dr. Lena's reply, why was yield unexpectedly low on those fields?",
@@ -937,10 +937,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Soren-3 plant biology",
     "complexity": {
       "simple": [
-        "Soren-3's soil has a very uniform composition, and the plants that grow in it are physiologically simple. Their growth depends on a small number of soil factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical yields."
+        "Soren-3's soil has a very uniform composition, and the plants that grow in it are physiologically simple. Their growth depends on a small number of soil factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Soren-3's soil has a highly varied composition, and the plants that grow in it are biologically intricate. Their growth depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different yields."
+        "Soren-3's soil has a highly varied composition, and the plants that grow in it are biologically intricate. Their growth depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -949,11 +949,11 @@ window.VIGNETTES = [
       "\"Vorath is a hardy, edible plant that grows naturally across Soren-3. It grows by drawing a mineral compound we call sorite from the soil through its roots. Sorite is spread evenly through Soren-3's soil, so every plant finds plenty of it. So when more Vorath are planted in a field, more roots draw on the sorite, and the field's yield rises proportionally. More plants, more sorite uptake, more yield.\""
     ],
     "anomaly": [
-      "Following the proposal, pilot Vorath fields were planted by the farming team and yields are being monitored. During the first growing season, farmers found that yield was not consistently higher in more densely planted fields. On several of the most densely planted fields, the harvest was smaller than on nearby fields planted at moderate density."
+      "Following the proposal, pilot Vorath fields were planted at a range of densities by the farming team and yields are being monitored. Over the first few growing seasons, farmers found that yield was not consistently higher in more densely planted fields. On several fields, the harvest was smaller than on other fields planted at the same density, and the same fields tended to come up short from one season to the next."
     ],
     "justification": [
       "Regarding this, Dr. Lena replied:",
-      "\"Even though denser planting increases sorite uptake and yield on average, an additional mechanism becomes significant in the densest fields: as Vorath roots absorb sorite, they release acidic byproducts, and acidic soil breaks sorite down faster, especially when the soil is warm. In most fields this effect is small. In the most densely planted fields, the heavy combined uptake triggers an unusually strong build-up of acidity — which in turn breaks down sorite fast enough to offset the gain from the extra plants. This is why yield was unexpectedly low on those fields.\""
+      "\"Even though denser planting increases sorite uptake and yield on average, an additional mechanism becomes significant in fields that have been planted densely before: as Vorath roots absorb sorite, they release acidic byproducts, and acidic soil breaks sorite down faster. After a light planting, the acidity fades before the next season. After a dense planting, the heavy uptake leaves so much acidity that it carries over and keeps breaking down sorite in later seasons — so dense planting itself sets off the decline, and yield stays low even at densities that would normally give a good harvest. This is why yield was unexpectedly low on those fields.\""
     ],
     "comprehension": {
       "q1": {
@@ -966,13 +966,13 @@ window.VIGNETTES = [
         "answer": "Rise"
       },
       "q2": {
-        "prompt": "According to the briefing, for Soren-3's plants, identical conditions…",
+        "prompt": "According to the briefing, the growth of Soren-3's plants depends on…",
         "options": [
-          "Reliably produce nearly identical yields",
-          "Can produce substantially different yields"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical yields",
-        "answer_complex": "Can produce substantially different yields"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "If the crop chosen turns out to underperform, what happens?",
@@ -984,22 +984,22 @@ window.VIGNETTES = [
         "answer_irrelevant": "The fields can be replanted with a different crop within a season at little cost"
       },
       "q4": {
-        "prompt": "What did the farmers observe during the first growing season?",
+        "prompt": "What did the farmers observe over the first few growing seasons?",
         "options": [
           "Yield rose steadily with planting density",
-          "On several of the most densely planted fields, the harvest was smaller than on nearby fields planted at moderate density",
+          "On several fields, the harvest was smaller than on other fields planted at the same density",
           "Yield was the same in every field"
         ],
-        "answer": "On several of the most densely planted fields, the harvest was smaller than on nearby fields planted at moderate density"
+        "answer": "On several fields, the harvest was smaller than on other fields planted at the same density"
       },
       "q5": {
         "prompt": "According to Dr. Lena's reply, why was yield unexpectedly low on those fields?",
         "options": [
-          "The densest planting caused a strong build-up of acidity that broke down the sorite",
+          "Dense planting in earlier seasons left acidity in the soil that kept breaking down the sorite",
           "Something unrelated to planting density happened to lower yield in those fields",
           "Vorath actually grows without drawing sorite from the soil"
         ],
-        "answer": "The densest planting caused a strong build-up of acidity that broke down the sorite"
+        "answer": "Dense planting in earlier seasons left acidity in the soil that kept breaking down the sorite"
       }
     }
   },
@@ -1028,10 +1028,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Soren-3 plant biology",
     "complexity": {
       "simple": [
-        "Soren-3's soil has a very uniform composition, and the plants that grow in it are physiologically simple. Their growth depends on a small number of soil factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical yields."
+        "Soren-3's soil has a very uniform composition, and the plants that grow in it are physiologically simple. Their growth depends on a small number of soil factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Soren-3's soil has a highly varied composition, and the plants that grow in it are biologically intricate. Their growth depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different yields."
+        "Soren-3's soil has a highly varied composition, and the plants that grow in it are biologically intricate. Their growth depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -1040,11 +1040,11 @@ window.VIGNETTES = [
       "\"Vorath is a hardy, edible plant that grows naturally across Soren-3. It grows by drawing a mineral compound we call sorite from the soil through its roots. Sorite is spread evenly through Soren-3's soil, so every plant finds plenty of it. So when more Vorath are planted in a field, more roots draw on the sorite, and the field's yield rises proportionally. More plants, more sorite uptake, more yield.\""
     ],
     "anomaly": [
-      "Following the proposal, pilot Vorath fields were planted by the farming team and yields are being monitored. During the first growing season, farmers found that yield was not consistently higher in more densely planted fields. On several fields, the harvest was smaller than on nearby fields planted at the same density."
+      "Following the proposal, pilot Vorath fields were planted at a range of densities by the farming team and yields are being monitored. Over the first few growing seasons, farmers found that yield was not consistently higher in more densely planted fields. On several fields, the harvest was smaller than on other fields planted at the same density, and the same fields tended to come up short from one season to the next."
     ],
     "justification": [
       "Regarding this, Dr. Lena replied:",
-      "\"Even though denser planting increases sorite uptake and yield on average, an additional factor becomes significant in some fields: buried salt layers left behind by ancient seas. Where a salt layer lies close to the surface, salt slowly seeps up into the topsoil and blocks Vorath roots from absorbing sorite. These salt layers are scattered across Soren-3 independent of how densely a field is planted, so they can cut yield even in fields where planting density alone would predict a good harvest. This is why yield was unexpectedly low on those fields.\""
+      "\"Even though denser planting increases sorite uptake and yield on average, an additional factor becomes significant in some fields: buried salt layers left behind by ancient seas. Where a salt layer lies close to the surface, salt keeps seeping up into the topsoil and blocks Vorath roots from absorbing sorite, season after season. These salt layers are scattered across Soren-3 independent of how densely a field is planted, so they can cut yield even in fields where planting density alone would predict a good harvest. This is why yield was unexpectedly low on those fields.\""
     ],
     "comprehension": {
       "q1": {
@@ -1057,13 +1057,13 @@ window.VIGNETTES = [
         "answer": "Rise"
       },
       "q2": {
-        "prompt": "According to the briefing, for Soren-3's plants, identical conditions…",
+        "prompt": "According to the briefing, the growth of Soren-3's plants depends on…",
         "options": [
-          "Reliably produce nearly identical yields",
-          "Can produce substantially different yields"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical yields",
-        "answer_complex": "Can produce substantially different yields"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "If the crop chosen turns out to underperform, what happens?",
@@ -1075,13 +1075,13 @@ window.VIGNETTES = [
         "answer_irrelevant": "The fields can be replanted with a different crop within a season at little cost"
       },
       "q4": {
-        "prompt": "What did the farmers observe during the first growing season?",
+        "prompt": "What did the farmers observe over the first few growing seasons?",
         "options": [
           "Yield rose steadily with planting density",
-          "On several fields, the harvest was smaller than on nearby fields planted at the same density",
+          "On several fields, the harvest was smaller than on other fields planted at the same density",
           "Yield was the same in every field"
         ],
-        "answer": "On several fields, the harvest was smaller than on nearby fields planted at the same density"
+        "answer": "On several fields, the harvest was smaller than on other fields planted at the same density"
       },
       "q5": {
         "prompt": "According to Dr. Lena's reply, why was yield unexpectedly low on those fields?",
@@ -1119,10 +1119,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Moran-2 materials",
     "complexity": {
       "simple": [
-        "Moran-2's native organisms produce these substances through a single, uniform process, and the materials that result are structurally simple. Their strength depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical strength."
+        "Moran-2's native organisms produce these substances through a single, uniform process, and the materials that result are structurally simple. Their strength depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Moran-2's native organisms produce these substances through many overlapping processes, and the materials that result are structurally intricate. Their strength depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different strength."
+        "Moran-2's native organisms produce these substances through many overlapping processes, and the materials that result are structurally intricate. Their strength depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -1131,11 +1131,11 @@ window.VIGNETTES = [
       "\"Crelite is a hard substance secreted by a colonial organism called Drex, and it builds up into dense natural formations across Moran-2. Its strength is governed by temperature: as the air warms, the molecular bonds inside Crelite tighten. So when ambient temperature rises, the bonds pull closer together, and Crelite's load-bearing strength rises proportionally. Warmer air, tighter bonds, stronger material.\""
     ],
     "anomaly": [
-      "Following the proposal, a set of open-air pilot Crelite structures was built by the engineering team and their strength is being monitored. During the first month of testing, engineers found that Crelite's strength was not consistently higher on warmer days. On several of the hottest days, its strength was lower than on nearby milder days."
+      "Following the proposal, a set of open-air pilot Crelite structures was built by the engineering team and their strength is being monitored. During the first months of testing, engineers found that Crelite's strength was not consistently higher on warmer days. On several days, its strength fell well below readings taken at similar temperatures on other days, and these weak days tended to come in runs."
     ],
     "justification": [
       "Regarding this, Dr. Pell replied:",
-      "\"Even though warmer air tightens Crelite's bonds and increases its strength on average, an additional mechanism becomes significant on the hottest days: as the bonds tighten, stress builds up inside the material, and this stress is greatest in thick sections, where the surface heats faster than the core. On most days the stress is small and harmless. On the very hottest days, the unusually strong tightening triggers fine cracks inside the material — which in turn weaken it enough to offset the gain from the tighter bonds. This is why strength was unexpectedly low on those days.\""
+      "\"Even though warmer air tightens Crelite's bonds and increases its strength on average, an additional mechanism becomes significant after long warm spells: as the bonds tighten, stress builds up inside the material, especially in thick sections. After a single warm day, this stress eases overnight. After a long run of warm days, the stress keeps building until it opens fine cracks inside the material, which take several days to close again — so the warmth itself sets off the weakening, and strength stays low for a while even at temperatures that would normally make Crelite strong. This is why strength was unexpectedly low on those days.\""
     ],
     "comprehension": {
       "q1": {
@@ -1148,13 +1148,13 @@ window.VIGNETTES = [
         "answer": "Rise"
       },
       "q2": {
-        "prompt": "According to the briefing, for Moran-2's materials, identical conditions…",
+        "prompt": "According to the briefing, the strength of Moran-2's materials depends on…",
         "options": [
-          "Reliably produce nearly identical strength",
-          "Can produce substantially different strength"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical strength",
-        "answer_complex": "Can produce substantially different strength"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "For this building plan, what matters most?",
@@ -1166,22 +1166,22 @@ window.VIGNETTES = [
         "answer_irrelevant": "The material's average strength over the years"
       },
       "q4": {
-        "prompt": "What did the engineers observe during the first month of testing?",
+        "prompt": "What did the engineers observe during the first months of testing?",
         "options": [
           "Strength rose steadily with temperature",
-          "On several of the hottest days, strength was lower than on nearby milder days",
+          "On several days, strength fell well below readings taken at similar temperatures on other days",
           "Strength never changed"
         ],
-        "answer": "On several of the hottest days, strength was lower than on nearby milder days"
+        "answer": "On several days, strength fell well below readings taken at similar temperatures on other days"
       },
       "q5": {
         "prompt": "According to Dr. Pell's reply, why was Crelite's strength unexpectedly low?",
         "options": [
-          "On the hottest days, the strong tightening of its bonds caused fine cracks inside the material",
+          "A long run of warm days built up stress that opened fine cracks inside the material",
           "Something unrelated to temperature happened to weaken the material on those days",
           "Warmer air actually loosens Crelite's bonds"
         ],
-        "answer": "On the hottest days, the strong tightening of its bonds caused fine cracks inside the material"
+        "answer": "A long run of warm days built up stress that opened fine cracks inside the material"
       }
     }
   },
@@ -1210,10 +1210,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Moran-2 materials",
     "complexity": {
       "simple": [
-        "Moran-2's native organisms produce these substances through a single, uniform process, and the materials that result are structurally simple. Their strength depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical strength."
+        "Moran-2's native organisms produce these substances through a single, uniform process, and the materials that result are structurally simple. Their strength depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Moran-2's native organisms produce these substances through many overlapping processes, and the materials that result are structurally intricate. Their strength depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different strength."
+        "Moran-2's native organisms produce these substances through many overlapping processes, and the materials that result are structurally intricate. Their strength depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -1222,11 +1222,11 @@ window.VIGNETTES = [
       "\"Crelite is a hard substance secreted by a colonial organism called Drex, and it builds up into dense natural formations across Moran-2. Its strength is governed by temperature: as the air warms, the molecular bonds inside Crelite tighten. So when ambient temperature rises, the bonds pull closer together, and Crelite's load-bearing strength rises proportionally. Warmer air, tighter bonds, stronger material.\""
     ],
     "anomaly": [
-      "Following the proposal, a set of open-air pilot Crelite structures was built by the engineering team and their strength is being monitored. During the first month of testing, engineers found that Crelite's strength was not consistently higher on warmer days. On several days, its strength fell well below readings taken at similar temperatures just days earlier."
+      "Following the proposal, a set of open-air pilot Crelite structures was built by the engineering team and their strength is being monitored. During the first months of testing, engineers found that Crelite's strength was not consistently higher on warmer days. On several days, its strength fell well below readings taken at similar temperatures on other days, and these weak days tended to come in runs."
     ],
     "justification": [
       "Regarding this, Dr. Pell replied:",
-      "\"Even though warmer air increases Crelite's strength on average, an additional factor becomes significant from time to time: rapid swings in humidity. When the air turns humid and dry again several times over a short period, the fibrous structure inside Crelite temporarily loosens, reducing how much load it can bear. These humidity swings come and go on their own schedule, independent of temperature, so they can strike on days when temperature alone would predict high strength. This is why strength was unexpectedly low on those days.\""
+      "\"Even though warmer air increases Crelite's strength on average, an additional factor becomes significant from time to time: rapid swings in humidity. When the air turns humid and dry again several times over a short period, the fibrous structure inside Crelite loosens and takes several days to settle again, reducing how much load it can bear. These humidity swings come and go on their own schedule, independent of temperature, so they can strike on days when temperature alone would predict high strength. This is why strength was unexpectedly low on those days.\""
     ],
     "comprehension": {
       "q1": {
@@ -1239,13 +1239,13 @@ window.VIGNETTES = [
         "answer": "Rise"
       },
       "q2": {
-        "prompt": "According to the briefing, for Moran-2's materials, identical conditions…",
+        "prompt": "According to the briefing, the strength of Moran-2's materials depends on…",
         "options": [
-          "Reliably produce nearly identical strength",
-          "Can produce substantially different strength"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical strength",
-        "answer_complex": "Can produce substantially different strength"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "For this building plan, what matters most?",
@@ -1257,13 +1257,13 @@ window.VIGNETTES = [
         "answer_irrelevant": "The material's average strength over the years"
       },
       "q4": {
-        "prompt": "What did the engineers observe during the first month of testing?",
+        "prompt": "What did the engineers observe during the first months of testing?",
         "options": [
           "Strength rose steadily with temperature",
-          "On several days, strength fell well below readings taken at similar temperatures days earlier",
+          "On several days, strength fell well below readings taken at similar temperatures on other days",
           "Strength never changed"
         ],
-        "answer": "On several days, strength fell well below readings taken at similar temperatures days earlier"
+        "answer": "On several days, strength fell well below readings taken at similar temperatures on other days"
       },
       "q5": {
         "prompt": "According to Dr. Pell's reply, why was Crelite's strength unexpectedly low?",
@@ -1301,10 +1301,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Moran-2 materials",
     "complexity": {
       "simple": [
-        "Moran-2's native organisms produce these substances through a single, uniform process, and the materials that result are structurally simple. Their strength depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical strength."
+        "Moran-2's native organisms produce these substances through a single, uniform process, and the materials that result are structurally simple. Their strength depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Moran-2's native organisms produce these substances through many overlapping processes, and the materials that result are structurally intricate. Their strength depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different strength."
+        "Moran-2's native organisms produce these substances through many overlapping processes, and the materials that result are structurally intricate. Their strength depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -1313,11 +1313,11 @@ window.VIGNETTES = [
       "\"Crelite is a hard substance secreted by a colonial organism called Drex, and it builds up into dense natural formations across Moran-2. Its strength is governed by temperature: as the air warms, the molecular bonds inside Crelite tighten. So when ambient temperature rises, the bonds pull closer together, and Crelite's load-bearing strength rises proportionally. Warmer air, tighter bonds, stronger material.\""
     ],
     "anomaly": [
-      "Following the proposal, a set of open-air pilot Crelite structures was built by the engineering team and their strength is being monitored. During the first month of testing, engineers found that Crelite's strength was not consistently higher on warmer days. On several of the hottest days, its strength was lower than on nearby milder days."
+      "Following the proposal, a set of open-air pilot Crelite structures was built by the engineering team and their strength is being monitored. During the first months of testing, engineers found that Crelite's strength was not consistently higher on warmer days. On several days, its strength fell well below readings taken at similar temperatures on other days, and these weak days tended to come in runs."
     ],
     "justification": [
       "Regarding this, Dr. Pell replied:",
-      "\"Even though warmer air tightens Crelite's bonds and increases its strength on average, an additional mechanism becomes significant on the hottest days: as the bonds tighten, stress builds up inside the material, and this stress is greatest in thick sections, where the surface heats faster than the core. On most days the stress is small and harmless. On the very hottest days, the unusually strong tightening triggers fine cracks inside the material — which in turn weaken it enough to offset the gain from the tighter bonds. This is why strength was unexpectedly low on those days.\""
+      "\"Even though warmer air tightens Crelite's bonds and increases its strength on average, an additional mechanism becomes significant after long warm spells: as the bonds tighten, stress builds up inside the material, especially in thick sections. After a single warm day, this stress eases overnight. After a long run of warm days, the stress keeps building until it opens fine cracks inside the material, which take several days to close again — so the warmth itself sets off the weakening, and strength stays low for a while even at temperatures that would normally make Crelite strong. This is why strength was unexpectedly low on those days.\""
     ],
     "comprehension": {
       "q1": {
@@ -1330,13 +1330,13 @@ window.VIGNETTES = [
         "answer": "Rise"
       },
       "q2": {
-        "prompt": "According to the briefing, for Moran-2's materials, identical conditions…",
+        "prompt": "According to the briefing, the strength of Moran-2's materials depends on…",
         "options": [
-          "Reliably produce nearly identical strength",
-          "Can produce substantially different strength"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical strength",
-        "answer_complex": "Can produce substantially different strength"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "If the material chosen turns out to underperform, what happens?",
@@ -1348,22 +1348,22 @@ window.VIGNETTES = [
         "answer_irrelevant": "Parts can be swapped for another material within a day at little cost"
       },
       "q4": {
-        "prompt": "What did the engineers observe during the first month of testing?",
+        "prompt": "What did the engineers observe during the first months of testing?",
         "options": [
           "Strength rose steadily with temperature",
-          "On several of the hottest days, strength was lower than on nearby milder days",
+          "On several days, strength fell well below readings taken at similar temperatures on other days",
           "Strength never changed"
         ],
-        "answer": "On several of the hottest days, strength was lower than on nearby milder days"
+        "answer": "On several days, strength fell well below readings taken at similar temperatures on other days"
       },
       "q5": {
         "prompt": "According to Dr. Pell's reply, why was Crelite's strength unexpectedly low?",
         "options": [
-          "On the hottest days, the strong tightening of its bonds caused fine cracks inside the material",
+          "A long run of warm days built up stress that opened fine cracks inside the material",
           "Something unrelated to temperature happened to weaken the material on those days",
           "Warmer air actually loosens Crelite's bonds"
         ],
-        "answer": "On the hottest days, the strong tightening of its bonds caused fine cracks inside the material"
+        "answer": "A long run of warm days built up stress that opened fine cracks inside the material"
       }
     }
   },
@@ -1392,10 +1392,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Moran-2 materials",
     "complexity": {
       "simple": [
-        "Moran-2's native organisms produce these substances through a single, uniform process, and the materials that result are structurally simple. Their strength depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical strength."
+        "Moran-2's native organisms produce these substances through a single, uniform process, and the materials that result are structurally simple. Their strength depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Moran-2's native organisms produce these substances through many overlapping processes, and the materials that result are structurally intricate. Their strength depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different strength."
+        "Moran-2's native organisms produce these substances through many overlapping processes, and the materials that result are structurally intricate. Their strength depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -1404,11 +1404,11 @@ window.VIGNETTES = [
       "\"Crelite is a hard substance secreted by a colonial organism called Drex, and it builds up into dense natural formations across Moran-2. Its strength is governed by temperature: as the air warms, the molecular bonds inside Crelite tighten. So when ambient temperature rises, the bonds pull closer together, and Crelite's load-bearing strength rises proportionally. Warmer air, tighter bonds, stronger material.\""
     ],
     "anomaly": [
-      "Following the proposal, a set of open-air pilot Crelite structures was built by the engineering team and their strength is being monitored. During the first month of testing, engineers found that Crelite's strength was not consistently higher on warmer days. On several days, its strength fell well below readings taken at similar temperatures just days earlier."
+      "Following the proposal, a set of open-air pilot Crelite structures was built by the engineering team and their strength is being monitored. During the first months of testing, engineers found that Crelite's strength was not consistently higher on warmer days. On several days, its strength fell well below readings taken at similar temperatures on other days, and these weak days tended to come in runs."
     ],
     "justification": [
       "Regarding this, Dr. Pell replied:",
-      "\"Even though warmer air increases Crelite's strength on average, an additional factor becomes significant from time to time: rapid swings in humidity. When the air turns humid and dry again several times over a short period, the fibrous structure inside Crelite temporarily loosens, reducing how much load it can bear. These humidity swings come and go on their own schedule, independent of temperature, so they can strike on days when temperature alone would predict high strength. This is why strength was unexpectedly low on those days.\""
+      "\"Even though warmer air increases Crelite's strength on average, an additional factor becomes significant from time to time: rapid swings in humidity. When the air turns humid and dry again several times over a short period, the fibrous structure inside Crelite loosens and takes several days to settle again, reducing how much load it can bear. These humidity swings come and go on their own schedule, independent of temperature, so they can strike on days when temperature alone would predict high strength. This is why strength was unexpectedly low on those days.\""
     ],
     "comprehension": {
       "q1": {
@@ -1421,13 +1421,13 @@ window.VIGNETTES = [
         "answer": "Rise"
       },
       "q2": {
-        "prompt": "According to the briefing, for Moran-2's materials, identical conditions…",
+        "prompt": "According to the briefing, the strength of Moran-2's materials depends on…",
         "options": [
-          "Reliably produce nearly identical strength",
-          "Can produce substantially different strength"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical strength",
-        "answer_complex": "Can produce substantially different strength"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "If the material chosen turns out to underperform, what happens?",
@@ -1439,13 +1439,13 @@ window.VIGNETTES = [
         "answer_irrelevant": "Parts can be swapped for another material within a day at little cost"
       },
       "q4": {
-        "prompt": "What did the engineers observe during the first month of testing?",
+        "prompt": "What did the engineers observe during the first months of testing?",
         "options": [
           "Strength rose steadily with temperature",
-          "On several days, strength fell well below readings taken at similar temperatures days earlier",
+          "On several days, strength fell well below readings taken at similar temperatures on other days",
           "Strength never changed"
         ],
-        "answer": "On several days, strength fell well below readings taken at similar temperatures days earlier"
+        "answer": "On several days, strength fell well below readings taken at similar temperatures on other days"
       },
       "q5": {
         "prompt": "According to Dr. Pell's reply, why was Crelite's strength unexpectedly low?",
@@ -1483,10 +1483,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Keth-7 hydrology",
     "complexity": {
       "simple": [
-        "Keth-7 has a uniform, stable layer of rock beneath its surface, and the liquid that flows through it moves in simple ways. Its flow depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical flow."
+        "Keth-7 has a uniform, stable layer of rock beneath its surface, and the liquid that flows through it moves in simple ways. Its flow depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Keth-7 has many tangled layers of rock beneath its surface, and the liquid that flows through them moves in intricate ways. Its flow depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different flow."
+        "Keth-7 has many tangled layers of rock beneath its surface, and the liquid that flows through them moves in intricate ways. Its flow depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -1495,11 +1495,11 @@ window.VIGNETTES = [
       "\"Velan is a liquid found in the rock beneath Keth-7's surface, and it is safe to drink after light processing. It is replenished by rain: rainwater slowly seeps down through the rock and refills the underground reserves. So when rainfall increases, more water seeps down, the reserves refill faster, and the flow at each well rises proportionally. More rain, more seepage, more flow.\""
     ],
     "anomaly": [
-      "Following the proposal, a set of shallow pilot wells was dug by the engineering team and their flow is being monitored. During the first rainy season, engineers found that flow was not consistently higher after heavier rain. After several of the heaviest downpours, the wells produced less than they had after nearby moderate rains."
+      "Following the proposal, a set of shallow pilot wells was dug by the engineering team and their flow is being monitored. During the first rainy season, engineers found that flow was not consistently higher after heavier rain. During several periods, the wells produced far less than they had in other periods with similar rain, and these low periods tended to last for weeks."
     ],
     "justification": [
       "Regarding this, Dr. Saan replied:",
-      "\"Even though heavier rain increases seepage and flow on average, an additional mechanism becomes significant after the heaviest downpours: rainwater running over the surface picks up fine silt, especially where the ground above the wells is loose. After ordinary rain, very little silt reaches the rock. During the very heaviest downpours, the unusually fast runoff washes large amounts of silt down into the rock — which in turn clogs the narrow channels feeding the wells enough to offset the extra seepage. This is why flow was unexpectedly low after those downpours.\""
+      "\"Even though heavier rain increases seepage and flow on average, an additional mechanism becomes significant after heavy downpours: rainwater running over the surface picks up fine silt, especially where the ground is loose. After light rain, very little silt reaches the rock. A heavy downpour, though, washes large amounts of silt down into the rock, where it clogs the narrow channels feeding the wells for weeks afterward — so the rain itself sets off the blockage, and flow stays low for a while even when later rainfall would normally keep it high. This is why flow was unexpectedly low during those periods.\""
     ],
     "comprehension": {
       "q1": {
@@ -1512,13 +1512,13 @@ window.VIGNETTES = [
         "answer": "Rise"
       },
       "q2": {
-        "prompt": "According to the briefing, for Keth-7's underground liquid, identical conditions…",
+        "prompt": "According to the briefing, the flow of Keth-7's underground liquid depends on…",
         "options": [
-          "Reliably produce nearly identical flow",
-          "Can produce substantially different flow"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical flow",
-        "answer_complex": "Can produce substantially different flow"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "For this water plan, what matters most?",
@@ -1533,19 +1533,19 @@ window.VIGNETTES = [
         "prompt": "What did the engineers observe during the first rainy season?",
         "options": [
           "Flow rose steadily with rainfall",
-          "After several of the heaviest downpours, the wells produced less than after nearby moderate rains",
+          "During several periods, the wells produced far less than in other periods with similar rain",
           "Flow never changed"
         ],
-        "answer": "After several of the heaviest downpours, the wells produced less than after nearby moderate rains"
+        "answer": "During several periods, the wells produced far less than in other periods with similar rain"
       },
       "q5": {
         "prompt": "According to Dr. Saan's reply, why was flow unexpectedly low?",
         "options": [
-          "The heaviest downpours washed silt into the rock that clogged the channels feeding the wells",
+          "Silt washed in by an earlier heavy downpour clogged the channels feeding the wells",
           "Something unrelated to rainfall happened to lower flow at those times",
           "Rain actually drains Velan out of the underground reserves"
         ],
-        "answer": "The heaviest downpours washed silt into the rock that clogged the channels feeding the wells"
+        "answer": "Silt washed in by an earlier heavy downpour clogged the channels feeding the wells"
       }
     }
   },
@@ -1574,10 +1574,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Keth-7 hydrology",
     "complexity": {
       "simple": [
-        "Keth-7 has a uniform, stable layer of rock beneath its surface, and the liquid that flows through it moves in simple ways. Its flow depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical flow."
+        "Keth-7 has a uniform, stable layer of rock beneath its surface, and the liquid that flows through it moves in simple ways. Its flow depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Keth-7 has many tangled layers of rock beneath its surface, and the liquid that flows through them moves in intricate ways. Its flow depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different flow."
+        "Keth-7 has many tangled layers of rock beneath its surface, and the liquid that flows through them moves in intricate ways. Its flow depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -1586,11 +1586,11 @@ window.VIGNETTES = [
       "\"Velan is a liquid found in the rock beneath Keth-7's surface, and it is safe to drink after light processing. It is replenished by rain: rainwater slowly seeps down through the rock and refills the underground reserves. So when rainfall increases, more water seeps down, the reserves refill faster, and the flow at each well rises proportionally. More rain, more seepage, more flow.\""
     ],
     "anomaly": [
-      "Following the proposal, a set of shallow pilot wells was dug by the engineering team and their flow is being monitored. During the first rainy season, engineers found that flow was not consistently higher after heavier rain. During several periods of normal or even above-average rainfall, the wells produced far less than they had in nearby periods with similar rain."
+      "Following the proposal, a set of shallow pilot wells was dug by the engineering team and their flow is being monitored. During the first rainy season, engineers found that flow was not consistently higher after heavier rain. During several periods, the wells produced far less than they had in other periods with similar rain, and these low periods tended to last for weeks."
     ],
     "justification": [
       "Regarding this, Dr. Saan replied:",
-      "\"Even though heavier rain increases seepage and flow on average, an additional factor becomes significant from time to time: slow pressure cycles in the deep rock layers. When the deep rock enters a low-pressure phase, Velan drains downward into deeper formations, temporarily lowering the volume available to shallow wells. These pressure cycles are driven by slow geological processes that run on their own schedule, independent of rainfall, so they can strike even when rainfall alone would predict good flow. This is why flow was unexpectedly low during those periods.\""
+      "\"Even though heavier rain increases seepage and flow on average, an additional factor becomes significant from time to time: slow pressure cycles in the deep rock layers. When the deep rock enters a low-pressure phase, Velan drains downward into deeper formations, lowering the volume available to shallow wells for weeks at a time. These pressure cycles are driven by slow geological processes that run on their own schedule, independent of rainfall, so they can strike even when rainfall alone would predict good flow. This is why flow was unexpectedly low during those periods.\""
     ],
     "comprehension": {
       "q1": {
@@ -1603,13 +1603,13 @@ window.VIGNETTES = [
         "answer": "Rise"
       },
       "q2": {
-        "prompt": "According to the briefing, for Keth-7's underground liquid, identical conditions…",
+        "prompt": "According to the briefing, the flow of Keth-7's underground liquid depends on…",
         "options": [
-          "Reliably produce nearly identical flow",
-          "Can produce substantially different flow"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical flow",
-        "answer_complex": "Can produce substantially different flow"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "For this water plan, what matters most?",
@@ -1624,10 +1624,10 @@ window.VIGNETTES = [
         "prompt": "What did the engineers observe during the first rainy season?",
         "options": [
           "Flow rose steadily with rainfall",
-          "During several periods of normal or above-average rain, the wells produced far less than in nearby periods with similar rain",
+          "During several periods, the wells produced far less than in other periods with similar rain",
           "Flow never changed"
         ],
-        "answer": "During several periods of normal or above-average rain, the wells produced far less than in nearby periods with similar rain"
+        "answer": "During several periods, the wells produced far less than in other periods with similar rain"
       },
       "q5": {
         "prompt": "According to Dr. Saan's reply, why was flow unexpectedly low?",
@@ -1665,10 +1665,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Keth-7 hydrology",
     "complexity": {
       "simple": [
-        "Keth-7 has a uniform, stable layer of rock beneath its surface, and the liquid that flows through it moves in simple ways. Its flow depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical flow."
+        "Keth-7 has a uniform, stable layer of rock beneath its surface, and the liquid that flows through it moves in simple ways. Its flow depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Keth-7 has many tangled layers of rock beneath its surface, and the liquid that flows through them moves in intricate ways. Its flow depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different flow."
+        "Keth-7 has many tangled layers of rock beneath its surface, and the liquid that flows through them moves in intricate ways. Its flow depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -1677,11 +1677,11 @@ window.VIGNETTES = [
       "\"Velan is a liquid found in the rock beneath Keth-7's surface, and it is safe to drink after light processing. It is replenished by rain: rainwater slowly seeps down through the rock and refills the underground reserves. So when rainfall increases, more water seeps down, the reserves refill faster, and the flow at each well rises proportionally. More rain, more seepage, more flow.\""
     ],
     "anomaly": [
-      "Following the proposal, a set of shallow pilot wells was dug by the engineering team and their flow is being monitored. During the first rainy season, engineers found that flow was not consistently higher after heavier rain. After several of the heaviest downpours, the wells produced less than they had after nearby moderate rains."
+      "Following the proposal, a set of shallow pilot wells was dug by the engineering team and their flow is being monitored. During the first rainy season, engineers found that flow was not consistently higher after heavier rain. During several periods, the wells produced far less than they had in other periods with similar rain, and these low periods tended to last for weeks."
     ],
     "justification": [
       "Regarding this, Dr. Saan replied:",
-      "\"Even though heavier rain increases seepage and flow on average, an additional mechanism becomes significant after the heaviest downpours: rainwater running over the surface picks up fine silt, especially where the ground above the wells is loose. After ordinary rain, very little silt reaches the rock. During the very heaviest downpours, the unusually fast runoff washes large amounts of silt down into the rock — which in turn clogs the narrow channels feeding the wells enough to offset the extra seepage. This is why flow was unexpectedly low after those downpours.\""
+      "\"Even though heavier rain increases seepage and flow on average, an additional mechanism becomes significant after heavy downpours: rainwater running over the surface picks up fine silt, especially where the ground is loose. After light rain, very little silt reaches the rock. A heavy downpour, though, washes large amounts of silt down into the rock, where it clogs the narrow channels feeding the wells for weeks afterward — so the rain itself sets off the blockage, and flow stays low for a while even when later rainfall would normally keep it high. This is why flow was unexpectedly low during those periods.\""
     ],
     "comprehension": {
       "q1": {
@@ -1694,13 +1694,13 @@ window.VIGNETTES = [
         "answer": "Rise"
       },
       "q2": {
-        "prompt": "According to the briefing, for Keth-7's underground liquid, identical conditions…",
+        "prompt": "According to the briefing, the flow of Keth-7's underground liquid depends on…",
         "options": [
-          "Reliably produce nearly identical flow",
-          "Can produce substantially different flow"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical flow",
-        "answer_complex": "Can produce substantially different flow"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "If the water source chosen turns out to underperform, what happens?",
@@ -1715,19 +1715,19 @@ window.VIGNETTES = [
         "prompt": "What did the engineers observe during the first rainy season?",
         "options": [
           "Flow rose steadily with rainfall",
-          "After several of the heaviest downpours, the wells produced less than after nearby moderate rains",
+          "During several periods, the wells produced far less than in other periods with similar rain",
           "Flow never changed"
         ],
-        "answer": "After several of the heaviest downpours, the wells produced less than after nearby moderate rains"
+        "answer": "During several periods, the wells produced far less than in other periods with similar rain"
       },
       "q5": {
         "prompt": "According to Dr. Saan's reply, why was flow unexpectedly low?",
         "options": [
-          "The heaviest downpours washed silt into the rock that clogged the channels feeding the wells",
+          "Silt washed in by an earlier heavy downpour clogged the channels feeding the wells",
           "Something unrelated to rainfall happened to lower flow at those times",
           "Rain actually drains Velan out of the underground reserves"
         ],
-        "answer": "The heaviest downpours washed silt into the rock that clogged the channels feeding the wells"
+        "answer": "Silt washed in by an earlier heavy downpour clogged the channels feeding the wells"
       }
     }
   },
@@ -1756,10 +1756,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Keth-7 hydrology",
     "complexity": {
       "simple": [
-        "Keth-7 has a uniform, stable layer of rock beneath its surface, and the liquid that flows through it moves in simple ways. Its flow depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways — identical conditions reliably produce nearly identical flow."
+        "Keth-7 has a uniform, stable layer of rock beneath its surface, and the liquid that flows through it moves in simple ways. Its flow depends on a small number of environmental factors, all directly measurable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Keth-7 has many tangled layers of rock beneath its surface, and the liquid that flows through them moves in intricate ways. Its flow depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different flow."
+        "Keth-7 has many tangled layers of rock beneath its surface, and the liquid that flows through them moves in intricate ways. Its flow depends on many factors — several not directly measurable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -1768,11 +1768,11 @@ window.VIGNETTES = [
       "\"Velan is a liquid found in the rock beneath Keth-7's surface, and it is safe to drink after light processing. It is replenished by rain: rainwater slowly seeps down through the rock and refills the underground reserves. So when rainfall increases, more water seeps down, the reserves refill faster, and the flow at each well rises proportionally. More rain, more seepage, more flow.\""
     ],
     "anomaly": [
-      "Following the proposal, a set of shallow pilot wells was dug by the engineering team and their flow is being monitored. During the first rainy season, engineers found that flow was not consistently higher after heavier rain. During several periods of normal or even above-average rainfall, the wells produced far less than they had in nearby periods with similar rain."
+      "Following the proposal, a set of shallow pilot wells was dug by the engineering team and their flow is being monitored. During the first rainy season, engineers found that flow was not consistently higher after heavier rain. During several periods, the wells produced far less than they had in other periods with similar rain, and these low periods tended to last for weeks."
     ],
     "justification": [
       "Regarding this, Dr. Saan replied:",
-      "\"Even though heavier rain increases seepage and flow on average, an additional factor becomes significant from time to time: slow pressure cycles in the deep rock layers. When the deep rock enters a low-pressure phase, Velan drains downward into deeper formations, temporarily lowering the volume available to shallow wells. These pressure cycles are driven by slow geological processes that run on their own schedule, independent of rainfall, so they can strike even when rainfall alone would predict good flow. This is why flow was unexpectedly low during those periods.\""
+      "\"Even though heavier rain increases seepage and flow on average, an additional factor becomes significant from time to time: slow pressure cycles in the deep rock layers. When the deep rock enters a low-pressure phase, Velan drains downward into deeper formations, lowering the volume available to shallow wells for weeks at a time. These pressure cycles are driven by slow geological processes that run on their own schedule, independent of rainfall, so they can strike even when rainfall alone would predict good flow. This is why flow was unexpectedly low during those periods.\""
     ],
     "comprehension": {
       "q1": {
@@ -1785,13 +1785,13 @@ window.VIGNETTES = [
         "answer": "Rise"
       },
       "q2": {
-        "prompt": "According to the briefing, for Keth-7's underground liquid, identical conditions…",
+        "prompt": "According to the briefing, the flow of Keth-7's underground liquid depends on…",
         "options": [
-          "Reliably produce nearly identical flow",
-          "Can produce substantially different flow"
+          "A small number of factors, all directly measured",
+          "Many factors, several of which cannot be measured directly"
         ],
-        "answer_simple": "Reliably produce nearly identical flow",
-        "answer_complex": "Can produce substantially different flow"
+        "answer_simple": "A small number of factors, all directly measured",
+        "answer_complex": "Many factors, several of which cannot be measured directly"
       },
       "q3": {
         "prompt": "If the water source chosen turns out to underperform, what happens?",
@@ -1806,10 +1806,10 @@ window.VIGNETTES = [
         "prompt": "What did the engineers observe during the first rainy season?",
         "options": [
           "Flow rose steadily with rainfall",
-          "During several periods of normal or above-average rain, the wells produced far less than in nearby periods with similar rain",
+          "During several periods, the wells produced far less than in other periods with similar rain",
           "Flow never changed"
         ],
-        "answer": "During several periods of normal or above-average rain, the wells produced far less than in nearby periods with similar rain"
+        "answer": "During several periods, the wells produced far less than in other periods with similar rain"
       },
       "q5": {
         "prompt": "According to Dr. Saan's reply, why was flow unexpectedly low?",
@@ -1847,10 +1847,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Velori society",
     "complexity": {
       "simple": [
-        "Velori society follows a handful of uniform organizing rules, and the way its groups behave is socially simple. How they share resources depends on a small number of factors, all directly observable, that don't interact in complicated ways — identical conditions reliably produce nearly identical sharing patterns."
+        "Velori society follows a handful of uniform organizing rules, and the way its groups behave is socially simple. How they share resources depends on a small number of factors, all directly observable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Velori society is shaped by many overlapping social and biological forces, and the way its groups behave is socially intricate. How they share resources depends on many factors — several not directly observable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different sharing patterns."
+        "Velori society is shaped by many overlapping social and biological forces, and the way its groups behave is socially intricate. How they share resources depends on many factors — several not directly observable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -1859,11 +1859,11 @@ window.VIGNETTES = [
       "\"The Velori live in networks of deep-ocean structures, in groups made up of many small units. They share resources according to scarcity: when a resource is plentiful, it is spread evenly across units, and as it becomes scarcer, it is gathered into fewer hands. So when a resource grows scarce, fewer units hold it, and the units that control it become easy to identify. Scarcer resource, fewer holders, more concentration.\""
     ],
     "anomaly": [
-      "Following the proposal, a pilot observation program was designed by the mission team and the Velori's resource sharing is being monitored. During the first round of observations, the team found that concentration did not consistently follow scarcity. For several of the scarcest resources, holdings were spread more evenly across units than for resources that were only moderately scarce."
+      "Following the proposal, a pilot observation program was designed by the mission team and the Velori's resource sharing is being monitored. During the first months of observation, the team found that concentration did not consistently follow scarcity. In several groups, a plentiful resource was held by just a few units, where even sharing had been predicted, and this pattern tended to last for months."
     ],
     "justification": [
       "Regarding this, Dr. Marsh replied:",
-      "\"Even though scarcity increases concentration on average, an additional mechanism becomes significant for the scarcest resources: the Velori hold a redistribution ceremony whenever too few units control something the whole group needs, and this custom is strongest in long-established groups. For most resources, concentration never gets high enough to set it off. When a resource becomes extremely scarce, the unusually strong concentration triggers the ceremony — which in turn spreads the resource back out across units enough to offset the concentration. This is why concentration was unexpectedly low for those resources.\""
+      "\"Even though scarcity increases concentration on average, an additional mechanism becomes significant in groups that have recently been through a severe shortage: when a resource becomes very scarce, the few units that gather it also take over the job of coordinating how it is shared. After a mild shortage, sharing returns to normal once the resource is plentiful again. After a severe shortage, though, the holders keep their coordinating role for months — so scarcity itself sets off the concentration, and it lingers even when the resource is plentiful and scarcity alone would predict even sharing. This is why concentration was unexpectedly high in those groups.\""
     ],
     "comprehension": {
       "q1": {
@@ -1876,13 +1876,13 @@ window.VIGNETTES = [
         "answer": "Held by fewer units"
       },
       "q2": {
-        "prompt": "According to the briefing, for Velori groups, identical conditions…",
+        "prompt": "According to the briefing, how the Velori share resources depends on…",
         "options": [
-          "Reliably produce nearly identical sharing patterns",
-          "Can produce substantially different sharing patterns"
+          "A small number of factors, all directly observed",
+          "Many factors, several of which cannot be observed directly"
         ],
-        "answer_simple": "Reliably produce nearly identical sharing patterns",
-        "answer_complex": "Can produce substantially different sharing patterns"
+        "answer_simple": "A small number of factors, all directly observed",
+        "answer_complex": "Many factors, several of which cannot be observed directly"
       },
       "q3": {
         "prompt": "For this exchange plan, what matters most?",
@@ -1894,22 +1894,22 @@ window.VIGNETTES = [
         "answer_irrelevant": "The total the Velori can supply over the years"
       },
       "q4": {
-        "prompt": "What did the mission team observe in the first round of observations?",
+        "prompt": "What did the mission team observe in the first months of observation?",
         "options": [
           "Concentration followed scarcity exactly",
-          "For several of the scarcest resources, holdings were spread more evenly than for moderately scarce ones",
+          "In several groups, a plentiful resource was held by just a few units",
           "Every resource was spread evenly"
         ],
-        "answer": "For several of the scarcest resources, holdings were spread more evenly than for moderately scarce ones"
+        "answer": "In several groups, a plentiful resource was held by just a few units"
       },
       "q5": {
         "prompt": "According to Dr. Marsh's reply, why did sharing not follow scarcity?",
         "options": [
-          "Extreme scarcity triggered a redistribution ceremony that spread the resource back out",
+          "After a severe shortage, the units that gathered the resource kept control of how it is shared",
           "Something unrelated to scarcity happened to change how the resource was shared",
           "The Velori actually share resources at random, regardless of scarcity"
         ],
-        "answer": "Extreme scarcity triggered a redistribution ceremony that spread the resource back out"
+        "answer": "After a severe shortage, the units that gathered the resource kept control of how it is shared"
       }
     }
   },
@@ -1938,10 +1938,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Velori society",
     "complexity": {
       "simple": [
-        "Velori society follows a handful of uniform organizing rules, and the way its groups behave is socially simple. How they share resources depends on a small number of factors, all directly observable, that don't interact in complicated ways — identical conditions reliably produce nearly identical sharing patterns."
+        "Velori society follows a handful of uniform organizing rules, and the way its groups behave is socially simple. How they share resources depends on a small number of factors, all directly observable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Velori society is shaped by many overlapping social and biological forces, and the way its groups behave is socially intricate. How they share resources depends on many factors — several not directly observable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different sharing patterns."
+        "Velori society is shaped by many overlapping social and biological forces, and the way its groups behave is socially intricate. How they share resources depends on many factors — several not directly observable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -1950,11 +1950,11 @@ window.VIGNETTES = [
       "\"The Velori live in networks of deep-ocean structures, in groups made up of many small units. They share resources according to scarcity: when a resource is plentiful, it is spread evenly across units, and as it becomes scarcer, it is gathered into fewer hands. So when a resource grows scarce, fewer units hold it, and the units that control it become easy to identify. Scarcer resource, fewer holders, more concentration.\""
     ],
     "anomaly": [
-      "Following the proposal, a pilot observation program was designed by the mission team and the Velori's resource sharing is being monitored. During the first round of observations, the team found that concentration did not consistently follow scarcity. In several groups, a plentiful resource was held by just a few units, where even sharing had been predicted."
+      "Following the proposal, a pilot observation program was designed by the mission team and the Velori's resource sharing is being monitored. During the first months of observation, the team found that concentration did not consistently follow scarcity. In several groups, a plentiful resource was held by just a few units, where even sharing had been predicted, and this pattern tended to last for months."
     ],
     "justification": [
       "Regarding this, Dr. Marsh replied:",
-      "\"Even though scarcity increases concentration on average, an additional factor becomes significant in some groups: kinship. In these groups, some units are much more closely related to the units that coordinate sharing than others, and those close kin receive a larger share whatever the resource's scarcity. Kinship ties do not show up in the behavior we use to gauge scarcity, so they can concentrate a resource even when scarcity alone would predict even sharing. This is why concentration was unexpectedly high in those groups.\""
+      "\"Even though scarcity increases concentration on average, an additional factor becomes significant in some groups: kinship. In these groups, some units are much more closely related to the units that coordinate sharing than others, and those close kin receive a larger share whatever the resource's scarcity. Kinship ties do not show up in the behavior we use to gauge scarcity, and they change only slowly, so they can concentrate a resource for months even when scarcity alone would predict even sharing. This is why concentration was unexpectedly high in those groups.\""
     ],
     "comprehension": {
       "q1": {
@@ -1967,13 +1967,13 @@ window.VIGNETTES = [
         "answer": "Held by fewer units"
       },
       "q2": {
-        "prompt": "According to the briefing, for Velori groups, identical conditions…",
+        "prompt": "According to the briefing, how the Velori share resources depends on…",
         "options": [
-          "Reliably produce nearly identical sharing patterns",
-          "Can produce substantially different sharing patterns"
+          "A small number of factors, all directly observed",
+          "Many factors, several of which cannot be observed directly"
         ],
-        "answer_simple": "Reliably produce nearly identical sharing patterns",
-        "answer_complex": "Can produce substantially different sharing patterns"
+        "answer_simple": "A small number of factors, all directly observed",
+        "answer_complex": "Many factors, several of which cannot be observed directly"
       },
       "q3": {
         "prompt": "For this exchange plan, what matters most?",
@@ -1985,7 +1985,7 @@ window.VIGNETTES = [
         "answer_irrelevant": "The total the Velori can supply over the years"
       },
       "q4": {
-        "prompt": "What did the mission team observe in the first round of observations?",
+        "prompt": "What did the mission team observe in the first months of observation?",
         "options": [
           "Concentration followed scarcity exactly",
           "In several groups, a plentiful resource was held by just a few units",
@@ -2029,10 +2029,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Velori society",
     "complexity": {
       "simple": [
-        "Velori society follows a handful of uniform organizing rules, and the way its groups behave is socially simple. How they share resources depends on a small number of factors, all directly observable, that don't interact in complicated ways — identical conditions reliably produce nearly identical sharing patterns."
+        "Velori society follows a handful of uniform organizing rules, and the way its groups behave is socially simple. How they share resources depends on a small number of factors, all directly observable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Velori society is shaped by many overlapping social and biological forces, and the way its groups behave is socially intricate. How they share resources depends on many factors — several not directly observable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different sharing patterns."
+        "Velori society is shaped by many overlapping social and biological forces, and the way its groups behave is socially intricate. How they share resources depends on many factors — several not directly observable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -2041,11 +2041,11 @@ window.VIGNETTES = [
       "\"The Velori live in networks of deep-ocean structures, in groups made up of many small units. They share resources according to scarcity: when a resource is plentiful, it is spread evenly across units, and as it becomes scarcer, it is gathered into fewer hands. So when a resource grows scarce, fewer units hold it, and the units that control it become easy to identify. Scarcer resource, fewer holders, more concentration.\""
     ],
     "anomaly": [
-      "Following the proposal, a pilot observation program was designed by the mission team and the Velori's resource sharing is being monitored. During the first round of observations, the team found that concentration did not consistently follow scarcity. For several of the scarcest resources, holdings were spread more evenly across units than for resources that were only moderately scarce."
+      "Following the proposal, a pilot observation program was designed by the mission team and the Velori's resource sharing is being monitored. During the first months of observation, the team found that concentration did not consistently follow scarcity. In several groups, a plentiful resource was held by just a few units, where even sharing had been predicted, and this pattern tended to last for months."
     ],
     "justification": [
       "Regarding this, Dr. Marsh replied:",
-      "\"Even though scarcity increases concentration on average, an additional mechanism becomes significant for the scarcest resources: the Velori hold a redistribution ceremony whenever too few units control something the whole group needs, and this custom is strongest in long-established groups. For most resources, concentration never gets high enough to set it off. When a resource becomes extremely scarce, the unusually strong concentration triggers the ceremony — which in turn spreads the resource back out across units enough to offset the concentration. This is why concentration was unexpectedly low for those resources.\""
+      "\"Even though scarcity increases concentration on average, an additional mechanism becomes significant in groups that have recently been through a severe shortage: when a resource becomes very scarce, the few units that gather it also take over the job of coordinating how it is shared. After a mild shortage, sharing returns to normal once the resource is plentiful again. After a severe shortage, though, the holders keep their coordinating role for months — so scarcity itself sets off the concentration, and it lingers even when the resource is plentiful and scarcity alone would predict even sharing. This is why concentration was unexpectedly high in those groups.\""
     ],
     "comprehension": {
       "q1": {
@@ -2058,13 +2058,13 @@ window.VIGNETTES = [
         "answer": "Held by fewer units"
       },
       "q2": {
-        "prompt": "According to the briefing, for Velori groups, identical conditions…",
+        "prompt": "According to the briefing, how the Velori share resources depends on…",
         "options": [
-          "Reliably produce nearly identical sharing patterns",
-          "Can produce substantially different sharing patterns"
+          "A small number of factors, all directly observed",
+          "Many factors, several of which cannot be observed directly"
         ],
-        "answer_simple": "Reliably produce nearly identical sharing patterns",
-        "answer_complex": "Can produce substantially different sharing patterns"
+        "answer_simple": "A small number of factors, all directly observed",
+        "answer_complex": "Many factors, several of which cannot be observed directly"
       },
       "q3": {
         "prompt": "If the partners chosen turn out to be the wrong ones, what happens?",
@@ -2076,22 +2076,22 @@ window.VIGNETTES = [
         "answer_irrelevant": "The team can switch to a different unit within a day at no cost"
       },
       "q4": {
-        "prompt": "What did the mission team observe in the first round of observations?",
+        "prompt": "What did the mission team observe in the first months of observation?",
         "options": [
           "Concentration followed scarcity exactly",
-          "For several of the scarcest resources, holdings were spread more evenly than for moderately scarce ones",
+          "In several groups, a plentiful resource was held by just a few units",
           "Every resource was spread evenly"
         ],
-        "answer": "For several of the scarcest resources, holdings were spread more evenly than for moderately scarce ones"
+        "answer": "In several groups, a plentiful resource was held by just a few units"
       },
       "q5": {
         "prompt": "According to Dr. Marsh's reply, why did sharing not follow scarcity?",
         "options": [
-          "Extreme scarcity triggered a redistribution ceremony that spread the resource back out",
+          "After a severe shortage, the units that gathered the resource kept control of how it is shared",
           "Something unrelated to scarcity happened to change how the resource was shared",
           "The Velori actually share resources at random, regardless of scarcity"
         ],
-        "answer": "Extreme scarcity triggered a redistribution ceremony that spread the resource back out"
+        "answer": "After a severe shortage, the units that gathered the resource kept control of how it is shared"
       }
     }
   },
@@ -2120,10 +2120,10 @@ window.VIGNETTES = [
     "briefing_heading": "Current understanding of Velori society",
     "complexity": {
       "simple": [
-        "Velori society follows a handful of uniform organizing rules, and the way its groups behave is socially simple. How they share resources depends on a small number of factors, all directly observable, that don't interact in complicated ways — identical conditions reliably produce nearly identical sharing patterns."
+        "Velori society follows a handful of uniform organizing rules, and the way its groups behave is socially simple. How they share resources depends on a small number of factors, all directly observable, that don't interact in complicated ways."
       ],
       "complex": [
-        "Velori society is shaped by many overlapping social and biological forces, and the way its groups behave is socially intricate. How they share resources depends on many factors — several not directly observable, only inferable from indirect signals — that interact in complicated ways, so identical conditions can produce substantially different sharing patterns."
+        "Velori society is shaped by many overlapping social and biological forces, and the way its groups behave is socially intricate. How they share resources depends on many factors — several not directly observable, only inferable from indirect signals — that interact in complicated ways."
       ]
     },
     "proposal": [
@@ -2132,11 +2132,11 @@ window.VIGNETTES = [
       "\"The Velori live in networks of deep-ocean structures, in groups made up of many small units. They share resources according to scarcity: when a resource is plentiful, it is spread evenly across units, and as it becomes scarcer, it is gathered into fewer hands. So when a resource grows scarce, fewer units hold it, and the units that control it become easy to identify. Scarcer resource, fewer holders, more concentration.\""
     ],
     "anomaly": [
-      "Following the proposal, a pilot observation program was designed by the mission team and the Velori's resource sharing is being monitored. During the first round of observations, the team found that concentration did not consistently follow scarcity. In several groups, a plentiful resource was held by just a few units, where even sharing had been predicted."
+      "Following the proposal, a pilot observation program was designed by the mission team and the Velori's resource sharing is being monitored. During the first months of observation, the team found that concentration did not consistently follow scarcity. In several groups, a plentiful resource was held by just a few units, where even sharing had been predicted, and this pattern tended to last for months."
     ],
     "justification": [
       "Regarding this, Dr. Marsh replied:",
-      "\"Even though scarcity increases concentration on average, an additional factor becomes significant in some groups: kinship. In these groups, some units are much more closely related to the units that coordinate sharing than others, and those close kin receive a larger share whatever the resource's scarcity. Kinship ties do not show up in the behavior we use to gauge scarcity, so they can concentrate a resource even when scarcity alone would predict even sharing. This is why concentration was unexpectedly high in those groups.\""
+      "\"Even though scarcity increases concentration on average, an additional factor becomes significant in some groups: kinship. In these groups, some units are much more closely related to the units that coordinate sharing than others, and those close kin receive a larger share whatever the resource's scarcity. Kinship ties do not show up in the behavior we use to gauge scarcity, and they change only slowly, so they can concentrate a resource for months even when scarcity alone would predict even sharing. This is why concentration was unexpectedly high in those groups.\""
     ],
     "comprehension": {
       "q1": {
@@ -2149,13 +2149,13 @@ window.VIGNETTES = [
         "answer": "Held by fewer units"
       },
       "q2": {
-        "prompt": "According to the briefing, for Velori groups, identical conditions…",
+        "prompt": "According to the briefing, how the Velori share resources depends on…",
         "options": [
-          "Reliably produce nearly identical sharing patterns",
-          "Can produce substantially different sharing patterns"
+          "A small number of factors, all directly observed",
+          "Many factors, several of which cannot be observed directly"
         ],
-        "answer_simple": "Reliably produce nearly identical sharing patterns",
-        "answer_complex": "Can produce substantially different sharing patterns"
+        "answer_simple": "A small number of factors, all directly observed",
+        "answer_complex": "Many factors, several of which cannot be observed directly"
       },
       "q3": {
         "prompt": "If the partners chosen turn out to be the wrong ones, what happens?",
@@ -2167,7 +2167,7 @@ window.VIGNETTES = [
         "answer_irrelevant": "The team can switch to a different unit within a day at no cost"
       },
       "q4": {
-        "prompt": "What did the mission team observe in the first round of observations?",
+        "prompt": "What did the mission team observe in the first months of observation?",
         "options": [
           "Concentration followed scarcity exactly",
           "In several groups, a plentiful resource was held by just a few units",

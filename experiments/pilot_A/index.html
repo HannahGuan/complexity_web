@@ -946,10 +946,11 @@
 
   // ===== RATINGS BLOCK BUILDER =====
   // Four perception questions - how complex the system is, and how
-  // trustworthy / honest / competent the research team is - each with an
-  // optional open-ended justification, each on its own screen. Administered
-  // at three measurement points: pre (proposal), anomaly (unexpected field
-  // observation), and post (the research team's justification of the anomaly).
+  // trustworthy / honest / competent the research team is - each on its own
+  // screen, followed by a single required open-ended reasoning screen covering
+  // all four. Administered at three measurement points: pre (proposal),
+  // anomaly (unexpected field observation), and post (the research team's
+  // response to the anomaly).
   function likertRow(name, anchor) {
     let options = '';
     for (let v = 1; v <= 7; v++) {
@@ -974,7 +975,6 @@
   const COMPLEXITY_GROUP = [
     {
       field: 'perceived_complexity',
-      justification: 'complexity_justification',
       prompt: 'How complex do you perceive the system described in this study to be?',
       anchor: 'complex'
     }
@@ -983,19 +983,16 @@
   const TEAM_GROUP = [
     {
       field: 'team_trustworthiness',
-      justification: 'trustworthiness_justification',
       prompt: 'How trustworthy do you think the research team is?',
       anchor: 'trustworthy'
     },
     {
       field: 'team_honesty',
-      justification: 'honesty_justification',
       prompt: 'How honest do you think the research team is?',
       anchor: 'honest'
     },
     {
       field: 'team_competence',
-      justification: 'competence_justification',
       prompt: 'How competent do you think the research team is?',
       anchor: 'competent'
     }
@@ -1014,14 +1011,15 @@
     return [].concat.apply([], groups);
   }
 
-  // Returns an array of trials - one screen per question - so call sites spread
-  // it into the timeline.
+  // Returns an array of trials - one screen per question, then one reasoning
+  // screen - so call sites spread it into the timeline. The reasoning screen
+  // carries the block's final button label, since it is now what ends the
+  // measurement point.
   function createRatingsBlock(suffix, preamble, finalButtonLabel, phase, taskName) {
     const questions = perceptionOrder();
     const orderLabel = questions.map(function(q) { return q.field; }).join('|');
 
-    return questions.map(function(q, idx) {
-      const isLast = idx === questions.length - 1;
+    const ratingTrials = questions.map(function(q, idx) {
       return {
         type: jsPsychSurveyHtmlForm,
         preamble: preamble,
@@ -1030,11 +1028,10 @@
           <div class="question-item">
             <label>${q.prompt}</label>
             ${likertRow(q.field + '_' + suffix, q.anchor)}
-            <textarea name="${q.justification}_${suffix}" rows="3" placeholder="Please explain your reasoning (optional)"></textarea>
           </div>
         </div>
       `,
-        button_label: isLast ? finalButtonLabel : 'Continue',
+        button_label: 'Continue',
         data: {
           task: taskName,
           phase: phase,
@@ -1044,6 +1041,31 @@
         }
       };
     });
+
+    // One required open-ended box per measurement point, replacing the four
+    // optional per-question ones. Asked last so it can refer back to all four
+    // ratings the participant has just given.
+    const reasoningTrial = {
+      type: jsPsychSurveyHtmlForm,
+      preamble: '<div class="study-info wide"><h2>Your Reasoning</h2></div>',
+      html: `
+        <div class="question-section">
+          <div class="question-item">
+            <label>You have just rated how complex the system is, and how trustworthy, honest and competent the research team is. In a few sentences, what is your reasoning behind those ratings?</label>
+            <textarea name="reasoning_${suffix}" rows="6" placeholder="Please explain your reasoning" required></textarea>
+          </div>
+        </div>
+      `,
+      button_label: finalButtonLabel,
+      data: {
+        task: taskName.replace('_ratings', '_reasoning'),
+        phase: phase,
+        measure: 'reasoning',
+        question_order: orderLabel
+      }
+    };
+
+    return ratingTrials.concat([reasoningTrial]);
   }
 
   // ===== PHASE 1 QUESTIONNAIRES (PRE: after the original proposal) =====
@@ -1107,9 +1129,7 @@
 
         <div class="context-note">
           <p>The unexpected result was sent back to the same research team that wrote
-          the original proposal. Their original account did not predict this result,
-          so the team has now added a further explanation on top of it. That added
-          explanation is below.</p>
+          the original proposal. The team's response is below.</p>
         </div>
 
         <div id="justification-section">
@@ -1140,7 +1160,7 @@
   // ===== PHASE 3 QUESTIONNAIRES (POST: after the expert's justification) =====
   const screen3_post_ratings = createRatingsBlock(
     'post',
-    '<div class="study-info wide"><h2>What do you think now?</h2><p>Based on all the information you have read, including the explanation the research team added after the unexpected result, please answer the following question again.</p></div>',
+    '<div class="study-info wide"><h2>What do you think now?</h2><p>Based on all the information you have read, including the research team\'s response to the unexpected result, please answer the following question again.</p></div>',
     'Submit',
     'post',
     'post_ratings'

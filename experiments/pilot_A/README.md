@@ -58,12 +58,20 @@ irrelevant) are drawn independently and uniformly at random per participant:
 ## Procedure
 
 Three measurement points, each ending in the same four perception ratings,
-**one per screen**, each with an optional open-ended justification:
+**one per screen**:
 
 - **perceived complexity** of the system (`perceived_complexity_*`)
 - **team trustworthiness** (`team_trustworthiness_*`)
 - **team honesty** (`team_honesty_*`)
 - **team competence** (`team_competence_*`)
+
+Each block then closes with a single **required** open-ended screen
+(`reasoning_pre` / `reasoning_anomaly` / `reasoning_post`) asking the
+participant to explain the reasoning behind all four ratings they just gave.
+It replaces the four optional per-question boxes, which were expected to go
+mostly unanswered. It is always last in the block, so it can refer back to every rating
+regardless of the order they were shown in, and it carries the block's final
+button.
 
 **Order randomisation**: the complexity question and the three-question team
 block are shuffled against each other, and the three team questions are
@@ -154,6 +162,12 @@ Every row carries `subject_id`, `condition`, `complexity`, `relevance`,
 Ratings are on rows with `task` = `pre_ratings` / `anomaly_ratings` /
 `post_ratings`, in fields suffixed `_pre` / `_anomaly` / `_post`, one row per
 question plus `measure`, `question_position` and `question_order`.
+
+The open-ended reasoning sits on its own row per measurement point, `task` =
+`pre_reasoning` / `anomaly_reasoning` / `post_reasoning`, with `measure` =
+`reasoning` and the text in `reasoning_pre` / `reasoning_anomaly` /
+`reasoning_post`. These rows carry `question_order` (so the order the ratings
+were given in is recoverable) but no `question_position`.
 
 Comprehension rows record `question`, `question_text`, `answer` (positional,
 `opt0`...), `answer_text`, `correct_answer`, `correct_answer_text`, `correct`,
