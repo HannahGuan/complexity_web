@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Compile vignettes/text.csv + vignettes/comprehension.csv into vignettes.js.
+"""Compile text.csv, comprehension.csv and relevance_checks.csv into vignettes.js.
 
 The experiment (index.html) reads window.VIGNETTES from the generated file, so
-re-run this script after editing either CSV:
+re-run this script after editing any source CSV:
 
     python3 build_vignettes.py
 
@@ -19,6 +19,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 TEXT_CSV = os.path.join(HERE, "vignettes", "text.csv")
 COMP_CSV = os.path.join(HERE, "vignettes", "comprehension.csv")
+CHECK_CSV = os.path.join(HERE, "vignettes", "relevance_checks.csv")
 OUT_JS = os.path.join(HERE, "vignettes.js")
 
 # Visual aid per scenario. Kept explicit so a new Category fails loudly here
@@ -149,6 +150,29 @@ def read_rows(path):
 def main():
     text_rows = read_rows(TEXT_CSV)
     comp_rows = read_rows(COMP_CSV)
+    # Shared across revision types and both relevance arms; one item per
+    # category x relevance type. No correct answer for these subjective ratings.
+    checks = {}
+    with open(CHECK_CSV, newline="", encoding="utf-8-sig") as fh:
+        reader = csv.DictReader(fh)
+        required = {"Category", "Relev_typ", "Prompt", "Scale_min", "Scale_max"}
+        if not required.issubset(reader.fieldnames or []):
+            print("ERROR: relevance_checks.csv is missing required columns", file=sys.stderr)
+            return 1
+        for row in reader:
+            row = {k: (row.get(k) or "").strip() for k in required}
+            key = (row["Category"], row["Relev_typ"])
+            if key in checks:
+                fail("duplicate relevance check: %r" % (key,))
+            if not all(row.values()):
+                fail("empty relevance check field: %r" % (key,))
+            checks[key] = {"prompt": row["Prompt"],
+                           "scale_min": row["Scale_min"],
+                           "scale_max": row["Scale_max"]}
+    expected_checks = {(t["Category"], t["Relev_typ"]) for t in text_rows}
+    if set(checks) != expected_checks:
+        fail("relevance check keys do not match text.csv: missing=%r, extra=%r"
+             % (expected_checks - set(checks), set(checks) - expected_checks))
 
     if len(text_rows) != len(comp_rows):
         print("ERROR: text.csv has %d rows, comprehension.csv has %d"
@@ -229,6 +253,7 @@ def main():
             "proposal": proposal,
             "anomaly": anomaly,
             "justification": justification,
+            "relevance_check": checks.get((category, t["Relev_typ"])),
             "comprehension": {
                 "q1": {
                     "prompt": c["Q1_screen1"].strip(),
@@ -304,8 +329,8 @@ def main():
     body = json.dumps(vignettes, indent=2, ensure_ascii=False)
     with open(OUT_JS, "w", encoding="utf-8") as fh:
         fh.write("// GENERATED FILE -- do not edit by hand.\n")
-        fh.write("// Built from vignettes/text.csv + vignettes/comprehension.csv by\n")
-        fh.write("// build_vignettes.py. Re-run that script after editing either CSV.\n")
+        fh.write("// Built from vignettes/text.csv, comprehension.csv, relevance_checks.csv by\n")
+        fh.write("// build_vignettes.py. Re-run that script after editing any source CSV.\n")
         fh.write("window.VIGNETTES = %s;\n" % body)
 
     print("Wrote %s" % OUT_JS)

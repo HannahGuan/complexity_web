@@ -1,0 +1,13 @@
+Category,Relev_typ,Prompt,Scale_min,Scale_max
+Xenobiology in Threa-4,Totality,To what extent could the heating plan still achieve its goal if Zorblax provided enough heat on some cold days but not others?,Not at all,Completely
+Xenobiology in Threa-4,Reversibility,"Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",Not at all difficult,Extremely difficult
+Pharmacology: Mivacin,Totality,To what extent could the medical plan still achieve its goal if Mivacin provided effective relief for some crew members but not others?,Not at all,Completely
+Pharmacology: Mivacin,Reversibility,"Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",Not at all difficult,Extremely difficult
+Crop Yield: Vorath,Totality,To what extent could the farming plan still achieve its goal if some plots produced enough food but others did not?,Not at all,Completely
+Crop Yield: Vorath,Reversibility,"Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",Not at all difficult,Extremely difficult
+Construction Material: Crelite,Totality,To what extent could the construction plan still achieve its goal if Crelite itself was strong enough to support the load on some days but not others?,Not at all,Completely
+Construction Material: Crelite,Reversibility,"Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",Not at all difficult,Extremely difficult
+Water Supply: Velan,Totality,To what extent could the water-supply plan still achieve its goal if individual wells provided enough water on some days but not others?,Not at all,Completely
+Water Supply: Velan,Reversibility,"Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",Not at all difficult,Extremely difficult
+Collective Resource Allocation: Velori,Totality,To what extent could the exchange plan still achieve its goal if the team accurately identified which units held the resources in some cases but not others?,Not at all,Completely
+Collective Resource Allocation: Velori,Reversibility,"Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",Not at all difficult,Extremely difficult

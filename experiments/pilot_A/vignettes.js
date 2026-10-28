@@ -1,6 +1,6 @@
 // GENERATED FILE -- do not edit by hand.
-// Built from vignettes/text.csv + vignettes/comprehension.csv by
-// build_vignettes.py. Re-run that script after editing either CSV.
+// Built from vignettes/text.csv, comprehension.csv, relevance_checks.csv by
+// build_vignettes.py. Re-run that script after editing any source CSV.
 window.VIGNETTES = [
   {
     "index": 0,
@@ -45,6 +45,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Aren replied:",
       "\"Even though colder periods increase threane availability and heat output on average, an additional mechanism becomes significant after long cold spells: Zorblax regulate heat output in cycles and synchronize these cycles when colony density is high. After a sustained period of high heat production, many individuals enter a coordinated recovery phase, suppressing colony-wide output for several days. A long run of cold days drives exactly this kind of sustained high production — so the cold itself sets off the recovery, and output stays low for a while even at temperatures that would normally produce plenty of heat. This is why output was unexpectedly low on those days.\""
     ],
+    "relevance_check": {
+      "prompt": "To what extent could the heating plan still achieve its goal if Zorblax provided enough heat on some cold days but not others?",
+      "scale_min": "Not at all",
+      "scale_max": "Completely"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as it gets colder, Zorblax heat output is expected to…",
@@ -136,6 +141,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Aren replied:",
       "\"Even though colder periods increase threane availability and heat output on average, an additional factor becomes significant from time to time: mineral dust from Threa-4's geysers. Every so often the geysers erupt, and fine dust drifts across the surface and settles on the colony. The dust coats the respiratory surfaces of the Zorblax and blocks how much threane they can absorb, suppressing colony-wide output for several days until it clears. These eruptions follow their own schedule, independent of temperature, so these dust periods can strike on days when the cold alone would predict high output. This is why output was unexpectedly low on those days.\""
     ],
+    "relevance_check": {
+      "prompt": "To what extent could the heating plan still achieve its goal if Zorblax provided enough heat on some cold days but not others?",
+      "scale_min": "Not at all",
+      "scale_max": "Completely"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as it gets colder, Zorblax heat output is expected to…",
@@ -227,6 +237,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Aren replied:",
       "\"Even though colder periods increase threane availability and heat output on average, an additional mechanism becomes significant after long cold spells: Zorblax regulate heat output in cycles and synchronize these cycles when colony density is high. After a sustained period of high heat production, many individuals enter a coordinated recovery phase, suppressing colony-wide output for several days. A long run of cold days drives exactly this kind of sustained high production — so the cold itself sets off the recovery, and output stays low for a while even at temperatures that would normally produce plenty of heat. This is why output was unexpectedly low on those days.\""
     ],
+    "relevance_check": {
+      "prompt": "Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",
+      "scale_min": "Not at all difficult",
+      "scale_max": "Extremely difficult"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as it gets colder, Zorblax heat output is expected to…",
@@ -318,6 +333,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Aren replied:",
       "\"Even though colder periods increase threane availability and heat output on average, an additional factor becomes significant from time to time: mineral dust from Threa-4's geysers. Every so often the geysers erupt, and fine dust drifts across the surface and settles on the colony. The dust coats the respiratory surfaces of the Zorblax and blocks how much threane they can absorb, suppressing colony-wide output for several days until it clears. These eruptions follow their own schedule, independent of temperature, so these dust periods can strike on days when the cold alone would predict high output. This is why output was unexpectedly low on those days.\""
     ],
+    "relevance_check": {
+      "prompt": "Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",
+      "scale_min": "Not at all difficult",
+      "scale_max": "Extremely difficult"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as it gets colder, Zorblax heat output is expected to…",
@@ -409,6 +429,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Osei replied:",
       "\"Even though higher doses raise the fatigue threshold and increase relief on average, an additional mechanism becomes significant after several days of steady dosing: the brain adjusts the sensitivity of the receptors Mivacin acts on, and this adjustment is strongest in crew members who take it daily. When the threshold stays high for a sustained period, the brain lowers receptor sensitivity for several days, weakening the drug's effect. Steady dosing produces exactly this kind of sustained rise — so the drug itself sets off the adjustment, and relief stays weak for a while even at doses that would normally work well. This is why relief was unexpectedly weak on those days.\""
     ],
+    "relevance_check": {
+      "prompt": "To what extent could the medical plan still achieve its goal if Mivacin provided effective relief for some crew members but not others?",
+      "scale_min": "Not at all",
+      "scale_max": "Completely"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as the dose goes up, relief from fatigue is expected to…",
@@ -500,6 +525,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Osei replied:",
       "\"Even though higher doses raise the fatigue threshold and increase relief on average, an additional factor becomes significant from time to time: the station's algae-based meals. Some batches of the algae contain a compound that binds to Mivacin in the gut, so less of the drug reaches the brain and its effect is weakened. Each batch is served for several days, and the kitchen rotates the batches on its own schedule, independent of anyone's dose, so they can weaken relief even at doses that would otherwise work well. This is why relief was unexpectedly weak on those days.\""
     ],
+    "relevance_check": {
+      "prompt": "To what extent could the medical plan still achieve its goal if Mivacin provided effective relief for some crew members but not others?",
+      "scale_min": "Not at all",
+      "scale_max": "Completely"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as the dose goes up, relief from fatigue is expected to…",
@@ -591,6 +621,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Osei replied:",
       "\"Even though higher doses raise the fatigue threshold and increase relief on average, an additional mechanism becomes significant after several days of steady dosing: the brain adjusts the sensitivity of the receptors Mivacin acts on, and this adjustment is strongest in crew members who take it daily. When the threshold stays high for a sustained period, the brain lowers receptor sensitivity for several days, weakening the drug's effect. Steady dosing produces exactly this kind of sustained rise — so the drug itself sets off the adjustment, and relief stays weak for a while even at doses that would normally work well. This is why relief was unexpectedly weak on those days.\""
     ],
+    "relevance_check": {
+      "prompt": "Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",
+      "scale_min": "Not at all difficult",
+      "scale_max": "Extremely difficult"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as the dose goes up, relief from fatigue is expected to…",
@@ -682,6 +717,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Osei replied:",
       "\"Even though higher doses raise the fatigue threshold and increase relief on average, an additional factor becomes significant from time to time: the station's algae-based meals. Some batches of the algae contain a compound that binds to Mivacin in the gut, so less of the drug reaches the brain and its effect is weakened. Each batch is served for several days, and the kitchen rotates the batches on its own schedule, independent of anyone's dose, so they can weaken relief even at doses that would otherwise work well. This is why relief was unexpectedly weak on those days.\""
     ],
+    "relevance_check": {
+      "prompt": "Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",
+      "scale_min": "Not at all difficult",
+      "scale_max": "Extremely difficult"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as the dose goes up, relief from fatigue is expected to…",
@@ -773,6 +813,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Lena replied:",
       "\"Even though denser planting increases sorite uptake and yield on average, an additional mechanism becomes significant in fields that have been planted densely before: as Vorath roots absorb sorite, they release acidic byproducts, and acidic soil breaks sorite down faster. After a light planting, the acidity fades before the next season. After a dense planting, the heavy uptake leaves so much acidity that it carries over and keeps breaking down sorite in later seasons — so dense planting itself sets off the decline, and yield stays low even at densities that would normally give a good harvest. This is why yield was unexpectedly low on those fields.\""
     ],
+    "relevance_check": {
+      "prompt": "To what extent could the farming plan still achieve its goal if some plots produced enough food but others did not?",
+      "scale_min": "Not at all",
+      "scale_max": "Completely"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as more Vorath are planted in a field, the field's yield is expected to…",
@@ -864,6 +909,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Lena replied:",
       "\"Even though denser planting increases sorite uptake and yield on average, an additional factor becomes significant in some fields: buried salt layers left behind by ancient seas. Where a salt layer lies close to the surface, salt keeps seeping up into the topsoil and blocks Vorath roots from absorbing sorite, season after season. These salt layers are scattered across Soren-3 independent of how densely a field is planted, so they can cut yield even in fields where planting density alone would predict a good harvest. This is why yield was unexpectedly low on those fields.\""
     ],
+    "relevance_check": {
+      "prompt": "To what extent could the farming plan still achieve its goal if some plots produced enough food but others did not?",
+      "scale_min": "Not at all",
+      "scale_max": "Completely"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as more Vorath are planted in a field, the field's yield is expected to…",
@@ -955,6 +1005,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Lena replied:",
       "\"Even though denser planting increases sorite uptake and yield on average, an additional mechanism becomes significant in fields that have been planted densely before: as Vorath roots absorb sorite, they release acidic byproducts, and acidic soil breaks sorite down faster. After a light planting, the acidity fades before the next season. After a dense planting, the heavy uptake leaves so much acidity that it carries over and keeps breaking down sorite in later seasons — so dense planting itself sets off the decline, and yield stays low even at densities that would normally give a good harvest. This is why yield was unexpectedly low on those fields.\""
     ],
+    "relevance_check": {
+      "prompt": "Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",
+      "scale_min": "Not at all difficult",
+      "scale_max": "Extremely difficult"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as more Vorath are planted in a field, the field's yield is expected to…",
@@ -1046,6 +1101,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Lena replied:",
       "\"Even though denser planting increases sorite uptake and yield on average, an additional factor becomes significant in some fields: buried salt layers left behind by ancient seas. Where a salt layer lies close to the surface, salt keeps seeping up into the topsoil and blocks Vorath roots from absorbing sorite, season after season. These salt layers are scattered across Soren-3 independent of how densely a field is planted, so they can cut yield even in fields where planting density alone would predict a good harvest. This is why yield was unexpectedly low on those fields.\""
     ],
+    "relevance_check": {
+      "prompt": "Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",
+      "scale_min": "Not at all difficult",
+      "scale_max": "Extremely difficult"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as more Vorath are planted in a field, the field's yield is expected to…",
@@ -1137,6 +1197,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Pell replied:",
       "\"Even though warmer air tightens Crelite's bonds and increases its strength on average, an additional mechanism becomes significant after long warm spells: as the bonds tighten, stress builds up inside the material, especially in thick sections. After a single warm day, this stress eases overnight. After a long run of warm days, the stress keeps building until it opens fine cracks inside the material, which take several days to close again — so the warmth itself sets off the weakening, and strength stays low for a while even at temperatures that would normally make Crelite strong. This is why strength was unexpectedly low on those days.\""
     ],
+    "relevance_check": {
+      "prompt": "To what extent could the construction plan still achieve its goal if Crelite itself was strong enough to support the load on some days but not others?",
+      "scale_min": "Not at all",
+      "scale_max": "Completely"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as temperature rises, Crelite's strength is expected to…",
@@ -1228,6 +1293,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Pell replied:",
       "\"Even though warmer air increases Crelite's strength on average, an additional factor becomes significant from time to time: rapid swings in humidity. When the air turns humid and dry again several times over a short period, the fibrous structure inside Crelite loosens and takes several days to settle again, reducing how much load it can bear. These humidity swings come and go on their own schedule, independent of temperature, so they can strike on days when temperature alone would predict high strength. This is why strength was unexpectedly low on those days.\""
     ],
+    "relevance_check": {
+      "prompt": "To what extent could the construction plan still achieve its goal if Crelite itself was strong enough to support the load on some days but not others?",
+      "scale_min": "Not at all",
+      "scale_max": "Completely"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as temperature rises, Crelite's strength is expected to…",
@@ -1319,6 +1389,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Pell replied:",
       "\"Even though warmer air tightens Crelite's bonds and increases its strength on average, an additional mechanism becomes significant after long warm spells: as the bonds tighten, stress builds up inside the material, especially in thick sections. After a single warm day, this stress eases overnight. After a long run of warm days, the stress keeps building until it opens fine cracks inside the material, which take several days to close again — so the warmth itself sets off the weakening, and strength stays low for a while even at temperatures that would normally make Crelite strong. This is why strength was unexpectedly low on those days.\""
     ],
+    "relevance_check": {
+      "prompt": "Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",
+      "scale_min": "Not at all difficult",
+      "scale_max": "Extremely difficult"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as temperature rises, Crelite's strength is expected to…",
@@ -1410,6 +1485,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Pell replied:",
       "\"Even though warmer air increases Crelite's strength on average, an additional factor becomes significant from time to time: rapid swings in humidity. When the air turns humid and dry again several times over a short period, the fibrous structure inside Crelite loosens and takes several days to settle again, reducing how much load it can bear. These humidity swings come and go on their own schedule, independent of temperature, so they can strike on days when temperature alone would predict high strength. This is why strength was unexpectedly low on those days.\""
     ],
+    "relevance_check": {
+      "prompt": "Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",
+      "scale_min": "Not at all difficult",
+      "scale_max": "Extremely difficult"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as temperature rises, Crelite's strength is expected to…",
@@ -1501,6 +1581,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Saan replied:",
       "\"Even though heavier rain increases seepage and flow on average, an additional mechanism becomes significant after heavy downpours: rainwater running over the surface picks up fine silt, especially where the ground is loose. After light rain, very little silt reaches the rock. A heavy downpour, though, washes large amounts of silt down into the rock, where it clogs the narrow channels feeding the wells for weeks afterward — so the rain itself sets off the blockage, and flow stays low for a while even when later rainfall would normally keep it high. This is why flow was unexpectedly low during those periods.\""
     ],
+    "relevance_check": {
+      "prompt": "To what extent could the water-supply plan still achieve its goal if individual wells provided enough water on some days but not others?",
+      "scale_min": "Not at all",
+      "scale_max": "Completely"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as rainfall increases, flow at the wells is expected to…",
@@ -1592,6 +1677,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Saan replied:",
       "\"Even though heavier rain increases seepage and flow on average, an additional factor becomes significant from time to time: slow pressure cycles in the deep rock layers. When the deep rock enters a low-pressure phase, Velan drains downward into deeper formations, lowering the volume available to shallow wells for weeks at a time. These pressure cycles are driven by slow geological processes that run on their own schedule, independent of rainfall, so they can strike even when rainfall alone would predict good flow. This is why flow was unexpectedly low during those periods.\""
     ],
+    "relevance_check": {
+      "prompt": "To what extent could the water-supply plan still achieve its goal if individual wells provided enough water on some days but not others?",
+      "scale_min": "Not at all",
+      "scale_max": "Completely"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as rainfall increases, flow at the wells is expected to…",
@@ -1683,6 +1773,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Saan replied:",
       "\"Even though heavier rain increases seepage and flow on average, an additional mechanism becomes significant after heavy downpours: rainwater running over the surface picks up fine silt, especially where the ground is loose. After light rain, very little silt reaches the rock. A heavy downpour, though, washes large amounts of silt down into the rock, where it clogs the narrow channels feeding the wells for weeks afterward — so the rain itself sets off the blockage, and flow stays low for a while even when later rainfall would normally keep it high. This is why flow was unexpectedly low during those periods.\""
     ],
+    "relevance_check": {
+      "prompt": "Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",
+      "scale_min": "Not at all difficult",
+      "scale_max": "Extremely difficult"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as rainfall increases, flow at the wells is expected to…",
@@ -1774,6 +1869,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Saan replied:",
       "\"Even though heavier rain increases seepage and flow on average, an additional factor becomes significant from time to time: slow pressure cycles in the deep rock layers. When the deep rock enters a low-pressure phase, Velan drains downward into deeper formations, lowering the volume available to shallow wells for weeks at a time. These pressure cycles are driven by slow geological processes that run on their own schedule, independent of rainfall, so they can strike even when rainfall alone would predict good flow. This is why flow was unexpectedly low during those periods.\""
     ],
+    "relevance_check": {
+      "prompt": "Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",
+      "scale_min": "Not at all difficult",
+      "scale_max": "Extremely difficult"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as rainfall increases, flow at the wells is expected to…",
@@ -1865,6 +1965,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Marsh replied:",
       "\"Even though scarcity increases concentration on average, an additional mechanism becomes significant in groups that have recently been through a severe shortage: when a resource becomes very scarce, the few units that gather it also take over the job of coordinating how it is shared. After a mild shortage, sharing returns to normal once the resource is plentiful again. After a severe shortage, though, the holders keep their coordinating role for months — so scarcity itself sets off the concentration, and it lingers even when the resource is plentiful and scarcity alone would predict even sharing. This is why concentration was unexpectedly high in those groups.\""
     ],
+    "relevance_check": {
+      "prompt": "To what extent could the exchange plan still achieve its goal if the team accurately identified which units held the resources in some cases but not others?",
+      "scale_min": "Not at all",
+      "scale_max": "Completely"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as a resource becomes scarcer, it is expected to be…",
@@ -1956,6 +2061,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Marsh replied:",
       "\"Even though scarcity increases concentration on average, an additional factor becomes significant in some groups: kinship. In these groups, some units are much more closely related to the units that coordinate sharing than others, and those close kin receive a larger share whatever the resource's scarcity. Kinship ties do not show up in the behavior we use to gauge scarcity, and they change only slowly, so they can concentrate a resource for months even when scarcity alone would predict even sharing. This is why concentration was unexpectedly high in those groups.\""
     ],
+    "relevance_check": {
+      "prompt": "To what extent could the exchange plan still achieve its goal if the team accurately identified which units held the resources in some cases but not others?",
+      "scale_min": "Not at all",
+      "scale_max": "Completely"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as a resource becomes scarcer, it is expected to be…",
@@ -2047,6 +2157,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Marsh replied:",
       "\"Even though scarcity increases concentration on average, an additional mechanism becomes significant in groups that have recently been through a severe shortage: when a resource becomes very scarce, the few units that gather it also take over the job of coordinating how it is shared. After a mild shortage, sharing returns to normal once the resource is plentiful again. After a severe shortage, though, the holders keep their coordinating role for months — so scarcity itself sets off the concentration, and it lingers even when the resource is plentiful and scarcity alone would predict even sharing. This is why concentration was unexpectedly high in those groups.\""
     ],
+    "relevance_check": {
+      "prompt": "Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",
+      "scale_min": "Not at all difficult",
+      "scale_max": "Extremely difficult"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as a resource becomes scarcer, it is expected to be…",
@@ -2138,6 +2253,11 @@ window.VIGNETTES = [
       "Regarding this, Dr. Marsh replied:",
       "\"Even though scarcity increases concentration on average, an additional factor becomes significant in some groups: kinship. In these groups, some units are much more closely related to the units that coordinate sharing than others, and those close kin receive a larger share whatever the resource's scarcity. Kinship ties do not show up in the behavior we use to gauge scarcity, and they change only slowly, so they can concentrate a resource for months even when scarcity alone would predict even sharing. This is why concentration was unexpectedly high in those groups.\""
     ],
+    "relevance_check": {
+      "prompt": "Under the plan described at the beginning, how difficult would it be to switch to an alternative if the initial choice did not meet the plan's needs?",
+      "scale_min": "Not at all difficult",
+      "scale_max": "Extremely difficult"
+    },
     "comprehension": {
       "q1": {
         "prompt": "In the original proposal, as a resource becomes scarcer, it is expected to be…",

@@ -5,6 +5,29 @@ reactions to an expert's unexpected finding and their explanation of it.
 
 ## Design
 
+### Current recruitment pilot: DataPipe 96
+
+`pilot_config.js` selects Zorblax and Crelite, target **96 completions**.
+Set `datapipe_experiment_id` to the NEW Google Drive experiment ID before launch.
+The blank default blocks live startup rather than sending data to the old study.
+Enable DataPipe Condition assignment and set **32 conditions**.
+Live startup requests `/api/condition/`, validates the result, and maps 0–31
+in this fixed order: configured story order → Totality/Reversibility →
+Topology/Variable_adding → simple/complex → relevant/irrelevant.
+Do not reorder categories or change the number of conditions during collection.
+96 consecutive requests allocate each cell three times, but dropouts, repeated
+entries and real upload tests consume assignments, so completed counts may vary.
+Control recruitment on the recruitment platform. DataPipe's submission limit
+rejects further uploads; account for tests and participants already in progress.
+
+Every trial records `study_version`, `recruitment_target`, `pilot_cell_id`,
+`datapipe_condition` and `assignment_method=datapipe_sequential`.
+Live URL overrides are blocked. Offline preview uses `?test=1&condition=0`
+(0–31), never requests a server condition and never uploads data. Existing
+vignette/complexity/relevance overrides remain available only in test mode.
+
+### Full material library
+
 **24 vignettes** (`vignettes/text.csv`) = 6 scenarios x 2 relevance types
 x 2 revision types, fully crossed:
 
@@ -28,6 +51,11 @@ are derived from the diagram's by the `_0` / `_1` suffixes; all three files are
 checked for existence at build time.
 
 ### Image sizes
+
+The Current understanding card also shows `vis_aids/simple.png` or
+`vis_aids/complex.png`, selected by the participant's complexity condition.
+Both use the same responsive 320px maximum width. The illustration is included
+in the shared briefing HTML, so it also appears during Q2 re-reading.
 
 `vis_aids/*.jpg` are **generated** display-sized copies. The full-resolution
 PNGs live in `vis_aids/originals/` (~35 MB, git-ignored); regenerate after
@@ -94,6 +122,16 @@ as `question_order` (pipe-separated) plus `measure` and `question_position`.
    Comprehension gate Q4 -> ratings (`_anomaly`).
 3. **Screen 3** — the expert's post-hoc justification.
    Comprehension gate Q5 -> ratings (`_post`).
+4. **Final relevance check** — after `reasoning_post`, before DataPipe saving.
+   One required 1–7 rating selected by Category × Relev_typ from
+   `vignettes/relevance_checks.csv`. Totality asks whether partial fulfillment
+   could still achieve the goal (Not at all → Completely); Reversibility asks
+   how difficult switching would be (Not at all difficult → Extremely difficult).
+   No correctness feedback or retry loop. `task=relevance_check`, `phase=end`,
+   and a numeric `totality_check` or `reversibility_check` column are exported,
+   along with the actual prompt and scale endpoints. Higher Totality scores mean
+   partial fulfillment can suffice; higher Reversibility scores mean switching
+   is harder. These are different constructs/directions, not one pooled score.
 
 **Fullscreen**: after the welcome screen, a `jsPsychFullscreen` trial puts the
 window into fullscreen; leaving fullscreen later covers the study with an
@@ -113,7 +151,7 @@ Q1, Q4 and Q5 have a single correct answer per vignette row.
 ## Editing the vignettes
 
 `index.html` reads its content from `vignettes.js`, which is **generated**.
-After editing either CSV, regenerate it:
+After editing any of the three source CSVs, regenerate it:
 
 ```bash
 python3 build_vignettes.py
@@ -126,6 +164,11 @@ with no visual aid, a missing image file, rows misaligned between the CSVs, a
 Scenario x `Relev_typ` x `Rev_typ` cell that is missing or duplicated).
 
 ### CSV format
+
+`relevance_checks.csv` — 12 rows keyed by `Category` and `Relev_typ`, shared
+across revision types and relevant/irrelevant arms. Columns: `Prompt`,
+`Scale_min`, `Scale_max`. The builder rejects missing/duplicate/extra keys and
+empty fields. Edit these prompts here, not in `index.html` or `vignettes.js`.
 
 `text.csv` — one row per vignette, keyed on `Index`:
 
