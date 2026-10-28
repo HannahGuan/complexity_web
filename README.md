@@ -1,216 +1,161 @@
-# jsPsych Experiment Platform
+# Complexity Prior — Web Experiments
 
-A web-based experimental platform using jsPsych for creating psychology experiments with DataPipe for cloud data collection.
+Browser-based jsPsych studies of how prior beliefs about causal complexity and
+practical decision requirements shape evaluations of simplified explanations
+and later revisions. The current recruitment study is **Pilot A**.
 
-## Project Structure
+## Current Pilot A
 
-```
-.
-├── .nojekyll                # Disables Jekyll processing on GitHub Pages
-├── .gitignore              # Git ignore file
-├── index.html              # Main landing page listing all experiments
-├── README.md               # This file
-└── experiments/            # Experiment folders
-    ├── example-experiment/
-    │   └── index.html      # Example experiment
-    └── threa4-study/
-        └── index.html      # Threa-4 research study
-```
+| Setting | Current implementation |
+|---|---|
+| Stories | Zorblax (Threa-4) and Crelite (Moran-2) |
+| Relevance type | Totality / Reversibility |
+| Revision type | Topology / Variable_adding |
+| Complexity | Simple / Complex |
+| Decision relevance | Relevant / Irrelevant |
+| Assignment | DataPipe sequential condition IDs 0–31 |
+| Recruitment target | 96 completed participants |
+| Participant-facing duration | 8–12 minutes |
+| DataPipe experiment ID | `2BQjHVs5Lp2V` |
 
-## Features
+Each participant sees **one story in one condition**. All five material factors
+are between subjects. Perceived complexity and team trustworthiness, honesty,
+and competence are measured within subjects at three points: after the original
+proposal, after the anomaly, and after the team's response. Each measurement
+point ends with one required written justification. A required relevance check
+appears at the end of the study, before saving.
 
-- **Frontend**: jsPsych framework with multiple plugins
-  - html-keyboard-response
-  - html-button-response
-  - survey-html-form
-  - instructions
-  - survey-multi-choice
-  - survey-likert
-  - survey-text
-- **Data Collection**: DataPipe cloud-based data storage
-- **Deployment**: GitHub Pages compatible (static hosting)
-- **No Backend Required**: All data saving handled by DataPipe
+There are **32 active cells**: 2 stories × 2 × 2 × 2 × 2. DataPipe cycles through
+them; this is sequential allocation, not random assignment. Ninety-six
+consecutive condition requests assign each cell three times. Dropouts, repeat
+visits and live tests consume assignments, so this does not guarantee three
+completed datasets per cell.
 
-## Quick Start
+The underlying material library still contains **24 vignette rows across six
+stories**, or 96 possible cells when crossed with complexity and relevance.
+Only the two configured stories are used in live Pilot A.
 
-### Option 1: Local Testing
+## Preview locally without collecting data
 
-Simply open any experiment's `index.html` file directly in your browser:
+From this repository's root:
+
 ```bash
-# Navigate to an experiment folder
-cd experiments/threa4-study
-
-# Open in browser (macOS)
-open index.html
-
-# Or use a simple HTTP server
-python -m http.server 8000
-# Then visit http://localhost:8000
+python3 -m http.server 8000
 ```
 
-### Option 2: Deploy to GitHub Pages
+Open:
 
-1. **Push this repository to GitHub**:
-   ```bash
-   git add .
-   git commit -m "Deploy experiments with DataPipe"
-   git push origin main
-   ```
+[Preview Pilot A, condition 0](http://localhost:8000/experiments/pilot_A/?test=1&condition=0)
 
-2. **Configure GitHub Pages**:
-   - Go to your repo Settings → Pages
-   - Set Source to **"Deploy from a branch"**
-   - Select branch: **main**
-   - Select folder: **/ (root)**
-   - Click Save
+Use `condition=0` through `condition=31` to preview every active cell. Test mode
+never requests a DataPipe condition or uploads a CSV. At completion it displays
+the CSV that would have been submitted. Internet access is still required to
+load jsPsych and its plugins from their CDNs.
 
-3. **Wait for deployment** (usually takes 1-2 minutes)
+For a specific library vignette, test mode also supports:
 
-4. **Access your experiments**:
-   - Main page: `https://[username].github.io/[repo-name]/`
-   - Threa-4 study: `https://[username].github.io/[repo-name]/experiments/threa4-study/`
-   - Example: `https://[username].github.io/[repo-name]/experiments/example-experiment/`
+```text
+http://localhost:8000/experiments/pilot_A/?test=1&vignette=12&complexity=complex&relevance=irrelevant
+```
 
-**Important**: The `.nojekyll` file in this repo disables Jekyll processing, allowing GitHub Pages to serve your files as-is.
+Live mode rejects condition overrides. **Opening the study without `test=1`
+requests a real DataPipe assignment**, even on localhost. Use test links for
+routine previews.
 
-All data will be automatically saved to DataPipe cloud storage!
+## DataPipe and Google Drive setup
 
-## Creating a New Experiment
+The client configuration is in
+[`experiments/pilot_A/pilot_config.js`](experiments/pilot_A/pilot_config.js).
+The same experiment ID is used for condition assignment and final CSV upload.
 
-1. Create a new folder in the `experiments/` directory:
+In the DataPipe dashboard for `2BQjHVs5Lp2V`:
+
+1. Confirm the experiment uses the intended Google Drive destination.
+2. Enable **Condition assignment** and set the number of conditions to **32**.
+3. Allow CSV validation; the output includes the default `trial_type` field.
+4. Enable **Accept new data** when ready to test uploads and recruit.
+5. Base64 uploads are unnecessary: illustrations are displayed, not uploaded.
+
+The configuration records a target of 96; it does not enforce a global browser
+quota. Control recruitment through the recruitment platform. A DataPipe session
+limit rejects later submissions, including those from participants already in
+progress, and should not be treated as an exact recruitment quota. Account for
+live upload tests when setting a limit.
+
+Before recruitment, complete one live run and verify the actual CSV in the Drive
+folder linked from DataPipe. Local preview checks do not establish that the
+account is connected, accepting data, or delivering files. A live run consumes a
+condition assignment and, if accepted, a submission.
+
+Do not change the number of DataPipe conditions or reorder the configured stories
+during collection: the condition-to-material mapping must remain stable.
+
+Official references: [setup](https://pipe.jspsych.org/getting-started),
+[condition assignment](https://pipe.jspsych.org/docs/experiments/conditions),
+[validation and session limits](https://pipe.jspsych.org/docs/experiments/validation).
+
+## Data and current saving behavior
+
+Pilot A uses jsPsych 7.3.4 and the `jsPsychPipe` save trial. It uploads one CSV,
+named with a random participant ID, **at the end**. Incremental saving is not
+implemented; closing the study before the save trial can lose the session.
+
+Every trial carries the subject ID, story and factor levels, `study_version`,
+`recruitment_target`, `pilot_cell_id`, `datapipe_condition`, and
+`assignment_method`. The final check exports a numeric `totality_check` or
+`reversibility_check` field. See the [Pilot A README](experiments/pilot_A/README.md)
+for detailed trial and response fields.
+
+Startup stops if condition assignment fails or returns an invalid number.
+Upload failure recovery remains a launch concern: the current completion screen
+says data was saved without independently checking the save result, and there is
+no participant-facing retry flow. Confirm actual delivery during the live test.
+
+## Editing content
+
+| File | Purpose |
+|---|---|
+| `experiments/pilot_A/index.html` | Procedure, presentation, ratings and saving |
+| `experiments/pilot_A/pilot_config.js` | Stories, version, target, DataPipe ID and condition count |
+| `experiments/pilot_A/vignettes/text.csv` | Story and manipulation text |
+| `experiments/pilot_A/vignettes/comprehension.csv` | Comprehension questions and answer keys |
+| `experiments/pilot_A/vignettes/relevance_checks.csv` | Story-specific Totality and shared Reversibility checks |
+| `experiments/pilot_A/build_vignettes.py` | Validates CSVs and generates the browser material library |
+| `experiments/pilot_A/vignettes.js` | Generated content; do not edit manually |
+| `experiments/pilot_A/vis_aids/` | Scenario illustrations and `simple.png` / `complex.png` |
+
+After editing any source CSV:
+
 ```bash
-mkdir experiments/my-new-experiment
+cd experiments/pilot_A
+python3 build_vignettes.py
 ```
 
-2. Create an `index.html` file using the template below
+The Current understanding card selects `simple.png` or `complex.png` from the
+participant's assigned complexity condition. Images share a responsive 320px
+maximum width and appear again in the Q2 re-reading passage.
 
-3. Update your experiment ID in the DataPipe configuration
+See the [Pilot A README](experiments/pilot_A/README.md) for the complete material
+schema, image generation workflow and comprehension retry behavior. Update the
+study version when changing materials or the design during piloting.
 
-### Basic Template
+## Hosting and repository layout
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>My Experiment</title>
-
-  <!-- jsPsych core -->
-  <script src="https://unpkg.com/jspsych@7.3.4"></script>
-  <link href="https://unpkg.com/jspsych@7.3.4/css/jspsych.css" rel="stylesheet" />
-
-  <!-- Add your required plugins -->
-  <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.3"></script>
-
-  <!-- DataPipe plugin -->
-  <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
-</head>
-<body></body>
-
-<script>
-  const jsPsych = initJsPsych({
-    on_finish: function() {
-      document.body.innerHTML = '<h1>Thank you!</h1>';
-    }
-  });
-
-  // Generate unique participant ID
-  const subject_id = jsPsych.randomization.randomID(10);
-  const filename = `${subject_id}.csv`;
-
-  let timeline = [];
-
-  // Add your trials here
-  timeline.push({
-    type: jsPsychHtmlButtonResponse,
-    stimulus: '<p>Hello World!</p>',
-    choices: ['Continue']
-  });
-
-  // Save data to DataPipe
-  timeline.push({
-    type: jsPsychPipe,
-    action: "save",
-    experiment_id: "YOUR_EXPERIMENT_ID",  // Replace with your DataPipe experiment ID
-    filename: filename,
-    data_string: () => jsPsych.data.get().csv()
-  });
-
-  jsPsych.run(timeline);
-</script>
-</html>
+```text
+index.html                    Static study landing page
+experiments/pilot_A/           Current pilot and its materials
+experiments/                   Other study versions and examples
+server.js                     Optional Express server and legacy local-save route
+package.json                  Commands/dependencies for the optional server
+.nojekyll                     Static hosting support for GitHub Pages
 ```
 
-### Getting Your DataPipe Experiment ID
+Pilot A can be hosted as static files, including on GitHub Pages. It does not
+use the legacy `/save-data` route in `server.js`; DataPipe handles its upload.
+The optional Node server can also serve the experiments locally via `npm start`.
 
-1. Go to [DataPipe](https://pipe.jspsych.org/)
-2. Sign in and create a new experiment
-3. Copy your experiment ID
-4. Replace `YOUR_EXPERIMENT_ID` in the template above
-
-## Available jsPsych Plugins
-
-All experiments use plugins loaded from CDN (no installation needed):
-- `@jspsych/plugin-html-keyboard-response` - Keyboard input trials
-- `@jspsych/plugin-html-button-response` - Button click trials
-- `@jspsych/plugin-survey-html-form` - Custom HTML forms
-- `@jspsych/plugin-instructions` - Multi-page instructions
-- `@jspsych/plugin-survey-multi-choice` - Multiple choice questions
-- `@jspsych/plugin-survey-likert` - Likert scale questions
-- `@jspsych/plugin-survey-text` - Open-ended text responses
-- `@jspsych-contrib/plugin-pipe` - DataPipe integration
-
-See [jsPsych documentation](https://www.jspsych.org/7.3/plugins/list-of-plugins/) for more plugins.
-
-## Data Management
-
-### Accessing Your Data
-
-1. Log in to [DataPipe](https://pipe.jspsych.org/)
-2. Navigate to your experiment
-3. Download data as CSV files
-
-### Data Format
-
-Each participant's data is saved as a separate CSV file with:
-- Unique participant ID
-- All trial data with timestamps
-- Response data for each trial
-- Custom data fields you define
-
-## Migrating from Old Server-Based Setup
-
-If you were previously using the Node.js/Express server (`server.js`):
-
-1. **No longer needed**: `server.js`, `package.json`, `node_modules/`
-2. **Data migration**: Old data in `data/` folder can be kept for reference
-3. **New data**: Will be stored in DataPipe cloud
-4. **Deployment**: Switch from localhost to GitHub Pages
-
-The experiments have been updated to use DataPipe instead of the local server.
-
-## Troubleshooting
-
-### Data not saving?
-
-1. Check browser console for errors
-2. Verify your DataPipe experiment ID is correct
-3. Make sure you're connected to the internet
-4. Check DataPipe service status
-
-### CORS errors when testing locally?
-
-- Use a local HTTP server instead of opening HTML files directly:
-  ```bash
-  python -m http.server 8000
-  ```
-- Or deploy to GitHub Pages (no CORS issues there)
-
-### Need to test without internet?
-
-- The DataPipe plugin requires internet connection
-- For offline testing, you can temporarily comment out the save_data trial
-
-## License
-
-MIT
+For deployment, include `index.html`, `pilot_config.js`, regenerated
+`vignettes.js`, and all referenced visual assets in `experiments/pilot_A/`.
+Use `/experiments/pilot_A/` as the live study path, without test parameters.
+Local edits do not publish themselves: confirm the configured hosting deployment
+has completed, then check the hosted study and one real upload before recruiting.

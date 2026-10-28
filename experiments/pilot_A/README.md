@@ -8,8 +8,8 @@ reactions to an expert's unexpected finding and their explanation of it.
 ### Current recruitment pilot: DataPipe 96
 
 `pilot_config.js` selects Zorblax and Crelite, target **96 completions**.
-Set `datapipe_experiment_id` to the NEW Google Drive experiment ID before launch.
-The blank default blocks live startup rather than sending data to the old study.
+The configured Google Drive DataPipe experiment ID is `2BQjHVs5Lp2V`.
+A missing or malformed ID blocks live startup.
 Enable DataPipe Condition assignment and set **32 conditions**.
 Live startup requests `/api/condition/`, validates the result, and maps 0–31
 in this fixed order: configured story order → Totality/Reversibility →
@@ -69,19 +69,16 @@ The originals were several times larger than the sizes they are displayed at,
 which put ~6 MB of images in front of every participant. The generated JPEGs
 are capped at 2x the CSS size each is shown at — 2160px wide for the diagram,
 560px square for the decorative pair — which brings a participant's image load
-to **160-310 KB** depending on scenario.
+to **160-310 KB** depending on scenario, excluding the separately loaded
+complexity PNG.
 
 - Relevance types (`Relev_typ`): Totality, Reversibility.
 - Revision types (`Rev_typ`): Topology, Variable_adding.
 
-Both are **between subjects**: they ride along on whichever vignette row is
-drawn. Because Scenario x Relev_typ x Rev_typ is fully crossed (and
-`build_vignettes.py` refuses to build if it isn't), a uniform draw over the 24
-rows leaves both balanced.
-
-Vignette, **complexity** (simple / complex) and **relevance** (relevant /
-irrelevant) are drawn independently and uniformly at random per participant:
-24 x 2 x 2 = **96 cells**.
+All material factors are **between subjects**. The complete library contains
+24 × 2 × 2 = **96 possible cells**. Current live recruitment uses the two-story
+subset and DataPipe's sequential allocation across **32 active cells**, as
+specified above. Only the three measurement points are within subjects.
 
 ## Procedure
 
@@ -137,7 +134,8 @@ as `question_order` (pipe-separated) plus `measure` and `question_position`.
 window into fullscreen; leaving fullscreen later covers the study with an
 overlay until the participant returns. Copy, cut, paste, drag and right-click
 are blocked throughout, so the vignette cannot be lifted out of the study and
-free-text answers cannot be pasted in. Both are off under `?test=1`.
+free-text answers cannot be pasted in. Fullscreen entry/re-entry is skipped under `?test=1`; the copy/paste event
+handlers are still installed in test mode.
 
 **Comprehension gate**: a wrong answer hides the options, highlights the source
 passage the question came from, and holds the Continue button disabled for 5
@@ -216,4 +214,7 @@ Comprehension rows record `question`, `question_text`, `answer` (positional,
 `opt0`...), `answer_text`, `correct_answer`, `correct_answer_text`, `correct`,
 `attempt_number`, and `first_attempt_correct`.
 
-Data is saved to DataPipe experiment `uNrh6jZkRoPw`.
+Data is saved at the end to DataPipe experiment `2BQjHVs5Lp2V`, using the
+shared ID in `pilot_config.js`. Test mode does not upload. Live Google Drive
+delivery and dashboard settings require an actual end-to-end upload test;
+there is currently no streaming or participant-facing upload retry flow.
