@@ -538,7 +538,12 @@
     if (['condition', 'vignette', 'complexity', 'relevance'].some(key => params.has(key))) {
       throw new Error('Condition overrides are available only in test mode.');
     }
-    document.getElementById('jspsych-content').textContent = 'Preparing the study. Please wait.';
+    // jsPsych creates its content element only when run() starts. Use a
+    // separate status element while awaiting the condition assignment.
+    const startupStatus = document.createElement('p');
+    startupStatus.id = 'study-startup-status';
+    startupStatus.textContent = 'Preparing the study. Please wait.';
+    document.body.appendChild(startupStatus);
     const response = await fetch('https://pipe.jspsych.org/api/condition/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1307,6 +1312,8 @@
   }
 
   // Run the experiment
+  const startupStatus = document.getElementById('study-startup-status');
+  if (startupStatus) startupStatus.remove();
   jsPsych.run(timeline);
 })().catch(function(error) {
   console.error(error);
