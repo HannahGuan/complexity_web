@@ -230,7 +230,9 @@ Use `index.html?supplement=empty_cell_0` for one separately recruited completion
 It fixes Threa-4 × Totality × Topology × simple × relevant, validates this mapping
 at startup, skips the DataPipe condition counter, and uses the normal live upload.
 Do not add `test=1` to the recruitment URL: test mode never uploads.
-The ordinary URL retains sequential allocation.
+The ordinary URL is currently fixed to this same makeup cell by
+`fixed_recruitment: 'empty_cell_0'` in `pilot_config.js`. Set this field to null
+to restore sequential allocation after makeup collection.
 
 Data records `assignment_method=fixed_supplement`,
 `supplemental_recruitment=empty_cell_0`, `fixed_condition_id=0`;
@@ -247,3 +249,6 @@ For Prolific identifier capture append:
 Validate the platform-substituted URL before launch. Preview without uploading using
 `index.html?test=1&condition=0`. Tests: `node tests/startup.test.js` and
 `node tests/collection.test.js` from this folder.
+
+Current default recruitment URL (no query required):
+`https://hannahguan.github.io/complexity_web/experiments/pilot_A/index.html`.

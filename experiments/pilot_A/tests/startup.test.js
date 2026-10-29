@@ -6,7 +6,7 @@ const vm = require('node:vm');
 const root = path.join(__dirname, '..');
 const script = [...fs.readFileSync(path.join(root, 'index.html'), 'utf8').matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)]
   .map(m => m[1]).join('\n');
-async function boot(search, serverCondition = 0, completionUrl = '', status = 200) {
+async function boot(search, serverCondition = 0, completionUrl = '', status = 200, fixedRecruitment = null) {
   const elements = new Map();
   const element = () => ({ style: {}, classList: { add() {}, remove() {} }, addEventListener() {}, remove() { elements.delete(this.id); } });
   for (const id of ['fullscreen-nag', 'fullscreen-nag-btn']) elements.set(id, element());
@@ -24,6 +24,7 @@ async function boot(search, serverCondition = 0, completionUrl = '', status = 20
   vm.createContext(ctx);
   for (const file of ['vignettes.js', 'pilot_config.js']) vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), ctx);
   ctx.window.PILOT_CONFIG.prolific_completion_url = completionUrl;
+  ctx.window.PILOT_CONFIG.fixed_recruitment = fixedRecruitment;
   await vm.runInContext(script, ctx);
   return ctx;
 }
@@ -44,6 +45,15 @@ async function boot(search, serverCondition = 0, completionUrl = '', status = 20
     live.options.on_data_update(rating);assert.equal(rating.team_honesty_post,4);assert.equal(rating.reasoning_post,'QA');
   }
   assert.equal(cells.size,32);
+  for (const search of ['', ids]) {
+    const fixed=await boot(search,31,'',200,'empty_cell_0');
+    assert(fixed.timeline,String(fixed.error));assert.equal(fixed.requests,0);
+    assert.equal(fixed.data.vignette_category,'Xenobiology in Threa-4');
+    assert.equal(fixed.data.relev_typ,'Totality');assert.equal(fixed.data.rev_typ,'Topology');
+    assert.equal(fixed.data.complexity,'simple');assert.equal(fixed.data.relevance,'relevant');
+    assert.equal(fixed.data.assignment_method,'fixed_supplement');assert.equal(fixed.data.test_mode,false);
+    assert.equal(fixed.data.fixed_condition_id,0);assert.equal(fixed.data.datapipe_condition,null);
+  }
   for (const n of [-1,32,'0',null]) assert(!(await boot('',n)).timeline);
   const noCode=await boot(ids);assert(noCode.timeline);assert.equal(noCode.requests,1);
   const supplement=await boot(ids+'&supplement=empty_cell_0',31);

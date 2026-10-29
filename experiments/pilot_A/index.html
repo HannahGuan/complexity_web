@@ -475,7 +475,8 @@
   // With no query string this behaves exactly as the live study does.
   const params = new URLSearchParams(window.location.search);
   const TEST_MODE = params.get('test') === '1';
-  const SUPPLEMENT = params.get('supplement');
+  const SUPPLEMENT = params.get('supplement') ||
+    (window.PILOT_CONFIG && window.PILOT_CONFIG.fixed_recruitment) || null;
   if (SUPPLEMENT !== null && SUPPLEMENT !== 'empty_cell_0') {
     throw new Error('Unknown supplemental recruitment condition.');
   }
