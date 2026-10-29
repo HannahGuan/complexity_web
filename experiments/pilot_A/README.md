@@ -5,9 +5,9 @@ reactions to an expert's unexpected finding and their explanation of it.
 
 ## Design
 
-### Current recruitment pilot: DataPipe 96
+### Current recruitment pilot: DataPipe, first batch 64
 
-`pilot_config.js` selects Zorblax and Crelite, target **96 completions**.
+`pilot_config.js` selects Zorblax and Crelite, first-batch target **64 completions**.
 The configured Google Drive DataPipe experiment ID is `2BQjHVs5Lp2V`.
 A missing or malformed ID blocks live startup.
 Enable DataPipe Condition assignment and set **32 conditions**.
@@ -217,4 +217,33 @@ Comprehension rows record `question`, `question_text`, `answer` (positional,
 Data is saved at the end to DataPipe experiment `2BQjHVs5Lp2V`, using the
 shared ID in `pilot_config.js`. Test mode does not upload. Live Google Drive
 delivery and dashboard settings require an actual end-to-end upload test;
-there is currently no streaming or participant-facing upload retry flow.
+there is no streaming. The pending prelaunch `collection.js` update verifies
+HTTP 201/202 acceptance, provides retry/backup on failure, and offers a Prolific
+completion link only after acceptance. Set `prolific_completion_url` before
+resuming recruitment; do not deploy while existing participants are active.
+All three Prolific URL identifiers are recorded by the pending update.
+
+
+## Fixed makeup recruitment: empty cell 0
+
+Use `index.html?supplement=empty_cell_0` for one separately recruited completion.
+It fixes Threa-4 × Totality × Topology × simple × relevant, validates this mapping
+at startup, skips the DataPipe condition counter, and uses the normal live upload.
+Do not add `test=1` to the recruitment URL: test mode never uploads.
+The ordinary URL retains sequential allocation.
+
+Data records `assignment_method=fixed_supplement`,
+`supplemental_recruitment=empty_cell_0`, `fixed_condition_id=0`;
+`datapipe_condition` is blank because no server allocation was requested.
+Prolific identifiers are retained when supplied. A completion code URL is optional,
+as this study uses submissions without completion codes. Set the separate recruitment
+quota to one on the platform; this URL does not enforce a global one-person limit.
+
+After deploying the updated files, the recruitment URL is:
+`https://hannahguan.github.io/complexity_web/experiments/pilot_A/index.html?supplement=empty_cell_0`
+
+For Prolific identifier capture append:
+`&PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}}`.
+Validate the platform-substituted URL before launch. Preview without uploading using
+`index.html?test=1&condition=0`. Tests: `node tests/startup.test.js` and
+`node tests/collection.test.js` from this folder.

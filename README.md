@@ -14,7 +14,7 @@ and later revisions. The current recruitment study is **Pilot A**.
 | Complexity | Simple / Complex |
 | Decision relevance | Relevant / Irrelevant |
 | Assignment | DataPipe sequential condition IDs 0–31 |
-| Recruitment target | 96 completed participants |
+| Recruitment target | 64 completed participants in the first recruitment batch |
 | Participant-facing duration | 8–12 minutes |
 | DataPipe experiment ID | `2BQjHVs5Lp2V` |
 
@@ -64,6 +64,10 @@ routine previews.
 
 ## DataPipe and Google Drive setup
 
+Local prelaunch fixes add Prolific ID capture and confirmed-upload completion;
+these must be deployed after existing active sessions have finished.
+The Prolific completion URL is still required before resuming recruitment.
+
 The client configuration is in
 [`experiments/pilot_A/pilot_config.js`](experiments/pilot_A/pilot_config.js).
 The same experiment ID is used for condition assignment and final CSV upload.
@@ -96,7 +100,7 @@ Official references: [setup](https://pipe.jspsych.org/getting-started),
 
 ## Data and current saving behavior
 
-Pilot A uses jsPsych 7.3.4 and the `jsPsychPipe` save trial. It uploads one CSV,
+Pilot A uses jsPsych 7.3.4 and `collection.js` for a verified final upload. It uploads one CSV,
 named with a random participant ID, **at the end**. Incremental saving is not
 implemented; closing the study before the save trial can lose the session.
 
@@ -107,16 +111,36 @@ Every trial carries the subject ID, story and factor levels, `study_version`,
 for detailed trial and response fields.
 
 Startup stops if condition assignment fails or returns an invalid number.
-Upload failure recovery remains a launch concern: the current completion screen
-says data was saved without independently checking the save result, and there is
-no participant-facing retry flow. Confirm actual delivery during the live test.
+The completion handler accepts DataPipe HTTP 201 (stored) or 202 (queued),
+then offers the configured Prolific completion link. A rejected/network-failed
+submission shows retry and CSV backup download controls, retaining a local
+backup where browser storage is available. Retrying uses the same filename
+and payload. A duplicate-file response is not silently treated as success.
+This backup is not an interrupted-study resume feature.
+
+Prolific entry links must include `PROLIFIC_PID`, `STUDY_ID`, and `SESSION_ID`.
+All three are exported. Set `prolific_completion_url` in `pilot_config.js` to
+the normal completion URL from the Prolific dashboard. Panel entry is blocked
+before condition assignment if that URL or its identifiers are missing/invalid.
+Plain researcher entry without panel parameters remains available for live QA.
+
+Checks:
+
+```bash
+node experiments/pilot_A/tests/startup.test.js
+node experiments/pilot_A/tests/collection.test.js
+```
+
+The prelaunch QA file `QA_ONLY_prelaunch_20261028_fullflow.csv` was confirmed
+present in Google Drive by the researcher; exclude it from participant analysis.
 
 ## Editing content
 
 | File | Purpose |
 |---|---|
 | `experiments/pilot_A/index.html` | Procedure, presentation, ratings and saving |
-| `experiments/pilot_A/pilot_config.js` | Stories, version, target, DataPipe ID and condition count |
+| `experiments/pilot_A/pilot_config.js` | Stories, version, target, DataPipe ID, condition count and Prolific completion URL |
+| `experiments/pilot_A/collection.js` | Verified upload, retry, backup and completion handling |
 | `experiments/pilot_A/vignettes/text.csv` | Story and manipulation text |
 | `experiments/pilot_A/vignettes/comprehension.csv` | Comprehension questions and answer keys |
 | `experiments/pilot_A/vignettes/relevance_checks.csv` | Story-specific Totality and shared Reversibility checks |
@@ -154,7 +178,7 @@ Pilot A can be hosted as static files, including on GitHub Pages. It does not
 use the legacy `/save-data` route in `server.js`; DataPipe handles its upload.
 The optional Node server can also serve the experiments locally via `npm start`.
 
-For deployment, include `index.html`, `pilot_config.js`, regenerated
+For deployment, include `index.html`, `pilot_config.js`, `collection.js`, regenerated
 `vignettes.js`, and all referenced visual assets in `experiments/pilot_A/`.
 Use `/experiments/pilot_A/` as the live study path, without test parameters.
 Local edits do not publish themselves: confirm the configured hosting deployment

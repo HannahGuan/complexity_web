@@ -13,8 +13,8 @@
   <script src="https://unpkg.com/@jspsych/plugin-survey-html-form@1.0.3"></script>
   <script src="https://unpkg.com/@jspsych/plugin-fullscreen@1.2.0"></script>
 
-  <!-- DataPipe plugin for data collection -->
-  <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
+  <!-- Verified final DataPipe upload and completion handling -->
+  <script src="collection.js"></script>
 
   <!-- Vignette definitions, generated from vignettes/*.csv by build_vignettes.py -->
   <script src="vignettes.js"></script>
@@ -405,6 +405,15 @@
 
   // Initialize jsPsych
   const jsPsych = initJsPsych({
+    on_data_update: function(data) {
+      if (data.response && typeof data.response === 'object' && !Array.isArray(data.response)) {
+        Object.keys(data.response).forEach(function(key) {
+          const value = data.response[key];
+          data[key] = /^(perceived_complexity|team_trustworthiness|team_honesty|team_competence)_/.test(key)
+            ? Number(value) : value;
+        });
+      }
+    },
     on_finish: function() {
       if (new URLSearchParams(window.location.search).get('test') === '1') {
         // Test mode: show the data that WOULD have been saved, for inspection.
@@ -422,14 +431,14 @@
         document.getElementById('test-csv').textContent = jsPsych.data.get().csv();
         return;
       }
-      // Display completion message
-      document.body.innerHTML = `
-        <div style="max-width: 800px; margin: 100px auto; text-align: center;">
-          <h1>Thank you for participating!</h1>
-          <p>Your responses have been saved.</p>
-          <p>You may close this window now.</p>
-        </div>
-      `;
+      jsPsych.data.addProperties({ study_completed: true });
+      window.PilotCollection.finish({
+        experimentID: pilotConfig.datapipe_experiment_id,
+        filename: filename,
+        data: jsPsych.data.get().csv(),
+        completionUrl: pilotConfig.prolific_completion_url,
+        backupKey: 'pilot_A_pending_' + subject_id
+      });
     }
   });
 
@@ -466,6 +475,10 @@
   // With no query string this behaves exactly as the live study does.
   const params = new URLSearchParams(window.location.search);
   const TEST_MODE = params.get('test') === '1';
+  const SUPPLEMENT = params.get('supplement');
+  if (SUPPLEMENT !== null && SUPPLEMENT !== 'empty_cell_0') {
+    throw new Error('Unknown supplemental recruitment condition.');
+  }
 
   function forced(name, allowed) {
     const v = params.get(name);
@@ -529,6 +542,14 @@
       relevance: forced('relevance', ['relevant', 'irrelevant']) || selected.relevance
     };
   } else {
+    if (['PROLIFIC_PID', 'STUDY_ID', 'SESSION_ID'].some(key => params.has(key))) {
+      if (!['PROLIFIC_PID', 'STUDY_ID', 'SESSION_ID'].every(key => /^[a-f0-9]{24}$/i.test(params.get(key) || ''))) {
+        throw new Error('Invalid Prolific identifiers. Open the study from Prolific.');
+      }
+      if (pilotConfig.prolific_completion_url && !/^https:\/\/app\.prolific\.com\/submissions\/complete\?cc=[A-Za-z0-9]+$/.test(pilotConfig.prolific_completion_url)) {
+        throw new Error('Prolific completion URL is not configured.');
+      }
+    }
     if (!/^[A-Za-z0-9]{12}$/.test(pilotConfig.datapipe_experiment_id)) {
       throw new Error('The new DataPipe experiment ID has not been configured.');
     }
@@ -538,6 +559,15 @@
     if (['condition', 'vignette', 'complexity', 'relevance'].some(key => params.has(key))) {
       throw new Error('Condition overrides are available only in test mode.');
     }
+    if (SUPPLEMENT === 'empty_cell_0') {
+      // Explicit makeup recruitment: do not consume sequential assignments.
+      selected = cells[0];
+      if (selected.vignette.category !== 'Xenobiology in Threa-4' ||
+          selected.vignette.relev_typ !== 'Totality' || selected.vignette.rev_typ !== 'Topology' ||
+          selected.complexity !== 'simple' || selected.relevance !== 'relevant') {
+        throw new Error('Supplemental condition mapping changed.');
+      }
+    } else {
     // jsPsych creates its content element only when run() starts. Use a
     // separate status element while awaiting the condition assignment.
     const startupStatus = document.createElement('p');
@@ -557,19 +587,29 @@
     }
     datapipeCondition = result.condition;
     selected = cells[datapipeCondition];
+    }
   }
   const { vignette, complexity, relevance } = selected;
   const condition = complexity + '_' + relevance;
   const pilotCellId = [vignette.index, complexity, relevance].join('_');
 
+  // Link external responses to the corresponding Prolific submission.
+  const prolificIds = {};
+  ['PROLIFIC_PID', 'STUDY_ID', 'SESSION_ID'].forEach(function(key) {
+    prolificIds[key] = params.get(key) || '';
+  });
+
   // Add condition info to all data collected
   jsPsych.data.addProperties({
+    ...prolificIds,
     subject_id: subject_id,
     study_version: pilotConfig.version,
     recruitment_target: pilotConfig.target_completions,
     pilot_cell_id: pilotCellId,
     datapipe_condition: datapipeCondition,
-    assignment_method: TEST_MODE ? 'test_preview' : 'datapipe_sequential',
+    assignment_method: TEST_MODE ? 'test_preview' : (SUPPLEMENT ? 'fixed_supplement' : 'datapipe_sequential'),
+    supplemental_recruitment: TEST_MODE ? '' : (SUPPLEMENT || ''),
+    fixed_condition_id: !TEST_MODE && SUPPLEMENT ? 0 : null,
     condition: condition,
     complexity: complexity,
     relevance: relevance,
@@ -1298,19 +1338,7 @@
     }
   });
 
-  // Save data to DataPipe -- skipped in test mode so local click-throughs do
-  // not write junk rows into the live dataset.
-  if (!TEST_MODE) {
-    const save_data = {
-      type: jsPsychPipe,
-      action: "save",
-      experiment_id: pilotConfig.datapipe_experiment_id,
-      filename: filename,
-      data_string: () => jsPsych.data.get().csv()
-    };
-    timeline.push(save_data);
-  }
-
+  // Final upload runs in jsPsych.on_finish, after the last response is recorded.
   // Run the experiment
   const startupStatus = document.getElementById('study-startup-status');
   if (startupStatus) startupStatus.remove();
